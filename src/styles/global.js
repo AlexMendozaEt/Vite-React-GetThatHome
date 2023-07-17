@@ -107,7 +107,7 @@ export const reset = css`
     width: 100%;
     max-height: 100%;
     display: block;
-    fill: currentColor;
+    // fill: currentColor;
   }
 `;
 
