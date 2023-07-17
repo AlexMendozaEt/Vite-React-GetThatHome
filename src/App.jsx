@@ -7,6 +7,8 @@ import {
   isDarkModeActive,
   lightTheme,
 } from "./styles/themes";
+import Button from "./components/Button";
+import Test from "./components/test";
 
 function App() {
   const [darkMode, SetDarkMode] = useState(isDarkModeActive());
@@ -18,7 +20,8 @@ function App() {
           ${GlobalThemeStyle(darkMode ? darkTheme : lightTheme)}
         `}
       />
-      <>Get That Home</>
+      <Button type="primary">New Button</Button>
+      <Test />
     </ThemeProvider>
   );
 }
