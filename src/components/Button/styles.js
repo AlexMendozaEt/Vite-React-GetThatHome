@@ -74,6 +74,8 @@ export const StyledButton = styled.button`
   width: ${({ isFullWidth }) => (isFullWidth ? "100%" : "fit-content")};
   justify-content: center;
   align-items: center;
+  text-align: center;
+  white-space: nowrap;
   gap: 0.5rem;
   font-weight: 700;
   border-radius: ${({ rounded }) => (rounded ? "50%" : "1.875rem")};
