@@ -1,6 +1,6 @@
 import { Global, ThemeProvider, css } from "@emotion/react";
 import { useState } from "react";
-import Card from "./components/Cards";
+import Input from "./components/Input";
 
 import {
   GlobalThemeStyle,
@@ -8,7 +8,7 @@ import {
   isDarkModeActive,
   lightTheme,
 } from "./styles/themes";
-
+/*
 const house = {
   operationType: 0,
   adress: "86872 Jacob Gateway, Durganport, WV 48044",
@@ -23,9 +23,24 @@ const house = {
   userRol: 1,
 };
 
+*/
 function App() {
   const [darkMode, SetDarkMode] = useState(isDarkModeActive());
 
+  /*
+  const [searchData, setSearchData] = useState([
+    "San Miguel",
+    "Lima",
+    "San Isidro",
+    "Lince",
+    "Miraflores",
+    "Barranco",
+  ]);
+
+  const handleInputChange = (event) => {
+    console.log(event.target.value);
+  };
+  */
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Global
@@ -33,19 +48,14 @@ function App() {
           ${GlobalThemeStyle(darkMode ? darkTheme : lightTheme)}
         `}
       />
-      <Card
-        bgUrl={house.bgUrl}
-        price={house.price}
-        propertyType={house.propertyType}
-        operationType={house.operationType}
-        adress={house.adress}
-        beds={house.beds}
-        bath={house.bath}
-        area={house.area}
-        pets={house.pets}
-        fav={house.fav}
-        userRol={house.userRol}
-      ></Card>
+      {/* Comentario: 
+    <Input
+      placeholder={"placeholder"}
+      isfullwidth={"isfullwidth"}
+      data={searchData}
+      onChange={handleInputChange}
+    ></Input>
+    */}
     </ThemeProvider>
   );
 }
