@@ -1,6 +1,7 @@
 import { Global, ThemeProvider, css } from "@emotion/react";
 import { useState } from "react";
 import Card from "./components/Cards";
+import Menu from "./components/Menu";
 
 import {
   GlobalThemeStyle,
@@ -33,7 +34,7 @@ function App() {
           ${GlobalThemeStyle(darkMode ? darkTheme : lightTheme)}
         `}
       />
-      <Card
+      {/* <Card
         bgUrl={house.bgUrl}
         price={house.price}
         propertyType={house.propertyType}
@@ -45,7 +46,8 @@ function App() {
         pets={house.pets}
         fav={house.fav}
         userRol={house.userRol}
-      ></Card>
+      ></Card> */}
+      <Menu />
     </ThemeProvider>
   );
 }
