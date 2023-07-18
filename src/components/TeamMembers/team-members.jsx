@@ -5,6 +5,7 @@ import gabriela from "../../assets/images/gabriela.webp";
 import gerardo from "../../assets/images/gerardo.webp";
 import MemberCard from "../MemberCard";
 import { StyledContainer } from "./styles";
+import Container from "../../layout/Container";
 
 const team = [
   {
@@ -41,10 +42,14 @@ const team = [
 
 export default function TeamMembers() {
   return (
-    <StyledContainer>
-      {team.map((member, index) => (
-        <MemberCard key={`member-${index}`} member={member} />
-      ))}
-    </StyledContainer>
+    <section>
+      <Container size={"xl"}>
+        <StyledContainer>
+          {team.map((member, index) => (
+            <MemberCard key={`member-${index}`} member={member} />
+          ))}
+        </StyledContainer>
+      </Container>
+    </section>
   );
 }
