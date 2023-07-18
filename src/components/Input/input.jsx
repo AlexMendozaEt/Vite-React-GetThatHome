@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { StyledInput, StyledLabel } from "./styles";
+import { StyledInput, StyledLabel, StyledContainer } from "./styles";
 
 function Input({
   id,
@@ -14,7 +14,7 @@ function Input({
   ...props
 }) {
   return (
-    <div>
+    <StyledContainer>
       {label ? <StyledLabel htmlFor={id || name}>{label}</StyledLabel> : ""}
       <StyledInput
         id={id || name}
@@ -26,7 +26,7 @@ function Input({
         isfullwidth={isfullwidth}
         {...props}
       />
-    </div>
+    </StyledContainer>
   );
 }
 
@@ -34,7 +34,11 @@ Input.propTypes = {
   id: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
   onChange: PropTypes.func,
   isfullwidth: PropTypes.string,
   placeholder: PropTypes.string,

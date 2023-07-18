@@ -100,7 +100,7 @@ export const reset = css`
     background-color: transparent;
     color: inherit;
     display: block;
-    appearance: none;
+    /* appearance: none; */
   }
 
   svg {
