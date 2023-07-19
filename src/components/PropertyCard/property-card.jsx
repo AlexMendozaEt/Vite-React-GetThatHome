@@ -9,6 +9,7 @@ import { RiCloseCircleLine, RiCoinsLine } from "react-icons/ri";
 
 import { OwnerMenu, StyledContainer, StyledDiv } from "./styles";
 import Anchor from "../Anchor";
+import Button from "../Button";
 
 function PropertyCard({ property, isOwner, isFavorite }) {
   const theme = useTheme();
@@ -99,13 +100,17 @@ function PropertyCard({ property, isOwner, isFavorite }) {
           >
             EDIT
           </Anchor>
-          <button className="owner_menu__close">
-            <RiCloseCircleLine
-              size={"1.5rem"}
-              color={theme.colors.white.standard}
-            />
+          <Button
+            icon={
+              <RiCloseCircleLine
+                size={"1.5rem"}
+                color={theme.colors.white.standard}
+              />
+            }
+            type={"tertiary"}
+          >
             CLOSE
-          </button>
+          </Button>
         </OwnerMenu>
       ) : null}
     </StyledContainer>
