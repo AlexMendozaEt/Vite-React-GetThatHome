@@ -105,7 +105,7 @@ export const reset = css`
   }
 
   svg {
-    width: 100%;
+    max-width: 100%;
     max-height: 100%;
     display: block;
     // fill: currentColor;
