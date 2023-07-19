@@ -8,20 +8,25 @@ export const StyledFooter = styled.div`
   line-height: 1.125rem; /* 128.571% */
   letter-spacing: 0.00625rem;
   padding: 1rem 0;
-
-  .title {
-    display: flex;
-    justify-content: space-between;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 
   .source-code {
     display: flex;
-    gap: 1rem;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
 
   .source-code__info {
     display: flex;
     gap: 0.35rem;
+  }
+
+  @media only screen and (max-width: 630px) {
+    flex-direction: column;
   }
 `;
