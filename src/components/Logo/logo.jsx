@@ -6,9 +6,22 @@ import { StyledAnchor } from "./styles";
 
 function Logo({ ...props }) {
   const theme = useTheme();
+
+  function iconSize() {
+    const { size } = props;
+    switch (size) {
+      case "sm":
+        return `2.25rem`;
+      case "lg":
+        return `2.75rem`;
+      default:
+        return `2.5rem`;
+    }
+  }
+
   return (
     <StyledAnchor {...props}>
-      <TiHomeOutline size={"2.5rem"} color={theme.colors.pink[700]} />
+      <TiHomeOutline size={iconSize()} color={theme.colors.pink[700]} />
       <div className="title">
         <p>GET THAT</p>
         <p>HOME</p>
