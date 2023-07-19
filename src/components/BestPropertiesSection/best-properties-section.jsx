@@ -176,7 +176,7 @@ export default function BestPropertiesSection({
 
   return (
     <StyledSection>
-      <Container size="lg">
+      <Container size="xl">
         <>
           <StyledP>Find an Apartment you Love</StyledP>
           <StyledH2>Homes for rent at the best prices</StyledH2>
