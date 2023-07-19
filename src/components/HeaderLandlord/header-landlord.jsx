@@ -12,19 +12,35 @@ function HeaderLandlord() {
     <header>
       <Container size={"xl"}>
         <StyledContainer>
-          <Logo />
-          <div className="links-container">
-            <Anchor icon={<HiMagnifyingGlass />}>FIND A HOME</Anchor>
-            <Anchor icon={<RiLogoutCircleLine />} type={"secondary"}>
-              LOGOUT
-            </Anchor>
-            <Button icon={<RiHome8Line />} type={"primary"}>
-              MY PROPERTIES
-            </Button>
-            <Button icon={<RiUserLine />} type={"primary"}>
-              PROFILE
-            </Button>
+          <input type="checkbox" id="menu-mobile" />
+          <div className="logo">
+            <Logo />
+            <label htmlFor="menu-mobile" className="toggle-checkbox">
+              <span className="toggle-checkbox__first_line"></span>
+              <span className="toggle-checkbox__second_line"></span>
+              <span className="toggle-checkbox__last_line"></span>
+            </label>
           </div>
+          <ul className="expandable links-container">
+            <li className="link">
+              <Anchor icon={<HiMagnifyingGlass />}>FIND A HOME</Anchor>
+            </li>
+            <li className="link">
+              <Button icon={<RiLogoutCircleLine />} type={"secondary"}>
+                LOGOUT
+              </Button>
+            </li>
+            <li className="link">
+              <Anchor icon={<RiHome8Line />} type={"primary"}>
+                MY PROPERTIES
+              </Anchor>
+            </li>
+            <li className="link">
+              <Anchor icon={<RiUserLine />} type={"primary"}>
+                PROFILE
+              </Anchor>
+            </li>
+          </ul>
         </StyledContainer>
       </Container>
     </header>

@@ -1,3 +1,3 @@
-import Menu from "./menu";
+import HeaderLandlord from "./header-landlord";
 
-export default Menu;
+export default HeaderLandlord;
