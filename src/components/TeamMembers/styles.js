@@ -2,8 +2,6 @@ import styled from "@emotion/styled";
 
 export const StyledContainer = styled.div`
   padding: 4rem 0;
-  display: grid;
-  place-items: center;
   gap: 1.5rem;
 `;
 
@@ -14,6 +12,7 @@ export const StyledH3 = styled.h3`
 `;
 
 export const StyledTeamContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(230px, 100%), 1fr));
   gap: 2rem;
 `;
