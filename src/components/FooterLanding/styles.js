@@ -22,6 +22,6 @@ export const StyledFooter = styled.div`
 
   .source-code__info {
     display: flex;
-    gap: 0.25rem;
+    gap: 0.35rem;
   }
 `;

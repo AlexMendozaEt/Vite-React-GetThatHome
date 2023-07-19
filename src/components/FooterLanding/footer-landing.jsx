@@ -2,7 +2,7 @@ import { StyledFooter } from "./styles";
 import { DiRuby, DiReact } from "react-icons/di";
 import Container from "../../layout/Container";
 
-function FooterVisitor() {
+function FooterLanding() {
   return (
     <footer>
       <Container size={"xl"}>
@@ -29,4 +29,4 @@ function FooterVisitor() {
   );
 }
 
-export default FooterVisitor;
+export default FooterLanding;
