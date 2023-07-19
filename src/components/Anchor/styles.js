@@ -7,10 +7,10 @@ function typeStyles(type, theme) {
   switch (type) {
     case "primary":
       return `
-        background-color: ${theme.colors.orange[500]};
+        background-color: ${theme.colors.pink[400]};
         color: ${theme.colors.white.saturated};
         :hover {
-          background-color: ${theme.colors.orange[600]};
+          background-color: ${theme.colors.pink[500]};
         }
         :focus {
           outline: 0.1875rem solid ${theme.colors.info};
@@ -18,25 +18,39 @@ function typeStyles(type, theme) {
       `;
     case "secondary":
       return `
-        background-color: ${theme.colors.secondary.standard};
-        color: ${theme.colors.white.saturated};
-        :hover {
-          background-color: ${theme.colors.secondary.dark};
-        }
-        :focus {
-          outline: 0.1875rem solid ${theme.colors.secondary.darker};
-        }
-      `;
-    default:
-      return `
-        background-color: ${theme.colors.gray[200]};
+        background-color: transparent; 
+        border: 0.0625rem solid ${theme.colors.pink[400]};
         color: ${theme.colors.text.standard};
         :hover {
-          background-color: ${theme.colors.gray[300]};
+          background-color: ${theme.colors.background.dark};
         }
         :focus {
-          outline: 0.125rem solid ${theme.colors.gray[400]};
-          outline-offset: 0.0625rem;
+          outline: 0.1875rem solid ${theme.colors.info};
+        }
+      `;
+    case "tertiary":
+      return `
+        background-color: ${theme.colors.pink[600]};
+        color: ${theme.colors.white.saturated};
+        :hover {
+          background-color: ${theme.colors.pink[700]};
+        }
+        :active {
+          background-color: ${theme.colors.pink[800]};
+        }
+        :focus {
+          outline: 0.1875rem solid ${theme.colors.info};
+        }
+        `;
+    default:
+      return `
+        background-color: transparent;
+        color: ${theme.colors.text.standard};
+        :hover {
+          background-color: ${theme.colors.background.dark};
+        }
+        :focus { 
+          outline: 0.1875rem solid ${theme.colors.info};
         }
       `;
   }
@@ -70,10 +84,11 @@ export const StyledAnchor = styled(Link)`
   text-align: center;
   white-space: nowrap;
   gap: 0.5rem;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: ${({ rounded }) => (rounded ? "50%" : "1.875rem")};
   border: none;
   cursor: pointer;
+  letter-spacing: 0.07813rem;
   ${(props) => typeStyles(props.type, props.theme)}
   ${(props) => sizeStyles(props.size, props.rounded)}
 `;

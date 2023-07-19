@@ -1,25 +1,27 @@
 import PropTypes from "prop-types";
+import { TiHomeOutline } from "react-icons/ti";
+import { useTheme } from "@emotion/react";
 
 import { StyledAnchor } from "./styles";
 
-function Anchor({ icon, children, ...props }) {
+function Logo({ ...props }) {
+  const theme = useTheme();
   return (
     <StyledAnchor {...props}>
-      {icon}
-      {children}
+      <TiHomeOutline size={"2.5rem"} color={theme.colors.pink[700]} />
+      GET THAT
+      <br />
+      HOME
     </StyledAnchor>
   );
 }
 
-Anchor.propTypes = {
-  icon: PropTypes.element,
+Logo.propTypes = {
   children: PropTypes.string,
   to: PropTypes.string,
-  type: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   size: PropTypes.oneOf(["sm", "lg"]),
   isfullwidth: PropTypes.string,
-  rounded: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
-export default Anchor;
+export default Logo;

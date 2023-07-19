@@ -13,7 +13,7 @@ function Button({ icon, children, ...props }) {
 
 Button.propTypes = {
   disabled: PropTypes.bool,
-  type: PropTypes.oneOf(["primary", "secondary"]),
+  type: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   size: PropTypes.oneOf(["sm", "lg"]),
   icon: PropTypes.element,
   isFullWidth: PropTypes.bool,
