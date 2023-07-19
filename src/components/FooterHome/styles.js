@@ -11,23 +11,35 @@ export const StyledFooter = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 
   .title {
-    padding-bottom: 0.5rem;
     text-align: left;
   }
 
-  .github {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+  .github-1,
+  .github-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   .github__link {
     display: flex;
-    flex-direction: row;
     gap: 0.25rem;
-    padding-right: 0.5rem;
-    padding-bottom: 0.25rem;
+  }
+
+  .source-code,
+  .logo,
+  .team {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media only screen and (max-width: 860px) {
+    flex-direction: column;
   }
 `;
