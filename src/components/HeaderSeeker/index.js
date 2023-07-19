@@ -1,3 +1,3 @@
-import HeaderSeeker from "./menu";
+import HeaderSeeker from "./header-seeker";
 
 export default HeaderSeeker;
