@@ -12,13 +12,13 @@ function FooterHome() {
         <div>
           <StyledFooter>
             <div className="logo">
-              <Logo />
+              <Logo size="sm" />
               <p>© 2023 - Get That Home</p>
               <p>Codeable - Cohort 10 Final Project</p>
             </div>
             <div className="team">
               <p className="title">
-                Build with <span>❤</span> by:
+                Build with <span className="title__icon">❤</span> by:
               </p>
               <div className="github-1">
                 <a

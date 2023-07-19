@@ -17,6 +17,10 @@ export const StyledFooter = styled.div`
     text-align: left;
   }
 
+  .title__icon {
+    color: ${(props) => props.theme.colors.pink[600]};
+  }
+
   .github-1,
   .github-2 {
     display: flex;
