@@ -8,8 +8,10 @@ function Logo({ ...props }) {
   const theme = useTheme();
   return (
     <StyledAnchor {...props}>
-      <TiHomeOutline size={"1.5rem"} color={theme.colors.pink[700]} />
-      GET THAT HOME
+      <TiHomeOutline size={"2.5rem"} color={theme.colors.pink[700]} />
+      GET THAT
+      <br />
+      HOME
     </StyledAnchor>
   );
 }
