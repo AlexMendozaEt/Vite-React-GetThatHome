@@ -15,7 +15,7 @@ Anchor.propTypes = {
   icon: PropTypes.element,
   children: PropTypes.string,
   to: PropTypes.string,
-  type: PropTypes.oneOf(["primary", "secondary"]),
+  type: PropTypes.oneOf(["primary", "secondary", "tertiary"]),
   size: PropTypes.oneOf(["sm", "lg"]),
   isfullwidth: PropTypes.string,
   rounded: PropTypes.bool,
