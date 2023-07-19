@@ -7,10 +7,10 @@ function typeStyles(type, theme) {
   switch (type) {
     case "primary":
       return `
-        background-color: ${theme.colors.orange[500]};
+        background-color: ${theme.colors.pink[400]};
         color: ${theme.colors.white.saturated};
         :hover {
-          background-color: ${theme.colors.orange[600]};
+          background-color: ${theme.colors.pink[500]};
         }
         :focus {
           outline: 0.1875rem solid ${theme.colors.info};
@@ -28,6 +28,20 @@ function typeStyles(type, theme) {
           outline: 0.1875rem solid ${theme.colors.info};
         }
       `;
+    case "tertiary":
+      return `
+        background-color: ${theme.colors.pink[600]};
+        color: ${theme.colors.white.saturated};
+        :hover {
+          background-color: ${theme.colors.pink[700]};
+        }
+        :active {
+          background-color: ${theme.colors.pink[800]};
+        }
+        :focus {
+          outline: 0.1875rem solid ${theme.colors.info};
+        }
+        `;
     default:
       return `
         background-color: transparent;

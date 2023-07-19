@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
+
 import { fonts, typography } from "../../styles";
 
-export const StyledButton = styled.div`
+export const StyledLink = styled(Link)`
   margin: auto;
   margin-top: 20px;
 
@@ -51,7 +53,7 @@ export const StyledButton = styled.div`
     ${typography.head.sm}
   }
 
-  .adress {
+  .address {
     padding-inline: 16px;
     padding-bottom: 12px;
     font-family: ${fonts.primary};
@@ -100,7 +102,7 @@ export const StyledButton = styled.div`
     color: ${(props) => props.theme.colors.white.saturated};
   }
 
-  .card-fotter {
+  .card-footer {
     position: absolute;
     width: 300px;
     height: ${(props) => (props.userRol === 1 ? "7px" : "47px")};
@@ -112,11 +114,11 @@ export const StyledButton = styled.div`
     align-items: center;
   }
 
-  .fotter-main-box {
+  .footer-main-box {
     display: flex;
     justify-content: space-evenly;
   }
-  .fotter-icons {
+  .footer-icons {
     cursor: pointer;
     display: flex;
     align-items: center;
