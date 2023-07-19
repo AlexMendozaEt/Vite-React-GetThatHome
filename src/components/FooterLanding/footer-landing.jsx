@@ -7,13 +7,9 @@ function FooterLanding() {
     <footer>
       <Container size={"xl"}>
         <StyledFooter>
-          <div className="title">
-            <p>© 202X - Find That Home</p>
-            <p>Source Code</p>
-            <p>Codeable - Cohort X Final Project</p>
-          </div>
-
+          <p>©2023 - Find That Home</p>
           <div className="source-code">
+            <p>Source Code</p>
             <div className="source-code__info">
               <DiRuby size={"1.125rem"} />
               <p>Ruby on Rails REST API</p>
@@ -23,6 +19,7 @@ function FooterLanding() {
               <p>React Responsive SPA</p>
             </div>
           </div>
+          <p>Codeable - Cohort X Final Project</p>
         </StyledFooter>
       </Container>
     </footer>

@@ -9,9 +9,10 @@ function Logo({ ...props }) {
   return (
     <StyledAnchor {...props}>
       <TiHomeOutline size={"2.5rem"} color={theme.colors.pink[700]} />
-      GET THAT
-      <br />
-      HOME
+      <div className="title">
+        <p>GET THAT</p>
+        <p>HOME</p>
+      </div>
     </StyledAnchor>
   );
 }

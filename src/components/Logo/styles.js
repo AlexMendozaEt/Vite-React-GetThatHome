@@ -7,17 +7,17 @@ function sizeStyles(size) {
   switch (size) {
     case "sm":
       return `
-        padding: 0.375rem 0.625rem;
+        padding: 0 0.625rem;
         ${typography.text.sm}
       `;
     case "lg":
       return `
-          padding: 0.75rem 1.5rem;
+          padding: 0 1.5rem;
           ${typography.text.lg}
         `;
     default:
       return `
-          padding: 0.5rem 1rem ;
+          padding: 0 1rem ;
           ${typography.text.md}
         `;
   }
@@ -28,18 +28,24 @@ export const StyledAnchor = styled(Link)`
   width: ${({ isfullwidth }) => (isfullwidth ? "100%" : "fit-content")};
   justify-content: center;
   align-items: center;
-  text-align: center;
-  white-space: nowrap;
   gap: 0.5rem;
-  font-weight: 900;
+  ${(props) => sizeStyles(props.size)}
   border: none;
   cursor: pointer;
-  letter-spacing: 0.07813rem;
-  ${(props) => sizeStyles(props.size)}
+
   :hover {
     background-color: ${(props) => props.theme.colors.background.dark};
   }
+
   :focus {
     outline: 0.1875rem solid ${(props) => props.theme.colors.info};
+  }
+
+  .title {
+    // white-space: nowrap;
+    text-align: center;
+    font-weight: 900;
+    letter-spacing: 0.07813rem;
+    line-height: 1rem;
   }
 `;
