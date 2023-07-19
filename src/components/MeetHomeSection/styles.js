@@ -13,6 +13,7 @@ export const StyledContainer = styled.div`
   flex-wrap: no-wrap;
   flex-direction: column;
   align-items: center;
+  color: ${(props) => props.theme.colors.black.standard};
 `;
 
 export const StyledH1 = styled.h1`
