@@ -30,14 +30,17 @@ function typeStyles(type, theme) {
       `;
     case "tertiary":
       return `
-          background-color: transparent; 
-          color: ${theme.colors.white.standard};
-          :hover {
-            background-color: ${theme.colors.background.dark};
-          }
-          :focus {
-            outline: 0.1875rem solid ${theme.colors.info};
-          }
+        background-color: ${theme.colors.pink[600]};
+        color: ${theme.colors.white.saturated};
+        :hover {
+          background-color: ${theme.colors.pink[700]};
+        }
+        :active {
+          background-color: ${theme.colors.pink[800]};
+        }
+        :focus {
+          outline: 0.1875rem solid ${theme.colors.info};
+        }
         `;
     default:
       return `
