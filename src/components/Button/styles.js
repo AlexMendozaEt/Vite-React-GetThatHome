@@ -94,6 +94,7 @@ export const StyledButton = styled.button`
   gap: 0.5rem;
   font-weight: 700;
   border-radius: ${({ rounded }) => (rounded ? "50%" : "1.875rem")};
+  border-radius: ${({ square }) => (square ? "0.5rem" : "")};
   border: none;
 
   cursor: pointer;
