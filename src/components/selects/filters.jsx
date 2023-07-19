@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import Button from "../Button/button";
 import { lightTheme } from "../../styles";
 
+import { fonts } from "../../styles";
+
 const Container = styled.div`
   display: grid;
   width: 270px;
   justify-items: center;
   align-items: start;
-  font-family: inter;
+  font-family: ${fonts.secondary};
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -31,10 +33,10 @@ const ContainerCard = styled.div`
 `;
 
 const Title = styled.div`
-font-size: 10px;
-font-weight: 400;
-letter-spacing: 1.5px;
-text-align: left;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-align: left;
 `;
 
 const ArrayContainer = styled.div`
@@ -129,20 +131,12 @@ const Menu = (setFilter) => {
       </Button>
       {isOpen && (
         <ContainerCard>
-          <Title>
-          BEDS
-          </Title>
+          <Title>BEDS</Title>
           <ArrayContainer>{mapArray("BEDS")}</ArrayContainer>
-          <Title>
-          BATHS
-          </Title>
+          <Title>BATHS</Title>
           <ArrayContainer>{mapArray("BATH")}</ArrayContainer>
           <ButtonContainer>
-            <Button
-              onClick={handleDone}
-              type="primary"
-              theme={lightTheme}
-            >
+            <Button onClick={handleDone} type="primary" theme={lightTheme}>
               DONE
             </Button>
           </ButtonContainer>

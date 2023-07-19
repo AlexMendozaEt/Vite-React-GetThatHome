@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+
 import Button from "../Button/button";
 import { lightTheme } from "../../styles";
+import { fonts } from "../../styles";
 
 const Container = styled.div`
   display: grid;
   width: 270px;
   justify-items: center;
   align-items: start;
-  font-family: inter;
+  font-family: ${fonts.secondary};
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -80,20 +82,19 @@ const Menu = (setFilter) => {
   };
 
   const getButtonLabel = () => {
-    let label = []
+    let label = [];
 
     if (selectedOptions.length === 0) {
       return "PROPERTY TYPE";
     }
-    
-    label = []
-    selectedOptions.map((element, _index) => {
 
-        if(label.length  != 0) label.push( ` & `)
-        label.push(`${element}`)
-    })
+    label = [];
+    selectedOptions.map((element, _index) => {
+      if (label.length != 0) label.push(` & `);
+      label.push(`${element}`);
+    });
     return label.toString().split(",");
-  }
+  };
 
   const handleCheckboxChange = (option) => {
     if (selectedOptions.some((o) => o === option)) {
@@ -122,7 +123,7 @@ const Menu = (setFilter) => {
 
   const handleDone = () => {
     // setFilter(selectedOptions);
-console.log("Filters: ",selectedOptions)
+    console.log("Filters: ", selectedOptions);
     setIsOpen(!isOpen);
   };
 

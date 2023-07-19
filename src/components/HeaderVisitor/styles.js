@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
+import { fonts } from "../../styles";
 
 export const StyledContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 1rem 0;
-  font-family: Inter;
+  font-family: ${fonts.secondary};
 
   .links-container {
     display: flex;

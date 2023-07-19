@@ -7,7 +7,6 @@ export const StyledSection = styled.section`
 
 export const StyledH3 = styled.h3`
   text-align: center;
-  font-family: Montserrat;
   font-size: 2.25rem;
   line-height: 3rem;
   letter-spacing: 0.01563rem;

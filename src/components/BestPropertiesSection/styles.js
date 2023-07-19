@@ -12,7 +12,6 @@ export const StyledP = styled.p`
 
 export const StyledH2 = styled.h2`
   text-align: center;
-  font-family: Montserrat;
   font-size: 2.25rem;
   letter-spacing: 0.01563rem;
   margin-bottom: 2rem;
