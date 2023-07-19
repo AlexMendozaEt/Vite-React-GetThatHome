@@ -72,6 +72,8 @@ export const OwnerMenu = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding-bottom: 0.4rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
 
   .owner_menu__edit {
     display: flex;
