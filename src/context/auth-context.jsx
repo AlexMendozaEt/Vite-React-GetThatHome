@@ -9,6 +9,7 @@ const AuthContext = createContext();
 
 function AuthProvider(props) {
   const [user, setUser] = useState(null);
+  // const [user, setUser] = useState({ type: 0 });
 
   const navigate = useNavigate();
 
