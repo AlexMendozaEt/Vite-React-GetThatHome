@@ -13,11 +13,11 @@ function AuthProvider(props) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUser()
-      .then((user) => {
-        setUser(user);
-      })
-      .catch(console.log);
+    // getUser()
+    //   .then((user) => {
+    //     setUser(user);
+    //   })
+    //   .catch(console.log);
   }, []);
 
   function login(credentials) {
