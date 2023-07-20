@@ -18,13 +18,16 @@ import {
 
 export default function SignUpSection() {
   const [singUpPage, setSingUpPage] = useState(false);
+  const [userType, setUserType] = useState();
 
   const Landlord = () => {
     setSingUpPage(true);
+    setUserType(0);
   };
 
   const HomeSeeker = () => {
     setSingUpPage(true);
+    setUserType(1);
   };
 
   const renderOperationType = {
@@ -46,7 +49,7 @@ export default function SignUpSection() {
         </OptionsMainBox>
       </>
     ),
-    1: <MyFormikCreate />,
+    1: <MyFormikCreate userType={userType} />,
   };
 
   return (
