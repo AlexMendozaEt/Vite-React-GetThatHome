@@ -70,7 +70,6 @@ function MyFormikCreate() {
   return (
     <SingUpBoxForm>
       <CreateHeader>
-        <IconBack onClick={() => navigate("/products")} />
         <CreateText>Create your Account</CreateText>
       </CreateHeader>
 
