@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import {
   SingUpBoxForm,
@@ -18,13 +19,14 @@ import {
   ButtonText,
 } from "./styles";
 
-function MyFormikCreate() {
+function MyFormikCreate({ userType }) {
   const initialValues = {
     name: "",
     email: "",
     phone: "",
     password: "",
     password_confirmation: "",
+    type: userType,
   };
 
   const navigate = useNavigate();
@@ -138,6 +140,7 @@ function MyFormikCreate() {
               <ErrorInputs name="password_confirmation" component="small" />
             </InputBox>
             <ButtonCreate type="submit">
+              {/* DENTRO DEL BOTON onClick={() => navigate("/home")} */}
               <ButtonText>Create account</ButtonText>
             </ButtonCreate>
             {showError && (
@@ -153,5 +156,9 @@ function MyFormikCreate() {
     </SingUpBoxForm>
   );
 }
+
+MyFormikCreate.propTypes = {
+  userType: PropTypes.number,
+};
 
 export default MyFormikCreate;
