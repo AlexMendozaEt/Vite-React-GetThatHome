@@ -10,7 +10,7 @@ import {
 } from "./styles";
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
-import Pagination from "../Paginacion";
+import Pagination from "../Pagination";
 
 export default function SavedPropertiesSection() {
   const [products, setProducts] = useState([]);
