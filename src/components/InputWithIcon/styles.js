@@ -21,7 +21,7 @@ export const StyledInput = styled("input")`
 export const StyledLabel = styled.label`
   color: ${(props) => props.theme.colors.text.light};
   font-size: 0.625rem;
-  font-family: Inter;
+  font-family: ${fonts.secondary};
   letter-spacing: 0.09375rem;
   //word-wrap: break-word;
 `;
