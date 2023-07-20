@@ -5,7 +5,7 @@ import Container from "../../layout/Container";
 import Logo from "../Logo";
 import { Link } from "react-router-dom";
 
-function FooterHome() {
+function Footer() {
   return (
     <footer>
       <Container size={"xl"}>
@@ -88,4 +88,4 @@ function FooterHome() {
   );
 }
 
-export default FooterHome;
+export default Footer;
