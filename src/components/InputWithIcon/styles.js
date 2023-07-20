@@ -5,7 +5,6 @@ export const StyledInput = styled("input")`
   //background-color: ${(props) => props.theme.colors.background.lighter};
   border: none;
   padding: 0.25rem 0;
-  font-size: 1.125rem;
   width: ${({ isfullwidth }) => (isfullwidth ? "100%" : "fit-content")};
   accent-color: ${(props) => props.theme.colors.pink[400]};
   ::placeholder {
@@ -21,7 +20,7 @@ export const StyledInput = styled("input")`
 export const StyledLabel = styled.label`
   color: ${(props) => props.theme.colors.text.light};
   font-size: 0.625rem;
-  font-family: Inter;
+  font-family: ${fonts.secondary};
   letter-spacing: 0.09375rem;
   //word-wrap: break-word;
 `;
