@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { RiUserReceived2Line, RiMoneyDollarCircleLine } from "react-icons/ri";
 import {
   MdOutlineKeyboardArrowLeft,
@@ -8,7 +9,7 @@ import { BiBed, BiBath, BiArea } from "react-icons/bi";
 
 import Container from "../../layout/Container";
 import HeaderLandlord from "../../components/HeaderLandlord/header-landlord";
-import FooterHome from "../../components/FooterHome";
+import Footer from "../../components/Footer";
 import { StyledDetail } from "./styles";
 import Button from "../../components/Button";
 import Property from "../../../src/assets/images/property.png";
@@ -32,8 +33,9 @@ const propertyTest = {
   photo_url: [Property, Property, Property, Property, Property],
 };
 
-function PropertyDetail({ property }) {
+function PropertyDetail({ user, ...property }) {
   property = propertyTest;
+
   const {
     address,
     monthly_rent,
@@ -47,6 +49,57 @@ function PropertyDetail({ property }) {
     photo_url,
     about,
   } = property;
+
+  const viewBox = {
+    0: (
+      <div className="login">
+        <div className="login__card">
+          <p className="login__title">
+            Log in or Join to contact the advertiser
+          </p>
+          <Button
+            className="button"
+            icon={<RiUserReceived2Line />}
+            type={"primary"}
+          >
+            LOGIN
+          </Button>
+        </div>
+      </div>
+    ),
+    1: (
+      <div className="login">
+        <div className="login__card">
+          <p className="login__title">
+            Log in or Join to contact the advertiser
+          </p>
+          <Button
+            className="button"
+            icon={<RiUserReceived2Line />}
+            type={"primary"}
+          >
+            LANDLORD
+          </Button>
+        </div>
+      </div>
+    ),
+    2: (
+      <div className="login">
+        <div className="login__card">
+          <p className="login__title">
+            Log in or Join to contact the advertiser
+          </p>
+          <Button
+            className="button"
+            icon={<RiUserReceived2Line />}
+            type={"primary"}
+          >
+            HOMESEEKER
+          </Button>
+        </div>
+      </div>
+    ),
+  };
 
   return (
     <>
@@ -109,25 +162,20 @@ function PropertyDetail({ property }) {
               <img src={GoogleMaps} />
             </div>
           </div>
-          <div className="login">
-            <div className="login__card">
-              <p className="login__title">
-                Log in or Join to contact the advertiser
-              </p>
-              <Button
-                className="button"
-                icon={<RiUserReceived2Line />}
-                type={"primary"}
-              >
-                LOGIN
-              </Button>
-            </div>
-          </div>
+          {user === null
+            ? viewBox[0]
+            : user.type === 0
+            ? viewBox[1]
+            : viewBox[2]}
         </StyledDetail>
       </Container>
-      <FooterHome />
+      <Footer />
     </>
   );
 }
+
+PropertyDetail.propTypes = {
+  user: PropTypes.object,
+};
 
 export default PropertyDetail;
