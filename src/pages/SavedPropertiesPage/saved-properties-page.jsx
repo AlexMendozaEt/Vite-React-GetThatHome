@@ -1,3 +1,13 @@
-export default function SavedPropertiesPage() {
-  return <>Saved Properties Page</>;
+import SavedPropertiesSection from "../../components/SavedPropertiesSection";
+import HeaderSeeker from "../../components/HeaderSeeker";
+import Footer from "../../components/Footer";
+
+export default function SeekerPage() {
+  return (
+    <>
+      <HeaderSeeker />
+      <SavedPropertiesSection />
+      <Footer />
+    </>
+  );
 }

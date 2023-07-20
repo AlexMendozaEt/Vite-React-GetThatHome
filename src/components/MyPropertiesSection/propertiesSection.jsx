@@ -12,7 +12,7 @@ import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
 
-export default function SavedPropertiesSection() {
+export default function PropertiesSection() {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(9);
@@ -103,13 +103,13 @@ export default function SavedPropertiesSection() {
                 className={`${isChecked ? "checkedOption" : ""}`}
                 htmlFor="favorites"
               >
-                FAVORITES
+                ACTIVE
               </StyledLabel>
               <StyledLabel
                 className={`${isChecked ? "" : "checkedOption"}`}
                 htmlFor="contacted"
               >
-                CONTACTED
+                CLOSED
               </StyledLabel>
             </BoxOptions>
             <StyledH2>{totalProducts} Properties found</StyledH2>
