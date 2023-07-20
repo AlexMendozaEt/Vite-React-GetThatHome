@@ -5,7 +5,8 @@ import PropertiesPage from "./pages/PropertiesPage";
 import PropertyDetailPage from "./pages/PropertyDetailPage";
 import EditPropertyPage from "./pages/EditPropertyPage";
 import SavedPropertiesPage from "./pages/SavedPropertiesPage";
-import CreatePropertyPage from "./pages/CreatePropertyPage";
+import CreateRentalPropertyPage from "./pages/CreateRentalPropertyPage";
+import CreateSalePropertyPage from "./pages/CreateSalePropertyPage";
 
 function AuthenticatedLandlordApp() {
   return (
@@ -19,7 +20,11 @@ function AuthenticatedLandlordApp() {
             <Route index element={<PropertyDetailPage />} />
             <Route path="edit" element={<EditPropertyPage />} />
           </Route>
-          <Route path="create" element={<CreatePropertyPage />} />
+          <Route path="create">
+            {/* <Route index element={<CreateRentalPropertyPage />} /> */}
+            <Route path="rent" element={<CreateRentalPropertyPage />} />
+            <Route path="sale" element={<CreateSalePropertyPage />} />
+          </Route>
         </Route>
         <Route path="savedproperties" element={<SavedPropertiesPage />} />
         <Route path="myproperties" element={<PropertiesPage />} />
