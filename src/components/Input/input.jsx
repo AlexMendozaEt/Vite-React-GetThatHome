@@ -15,6 +15,7 @@ function Input({
 }) {
   return (
     <StyledContainer>
+      {label ? <StyledLabel htmlFor={id || name}>{label}</StyledLabel> : ""}
       <StyledInput
         id={id || name}
         type={type}
@@ -25,7 +26,6 @@ function Input({
         isfullwidth={isfullwidth}
         {...props}
       />
-      {label ? <StyledLabel htmlFor={id || name}>{label}</StyledLabel> : ""}
     </StyledContainer>
   );
 }
