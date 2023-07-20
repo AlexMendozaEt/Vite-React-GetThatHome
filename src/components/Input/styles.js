@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const StyledInput = styled("input")`
   background-color: ${(props) => props.theme.colors.background.lighter};
-  border: none;
+  border: 1px solid ${(props) => props.theme.colors.pink[400]};
   border-bottom: 0.0625rem solid
     ${(props) => props.theme.colors.background.darker};
   padding: 0.25rem 0;
