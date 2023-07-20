@@ -21,7 +21,7 @@ function AuthenticatedLandlordApp() {
             <Route path="edit" element={<EditPropertyPage />} />
           </Route>
           <Route path="create">
-            {/* <Route index element={<CreateRentalPropertyPage />} /> */}
+            <Route index element={<Navigate to="/property/create/rent" />} />
             <Route path="rent" element={<CreateRentalPropertyPage />} />
             <Route path="sale" element={<CreateSalePropertyPage />} />
           </Route>
