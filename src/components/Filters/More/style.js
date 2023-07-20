@@ -11,14 +11,15 @@ export const Container = styled.div`
   line-height: 24px;
   letter-spacing: 1.25px;
   color: #616161;
+
 `;
 
 export const ContainerCard = styled.div`
+  display: grid;
   background-color: white;
-  width: 211px;
-  height: 116px;
-  gap: 4px;
-  border-radio: 8px;
+  width: 247px;
+  height: 168px;
+  gap: 8px;
   box-shadow: 3px 3px 10px gray;
   padding: 8px;
   border-radius: 8px;
@@ -31,37 +32,56 @@ export const ContainerCard = styled.div`
 export const Title = styled.div`
   font-size: 10px;
   font-weight: 400;
-  line-height: 20px;
   letter-spacing: 1.5px;
   text-align: left;
 `;
 
-export const PropertyContainer = styled.div`
+export const PriceContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 211px;
-  overflow: hidden;
-  gap: 8px;
-`;
+  width: 231px;
+  align-items: center;
+  `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 8px;
+  font-weight: 500;
+`;
+
+export const ContainerIcon = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+`;
+
+
+export const Line = styled.div`
+background-color: gray;
+width: 11px;
+height: 2px;
+border-radius: 1px;
+margin: auto;
 `;
 
 export const ContainerInput = styled.div`
   display: flex;
+  flex-direction: row;
   gap: 4px;
   text-align: center;
 `;
 
 export const Input = styled.input`
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 102px;
+  height: 36px;
   margin: 2px;
-  appearance: none;
+  padding: 8px;
+  // padding-left: 36px;
+  // appearance: none;
+  border-radius: 8px;
   border: 1px solid ${(props)=> props.theme.colors.pink[500]};
 
   &:checked {
@@ -69,15 +89,17 @@ export const Input = styled.input`
   }
 `;
 
-export const Label = styled.label`
+export const InputCheckbox = styled.input`
+  // display: inline-block;
+  width: 20px;
   height: 20px;
-  font-family: Inter;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0.25px;
-  text-align: left;
-  align-content: center;
- 
+  margin: 2px;
+  padding: 2px;
+  appearance: none;
+  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
 
+  &:checked {
+     border: 4px solid ${(props)=> props.theme.colors.pink[500]};
+  }
 `;
+

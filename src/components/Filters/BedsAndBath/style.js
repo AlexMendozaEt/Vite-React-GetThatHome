@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  width: 270px;
+  width: 100%;
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -24,7 +24,8 @@ export const ContainerCard = styled.div`
   border-radius: 8px;
   align-content: center;
   position: fixed;
-  margin-top: 40px;
+  margin-top: 8px;
+
 `;
 
 export const Title = styled.div`
