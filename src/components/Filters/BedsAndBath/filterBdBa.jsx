@@ -80,7 +80,7 @@ const FilterBdBa = ({filter,setFilter}) => {
   );
 };
 
-FilterPrice.propTypes= { 
+FilterBdBa.propTypes= { 
   filter: PropTypes.array,
   setFilter: PropTypes.func,
 

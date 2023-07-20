@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import Button from "../../Button/button";
 
-import { Container, ContainerCard, Title, PropertyContainer, ButtonContainer, ContainerInput, Input } from "."
+import { Container, ContainerCard, Title, PropertyContainer, ButtonContainer, ContainerInput, Input, Label } from "."
 import { lightTheme } from "../../../styles";
 
 
@@ -56,7 +56,7 @@ const FilterProperty = ({filter, setFilter}) => {
           checked={selectedOptions.some((option) => option === element)}
           onChange={() => handleCheckboxChange(element)}
         />
-        <label htmlFor={element}>{element}</label>
+        <Label htmlFor={element}>{element}</Label>
       </ContainerInput>
     ));
   };
@@ -77,7 +77,7 @@ const FilterProperty = ({filter, setFilter}) => {
           <Title>Property Type</Title>
           <PropertyContainer>{mapArray()}</PropertyContainer>
           <ButtonContainer>
-            <Button onClick={handleDone} type="primary" theme={lightTheme}>
+            <Button onClick={handleDone} square type="primary" theme={lightTheme}>
               DONE
             </Button>
           </ButtonContainer>

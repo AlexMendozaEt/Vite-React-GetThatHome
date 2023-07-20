@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  width: 270px;
+  width: 100%;
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -24,12 +24,14 @@ export const ContainerCard = styled.div`
   border-radius: 8px;
   align-content: center;
   position: fixed;
-  margin-top: 40px;
+  margin-top: 8px;
+
 `;
 
 export const Title = styled.div`
   font-size: 10px;
   font-weight: 400;
+  line-height: 20px;
   letter-spacing: 1.5px;
   text-align: left;
 `;
@@ -37,8 +39,9 @@ export const Title = styled.div`
 export const PropertyContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 252px;
+  width: 211px;
   overflow: hidden;
+  gap: 8px;
 `;
 
 export const ButtonContainer = styled.div`
@@ -64,4 +67,17 @@ export const Input = styled.input`
   &:checked {
     border: 4px solid ${(props)=> props.theme.colors.pink[500]};
   }
+`;
+
+export const Label = styled.label`
+  height: 20px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-align: left;
+  align-content: center;
+ 
+
 `;

@@ -8,7 +8,7 @@ import { Container, ContainerCard, Title, PriceContainer, ButtonContainer, Conta
 import { lightTheme } from "../../../styles";
 import { Line } from "./style";
 
-const FilterPets = ({ setFilter }) => {
+const FilterMore = ({ setFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [minMeter, setminMeter] = useState(0);
   const [maxMeter, setmaxMeter] = useState(0);
@@ -97,8 +97,8 @@ const FilterPets = ({ setFilter }) => {
   );
 };
 
-FilterPets.propTypes = {
+FilterMore.propTypes = {
   setFilter: PropTypes.func,
 };
 
-export default FilterPets;
+export default FilterMore;
