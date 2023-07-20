@@ -31,7 +31,7 @@ export default function SignUpSection() {
     0: (
       <>
         <StyledH3>Selecciona el perfil con el que te identificas</StyledH3>
-        <StyledH4> Que estas buscando?</StyledH4>
+        <StyledH4>¿Que estas buscando?</StyledH4>
         <OptionsMainBox>
           <OptionsBox onClick={Landlord}>
             <img className="img" src={landlord} alt="landlord" />
