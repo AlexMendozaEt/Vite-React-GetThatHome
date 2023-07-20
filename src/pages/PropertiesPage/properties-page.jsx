@@ -1,3 +1,13 @@
+import PropertiesSection from "../../components/MyPropertiesSection";
+import HeaderLandlord from "../../components/HeaderLandlord";
+import Footer from "../../components/Footer";
+
 export default function PropertiesPage() {
-  return <div>Properties Page</div>;
+  return (
+    <>
+      <HeaderLandlord />
+      <PropertiesSection />
+      <Footer />
+    </>
+  );
 }
