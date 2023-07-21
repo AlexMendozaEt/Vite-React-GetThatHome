@@ -18,20 +18,24 @@ import {
   ButtonCreate,
   ButtonText,
 } from "./styles";
+import { useAuth } from "../../context/auth-context";
 
 function MyFormikCreate({ userType }) {
+  const { signup } = useAuth();
+
   const initialValues = {
     name: "",
     email: "",
     phone: "",
     password: "",
     password_confirmation: "",
-    type: userType,
+    rol: userType,
   };
 
   const navigate = useNavigate();
 
   const [showError, setShowError] = useState(false);
+
   async function onSubmit(values) {
     console.log(values);
   }
