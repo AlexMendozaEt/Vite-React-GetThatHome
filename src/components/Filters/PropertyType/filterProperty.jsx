@@ -1,16 +1,31 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
 
 import { Container, ContainerCard, Title, PropertyContainer, ButtonContainer, ContainerInput, Input, Label } from "."
 import { lightTheme } from "../../../styles";
 
 
-const FilterProperty = ({filter, setFilter}) => {
+const FilterProperty = ({ filter, setFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const array = filter || ["Houses", "Apartments"];
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const containerRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
@@ -19,21 +34,19 @@ const FilterProperty = ({filter, setFilter}) => {
   const getButtonLabel = () => {
     let label = [];
 
-  
     if (selectedOptions.length === 0) {
       return "PROPERTY TYPE";
     }
-  
+
     selectedOptions.forEach((element, index) => {
       if (index !== 0) {
         label.push(" & ");
       }
       label.push(element);
     });
-  
+
     return label.join(" ");
   };
-  
 
   const handleCheckboxChange = (option) => {
     if (selectedOptions.some((o) => o === option)) {
@@ -62,13 +75,17 @@ const FilterProperty = ({filter, setFilter}) => {
   };
 
   const handleDone = () => {
-    // setFilter(selectedOptions);
-    console.log("Filters: ", selectedOptions);
+    const selectedTypes = {}; 
+    selectedOptions.forEach((option) => {
+      selectedTypes[option] = true;
+    });
+    setFilter(selectedTypes); 
+    console.log(selectedTypes)
     setIsOpen(!isOpen);
   };
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Button onClick={handleButtonClick} type="primary" theme={lightTheme}>
         {getButtonLabel()}
       </Button>
@@ -87,10 +104,9 @@ const FilterProperty = ({filter, setFilter}) => {
   );
 };
 
-FilterProperty.propTypes= { 
+FilterProperty.propTypes = { 
   filter: PropTypes.array,
-  setFilter: PropTypes.func,
-
+  setFilter: PropTypes.func.isRequired, 
 }
 
 export default FilterProperty;
