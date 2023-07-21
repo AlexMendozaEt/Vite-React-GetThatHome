@@ -1,9 +1,18 @@
-import {BiSolidDollarCircle} from "react-icons/bi"
+import { BiSolidDollarCircle } from "react-icons/bi";
 import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
 
-import { Container, ContainerCard, Title, PriceContainer, ButtonContainer, ContainerInput, Input, ContainerIcon } from "."
+import {
+  Container,
+  ContainerCard,
+  Title,
+  PriceContainer,
+  ButtonContainer,
+  ContainerInput,
+  Input,
+  ContainerIcon,
+} from ".";
 import { lightTheme } from "../../../styles";
 import { Line } from "./style";
 
@@ -23,8 +32,11 @@ const FilterPrice = ({ filter, setFilter }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setIsOpen(false); 
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
       }
     };
 
@@ -37,7 +49,10 @@ const FilterPrice = ({ filter, setFilter }) => {
 
   const getButtonLabel = () => {
     if (minPrice !== 0 && maxPrice !== 0) {
-      return `$ ${((minPrice * 10) / 10).toFixed(1)} K - $ ${((maxPrice * 10) / 10).toFixed(1)} K`;
+      return `$ ${((minPrice * 10) / 10).toFixed(1)} K - $ ${(
+        (maxPrice * 10) /
+        10
+      ).toFixed(1)} K`;
     } else if (minPrice !== 0) {
       return `>= $ ${((minPrice * 10) / 10).toFixed(1)} K`;
     } else if (maxPrice !== 0) {
@@ -48,11 +63,9 @@ const FilterPrice = ({ filter, setFilter }) => {
   };
 
   const handleDone = () => {
-    if (minPrice > maxPrice) {
-      filtered(maxPrice, minPrice);
-    } else {
-      filtered(minPrice, maxPrice);
-    }
+    if (minPrice > maxPrice)
+      return console.log("the minimum cannot be greater than the maximum");
+    filtered(minPrice, maxPrice);
     setIsOpen(!isOpen);
   };
 
@@ -67,7 +80,7 @@ const FilterPrice = ({ filter, setFilter }) => {
           <PriceContainer>
             <ContainerInput>
               <ContainerIcon>
-                <BiSolidDollarCircle/>
+                <BiSolidDollarCircle />
               </ContainerIcon>
               <Input
                 type="number"
@@ -77,22 +90,28 @@ const FilterPrice = ({ filter, setFilter }) => {
                 onChange={(e) => setMinPrice(+e.target.value)}
               />
             </ContainerInput>
-             <Line/>
+            <Line />
             <ContainerInput>
               <ContainerIcon>
-                <BiSolidDollarCircle/>
+                <BiSolidDollarCircle />
               </ContainerIcon>
               <Input
                 type="number"
                 theme={lightTheme}
                 placeholder="Max"
-                value={maxPrice > 0 ?  maxPrice : ""}
+                value={maxPrice > 0 ? maxPrice : ""}
                 onChange={(e) => setMaxPrice(+e.target.value)}
               />
             </ContainerInput>
           </PriceContainer>
           <ButtonContainer>
-            <Button onClick={handleDone} square size="sm" type="primary" theme={lightTheme}>
+            <Button
+              onClick={handleDone}
+              square
+              size="sm"
+              type="primary"
+              theme={lightTheme}
+            >
               DONE
             </Button>
           </ButtonContainer>
@@ -104,7 +123,7 @@ const FilterPrice = ({ filter, setFilter }) => {
 
 FilterPrice.propTypes = {
   filter: PropTypes.array,
-  setFilter: PropTypes.func.isRequired, 
+  setFilter: PropTypes.func.isRequired,
 };
 
 export default FilterPrice;
