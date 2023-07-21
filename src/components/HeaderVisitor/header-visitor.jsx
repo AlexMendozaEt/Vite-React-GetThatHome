@@ -34,9 +34,13 @@ function HeaderVisitor() {
               </Anchor>
             </li>
             <li className="link">
-              <Button icon={<RiUserReceived2Line />} type={"primary"}>
+              <Anchor
+                icon={<RiUserReceived2Line />}
+                type={"primary"}
+                to={"/login"}
+              >
                 LOGIN
-              </Button>
+              </Anchor>
             </li>
           </ul>
         </StyledContainer>
