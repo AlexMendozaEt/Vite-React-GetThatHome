@@ -1,12 +1,16 @@
-import PropertiesSection from "../../components/MyPropertiesSection";
-import HeaderLandlord from "../../components/HeaderLandlord";
 import Footer from "../../components/Footer";
+import { useAuth } from "../../context/auth-context";
+import Header from "../../components/Header";
+import ListView from "../../components/ListView/list-view";
+
 
 export default function PropertiesPage() {
+  const { user } = useAuth();
+
   return (
     <>
-      <HeaderLandlord />
-      <PropertiesSection />
+      <Header />
+      <ListView />
       <Footer />
     </>
   );
