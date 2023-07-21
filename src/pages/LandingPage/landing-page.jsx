@@ -11,7 +11,7 @@ import { getProperties } from "../../services/property-service";
 
 export default function LandingPage() {
   const { user } = useAuth();
-  const [properties, setProperties] = useState([0, 1, 2]);
+  const [properties, setProperties] = useState([]);
 
   useEffect(() => {
     getProperties()
@@ -20,8 +20,6 @@ export default function LandingPage() {
       })
       .catch((e) => console.log(e));
   }, []);
-
-  // console.log(properties.slice(0, 3));
 
   return (
     <>

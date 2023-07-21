@@ -10,6 +10,12 @@ import { RiCloseCircleLine, RiCoinsLine } from "react-icons/ri";
 import { OwnerMenu, StyledContainer, StyledDiv } from "./styles";
 import Anchor from "../Anchor";
 import Button from "../Button";
+import Image1 from "../../assets/images/image1.png";
+import Image2 from "../../assets/images/image2.png";
+import Image3 from "../../assets/images/image3.png";
+import Image4 from "../../assets/images/image4.png";
+import Image5 from "../../assets/images/image5.png";
+import Image6 from "../../assets/images/image6.png";
 
 function PropertyCard({ property, isOwner, isFavorite }) {
   const theme = useTheme();
@@ -24,8 +30,9 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     bathrooms,
     area,
     pets_allowed,
-    photo_url,
   } = property;
+
+  const photo = [Image1, Image2, Image3, Image4, Image5, Image6];
 
   const renderPropertyType = {
     0: (
@@ -61,7 +68,10 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     <StyledContainer>
       <StyledDiv>
         {renderOperationType[operation_type]}
-        <img src={photo_url[0]} className="photo" />
+        <img
+          src={photo[Math.floor(Math.random() * photo.length)]}
+          className="photo"
+        />
         <div className="info-title">
           <div className="info-title__rent">
             <TbCoin size={"2rem"} />
