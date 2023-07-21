@@ -23,7 +23,9 @@ function HeaderLandlord() {
           </div>
           <ul className="expandable links-container">
             <li className="link">
-              <Anchor icon={<HiMagnifyingGlass />}>FIND A HOME</Anchor>
+              <Anchor icon={<HiMagnifyingGlass />} to={"/property"}>
+                FIND A HOME
+              </Anchor>
             </li>
             <li className="link">
               <Button icon={<RiLogoutCircleLine />} type={"secondary"}>
@@ -31,12 +33,16 @@ function HeaderLandlord() {
               </Button>
             </li>
             <li className="link">
-              <Anchor icon={<RiHome8Line />} type={"primary"}>
+              <Anchor
+                icon={<RiHome8Line />}
+                type={"primary"}
+                to={"/myproperties"}
+              >
                 MY PROPERTIES
               </Anchor>
             </li>
             <li className="link">
-              <Anchor icon={<RiUserLine />} type={"primary"}>
+              <Anchor icon={<RiUserLine />} type={"primary"} to={"/profile"}>
                 PROFILE
               </Anchor>
             </li>
