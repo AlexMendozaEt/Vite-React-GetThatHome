@@ -106,7 +106,7 @@ function CreateRentalPropertyPage() {
               <InputWithIcon
                 label={"ADDRESS"}
                 icon={<HiMagnifyingGlass size={"1.25rem"} />}
-                isfullwidth={"true"}
+                isFullWidth
                 name="address"
                 type="text"
                 placeholder="start typing to autocomplete"

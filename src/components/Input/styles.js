@@ -6,7 +6,7 @@ export const StyledInput = styled("input")`
   border: 0.0625rem solid ${(props) => props.theme.colors.pink[400]};
   border-radius: 0.5rem;
   padding: 0.5rem;
-  width: ${({ isfullwidth }) => (isfullwidth ? "100%" : "fit-content")};
+  width: ${({ isFullWidth }) => (isFullWidth ? "100%" : "fit-content")};
   accent-color: ${(props) => props.theme.colors.pink[400]};
   ::placeholder {
     color: ${(props) => props.theme.colors.text.light};

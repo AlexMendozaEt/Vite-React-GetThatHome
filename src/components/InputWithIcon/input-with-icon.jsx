@@ -11,7 +11,6 @@ function InputWithIcon({
   onChange,
   placeholder,
   label,
-  isfullwidth,
   ...props
 }) {
   return (
@@ -26,7 +25,6 @@ function InputWithIcon({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          isfullwidth={isfullwidth}
           {...props}
         />
       </StyledContainer>
@@ -45,7 +43,7 @@ InputWithIcon.propTypes = {
     PropTypes.bool,
   ]),
   onChange: PropTypes.func,
-  isfullwidth: PropTypes.string,
+  isFullWidth: PropTypes.string,
   placeholder: PropTypes.string,
   label: PropTypes.string,
 };

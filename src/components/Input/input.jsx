@@ -10,7 +10,6 @@ function Input({
   onChange,
   placeholder,
   label,
-  isfullwidth,
   ...props
 }) {
   return (
@@ -23,7 +22,6 @@ function Input({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        isfullwidth={isfullwidth}
         {...props}
       />
     </StyledContainer>
@@ -40,7 +38,7 @@ Input.propTypes = {
     PropTypes.bool,
   ]),
   onChange: PropTypes.func,
-  isfullwidth: PropTypes.string,
+  isFullWidth: PropTypes.bool,
   placeholder: PropTypes.string,
   label: PropTypes.string,
 };

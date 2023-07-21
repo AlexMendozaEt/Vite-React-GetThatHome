@@ -78,7 +78,7 @@ function sizeStyles(size, rounded) {
 
 export const StyledAnchor = styled(Link)`
   display: flex;
-  width: ${({ isfullwidth }) => (isfullwidth ? "100%" : "fit-content")};
+  width: ${({ isFullWidth }) => (isFullWidth ? "100%" : "fit-content")};
   justify-content: center;
   align-items: center;
   text-align: center;

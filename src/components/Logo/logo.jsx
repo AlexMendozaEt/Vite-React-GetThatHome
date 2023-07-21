@@ -34,7 +34,7 @@ Logo.propTypes = {
   children: PropTypes.string,
   to: PropTypes.string,
   size: PropTypes.oneOf(["sm", "lg"]),
-  isfullwidth: PropTypes.string,
+  isFullWidth: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

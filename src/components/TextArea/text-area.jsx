@@ -10,7 +10,6 @@ function TextArea({
   onChange,
   placeholder,
   label,
-  isfullwidth,
   ...props
 }) {
   return (
@@ -23,7 +22,6 @@ function TextArea({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        isfullwidth={isfullwidth}
         {...props}
       />
     </div>
@@ -36,7 +34,7 @@ TextArea.propTypes = {
   name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  isfullwidth: PropTypes.string,
+  isFullWidth: PropTypes.bool,
   placeholder: PropTypes.string,
   label: PropTypes.string,
 };
