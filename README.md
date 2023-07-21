@@ -36,9 +36,9 @@ Link and instructions to access a live demo.
 
 ## Technologies used
 
-> Front-end: Javascript | React
+- Front-end: Javascript | React
 
-> Back-end: Ruby on rails
+- Back-end: Ruby on rails
 
 ## Installation
 
@@ -58,6 +58,6 @@ In case you need to reach out regarding the project. Contact us!
 
 - [Kevin Robles](https://github.com/kevinronu)
 - [Daniel Martinez](https://github.com/DanielMaHe)
-- [Gerardo Avena](https://github.com/gabcruzti/)
+- [Gerardo Avena](https://github.com/Avenator02)
 - [Gabriela Cruz](https://github.com/gabcruzti/)
 - [Alex Mendoza](https://github.com/AlexMendozaEt/)
