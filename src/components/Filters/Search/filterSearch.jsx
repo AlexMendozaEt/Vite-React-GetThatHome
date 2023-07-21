@@ -8,21 +8,19 @@ import { Container, ContainerCard, ButtonContainer, ContainerInput, Input, Conta
 import { lightTheme } from "../../../styles";
 
 
-const SearchInput = ({filter, setFilter}) => {
-  const [search, setSearch] = useState('');
-  const [selection, setSelection] = useState([]);
-
+const SearchByAddress = ({ filter, setFilter }) => {
   const array = filter || ["Las Vegas Boulevard", "Music Row en Nashville", 
   "Wall Street Nueva York", "5th. Avenue en Nueva York", 
   "Bourbon St. New Orleans", "Hollywood Blvd", " Lombard St. San Francisco", 
   "Pennsylvania Ave. Washington D.C.", "Michigan Ave. en Chicago", "Ocean Drive en Miami"];
 
+  const [search, setSearch] = useState('');
+  const [selection, setSelection] = useState([]);
   const containerRef = useRef();
 
   const handleInputChange = (event) => {
     const word = event.target.value;
     setSearch(word);
-    console.log(word)
 
     const filterSelection = array.filter((selection) =>
       selection.toLowerCase().includes(word.toLowerCase())
@@ -33,9 +31,9 @@ const SearchInput = ({filter, setFilter}) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setSelection([]); 
+        setSelection([]);         
       }
-    };
+    };  
 
     document.addEventListener("click", handleClickOutside);
 
@@ -46,26 +44,24 @@ const SearchInput = ({filter, setFilter}) => {
 
   const handleSelectionClick = (selection) => {
     setSearch(selection);
+    setFilter({ address: selection });
     setSelection([]);
-    console.log(selection);
-    // setFilter(selection);
   };
 
   return (
     <Container ref={containerRef} >
       <ButtonContainer>
-      <ContainerInput theme={lightTheme}>
-        <ContainerIcon>
-        <CiSearch/>
-        </ContainerIcon>
-      <Input
-        type="text"
-        placeholder="Search..."
-        value={search}
-        onChange={handleInputChange}
-        
-      />
-      </ContainerInput>
+        <ContainerInput theme={lightTheme}>
+          <ContainerIcon>
+            <CiSearch/>
+          </ContainerIcon>
+          <Input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={handleInputChange}
+          />
+        </ContainerInput>
       </ButtonContainer>
       {selection.length > 0 && (
         <ContainerCard theme={lightTheme} >
@@ -83,4 +79,9 @@ const SearchInput = ({filter, setFilter}) => {
   );
 };
 
-export default SearchInput;
+SearchByAddress.propTypes = {
+  filter: PropTypes.array, 
+  setFilter: PropTypes.func.isRequired,
+};
+
+export default SearchByAddress;

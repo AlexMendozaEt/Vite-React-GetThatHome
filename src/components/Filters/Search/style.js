@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  width: 100%;
+  width: 242px;
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -15,17 +15,18 @@ export const Container = styled.div`
 `;
 
 export const ContainerCard = styled.ul`
-  top: 40px;
-  background-color: white;
-  width: 300px;
+  top: 140px;
+  // background-color: white;
+  width: 240px;
   gap: 4px;
   // box-shadow: 3px 3px 10px gray;
   padding: 8px;
   border-radius: 5px;
   border: 1px solid ${(props)=> props.theme.colors.pink[500]};
   align-content: center;
-  position: fixed;
+  position: absolute;
   margin-top: 8px;
+  z-index: 1;
 
 `;
 
@@ -40,9 +41,10 @@ export const ContainerElement = styled.li`
 
 
 export const ButtonContainer = styled.div`
+  width: 240px;
   display: flex;
   justify-content: flex-end;
-  margin-top: 8px;
+  // margin-top: 8px;
   font-weight: 500;
   
 `;
@@ -76,6 +78,10 @@ export const Input = styled.input`
   padding: 8px;
   border: none;
   align-self: center;
+
+  &:focus {
+    outline: 2px solid ${(props) => props.theme.colors.pink[500]};
+  }
 `;
 
 export const InputCheckbox = styled.input`

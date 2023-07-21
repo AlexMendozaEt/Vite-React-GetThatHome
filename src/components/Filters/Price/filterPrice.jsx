@@ -1,6 +1,6 @@
 import {BiSolidDollarCircle} from "react-icons/bi"
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
 
 import { Container, ContainerCard, Title, PriceContainer, ButtonContainer, ContainerInput, Input, ContainerIcon } from "."
@@ -11,48 +11,53 @@ const FilterPrice = ({ filter, setFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+  const containerRef = useRef();
 
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
   };
 
-  // useEffect(()=>{
-  //   let tmp;
-  //   if(minPrice === 0 || maxPrice === 0) return;
-  //   if(minPrice > maxPrice){
-  //     tmp = minPrice;
-  //     setMinPrice(maxPrice);
-  //     setMaxPrice(tmp);
-  //   }
+  const filtered = (minPrice, maxPrice) => {
+    setFilter({ minPrice, maxPrice });
+  };
 
-  // },[minPrice,maxPrice] )
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false); 
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const getButtonLabel = () => {
-    
-    if(minPrice < 0) setMinPrice(0);
-    if(maxPrice < 0) setMaxPrice(0);
-
     if (minPrice !== 0 && maxPrice !== 0) {
-      return `$ ${((minPrice*10)/10).toFixed(1)} K - $ ${((maxPrice*10)/10).toFixed(1)} K`;
-    } else if(minPrice !== 0){
-      return `>= $ ${((minPrice*10)/10).toFixed(1)} K`
-    }else if(maxPrice !== 0){
-      return `<= $ ${((maxPrice*10)/10).toFixed(1)} K`
-    }else{
+      return `$ ${((minPrice * 10) / 10).toFixed(1)} K - $ ${((maxPrice * 10) / 10).toFixed(1)} K`;
+    } else if (minPrice !== 0) {
+      return `>= $ ${((minPrice * 10) / 10).toFixed(1)} K`;
+    } else if (maxPrice !== 0) {
+      return `<= $ ${((maxPrice * 10) / 10).toFixed(1)} K`;
+    } else {
       return "PRICE";
     }
   };
 
   const handleDone = () => {
-    // setFilter([minPrice, maxPrice]);
-    console.log("Min Price: "+ minPrice);
-    console.log("Max Price: "+ maxPrice);
-
+    if (minPrice > maxPrice) {
+      filtered(maxPrice, minPrice);
+    } else {
+      filtered(minPrice, maxPrice);
+    }
     setIsOpen(!isOpen);
   };
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Button onClick={handleButtonClick} type="primary" theme={lightTheme}>
         {getButtonLabel()}
       </Button>
@@ -61,7 +66,7 @@ const FilterPrice = ({ filter, setFilter }) => {
           <Title>PRICE RANGE</Title>
           <PriceContainer>
             <ContainerInput>
-            <ContainerIcon>
+              <ContainerIcon>
                 <BiSolidDollarCircle/>
               </ContainerIcon>
               <Input
@@ -99,7 +104,7 @@ const FilterPrice = ({ filter, setFilter }) => {
 
 FilterPrice.propTypes = {
   filter: PropTypes.array,
-  setFilter: PropTypes.func,
+  setFilter: PropTypes.func.isRequired, 
 };
 
 export default FilterPrice;
