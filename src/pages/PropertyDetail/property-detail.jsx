@@ -164,7 +164,7 @@ function PropertyDetail({ user, ...property }) {
           </div>
           {user === null
             ? viewBox[0]
-            : user.type === 0
+            : user.role === "landlord"
             ? viewBox[1]
             : viewBox[2]}
         </StyledDetail>

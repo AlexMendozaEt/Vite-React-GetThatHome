@@ -7,7 +7,7 @@ import HeaderVisitor from "../HeaderVisitor";
 export default function Header({ user }) {
   if (!user) {
     return <HeaderVisitor />;
-  } else if (user.type === 0) {
+  } else if (user.role === "landlord") {
     return <HeaderLandlord />;
   } else {
     return <HeaderSeeker />;
