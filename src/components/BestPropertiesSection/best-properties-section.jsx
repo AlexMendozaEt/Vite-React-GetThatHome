@@ -170,6 +170,7 @@ export default function BestPropertiesSection({
   favorites,
   own_properties,
 }) {
+  console.log(best_properties);
   best_properties = best_mock;
   favorites = favorites_mock;
   own_properties = own_properties_mock;
