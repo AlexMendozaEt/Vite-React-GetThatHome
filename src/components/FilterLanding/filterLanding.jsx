@@ -17,6 +17,10 @@ const Filter = styled.div`
   background: white;
   box-shadow: 3px 3px 10px gray;
   justify-content: space-between;
+
+  @media only screen and (max-width: 815px) {
+    display: none;
+  }
 `;
 
 const Line = styled.div`
