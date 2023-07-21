@@ -11,7 +11,7 @@ export async function createUser(userData) {
 }
 
 export async function getUser() {
-  const { token, ...user } = await apiFetch("/profile");
+  const { token, ...user } = await apiFetch("/user");
 
   return user;
 }
@@ -20,7 +20,7 @@ export async function updateUser(userData) {
   let dataCleaned = Object.fromEntries(
     Object.entries(userData).filter(([k, v]) => v !== "")
   );
-  const { token, ...user } = await apiFetch("/profile", {
+  const { token, ...user } = await apiFetch("/user", {
     method: "PATCH",
     body: dataCleaned,
   });

@@ -26,7 +26,7 @@ function App() {
       />
       {!user ? (
         <UnauthenticatedApp />
-      ) : user.type == 0 ? (
+      ) : user.role == "landlord" ? (
         <AuthenticatedLandlordApp />
       ) : (
         <AuthenticatedSeekerApp />
