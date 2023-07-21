@@ -1,39 +1,67 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styled from '@emotion/styled';
-import {CiSearch} from "react-icons/ci"
+import React, { useEffect, useRef, useState } from "react";
+import styled from "@emotion/styled";
+import { CiSearch } from "react-icons/ci";
 import PropTypes from "prop-types";
 import Button from "../../Button/button";
 
-import { Container, ContainerCard, ButtonContainer, ContainerInput, Input, ContainerIcon, ContainerElement } from "."
+import {
+  Container,
+  ContainerCard,
+  ButtonContainer,
+  ContainerInput,
+  Input,
+  ContainerIcon,
+  ContainerElement,
+} from ".";
 import { lightTheme } from "../../../styles";
 
-
 const SearchByAddress = ({ filter, setFilter }) => {
-  const array = filter || ["Las Vegas Boulevard", "Music Row en Nashville", 
-  "Wall Street Nueva York", "5th. Avenue en Nueva York", 
-  "Bourbon St. New Orleans", "Hollywood Blvd", " Lombard St. San Francisco", 
-  "Pennsylvania Ave. Washington D.C.", "Michigan Ave. en Chicago", "Ocean Drive en Miami"];
+  // const array = filter || [
+  //   "Las Vegas Boulevard",
+  //   "Music Row en Nashville",
+  //   "Wall Street Nueva York",
+  //   "5th. Avenue en Nueva York",
+  //   "Bourbon St. New Orleans",
+  //   "Hollywood Blvd",
+  //   " Lombard St. San Francisco",
+  //   "Pennsylvania Ave. Washington D.C.",
+  //   "Michigan Ave. en Chicago",
+  //   "Ocean Drive en Miami",
+  // ];
+  const array = filter || [];
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [selection, setSelection] = useState([]);
   const containerRef = useRef();
 
   const handleInputChange = (event) => {
-    const word = event.target.value;
-    setSearch(word);
+    setSearch(event.target.value);
 
     const filterSelection = array.filter((selection) =>
-      selection.toLowerCase().includes(word.toLowerCase())
+      selection.toLowerCase().includes(event.target.value.toLowerCase())
     );
     setSelection(filterSelection);
   };
 
   useEffect(() => {
+    if (search === "") return;
+
+    const searchProperty = () => {
+      setFilter(search);
+    };
+    const timerId = setTimeout(searchProperty, 1000);
+    return () => clearTimeout(timerId);
+  }, [search]);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setSelection([]);         
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setSelection([]);
       }
-    };  
+    };
 
     document.addEventListener("click", handleClickOutside);
 
@@ -49,11 +77,11 @@ const SearchByAddress = ({ filter, setFilter }) => {
   };
 
   return (
-    <Container ref={containerRef} >
+    <Container ref={containerRef}>
       <ButtonContainer>
         <ContainerInput theme={lightTheme}>
           <ContainerIcon>
-            <CiSearch/>
+            <CiSearch />
           </ContainerIcon>
           <Input
             type="text"
@@ -64,7 +92,7 @@ const SearchByAddress = ({ filter, setFilter }) => {
         </ContainerInput>
       </ButtonContainer>
       {selection.length > 0 && (
-        <ContainerCard theme={lightTheme} >
+        <ContainerCard theme={lightTheme}>
           {selection.map((selection, index) => (
             <ContainerElement
               key={index}
@@ -80,7 +108,7 @@ const SearchByAddress = ({ filter, setFilter }) => {
 };
 
 SearchByAddress.propTypes = {
-  filter: PropTypes.array, 
+  filter: PropTypes.array,
   setFilter: PropTypes.func.isRequired,
 };
 

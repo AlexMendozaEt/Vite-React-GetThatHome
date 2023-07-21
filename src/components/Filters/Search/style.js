@@ -11,23 +11,21 @@ export const Container = styled.div`
   line-height: 24px;
   letter-spacing: 1.25px;
   color: #616161;
-  
 `;
 
 export const ContainerCard = styled.ul`
   top: 140px;
-  // background-color: white;
+  background-color: ${(props) => props.theme.colors.background.lighter};
   width: 240px;
   gap: 4px;
   // box-shadow: 3px 3px 10px gray;
   padding: 8px;
   border-radius: 5px;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
   align-content: center;
   position: absolute;
   margin-top: 8px;
   z-index: 1;
-
 `;
 
 export const ContainerElement = styled.li`
@@ -39,14 +37,12 @@ export const ContainerElement = styled.li`
   }
 `;
 
-
 export const ButtonContainer = styled.div`
   width: 240px;
   display: flex;
   justify-content: flex-end;
   // margin-top: 8px;
   font-weight: 500;
-  
 `;
 
 export const ContainerIcon = styled.div`
@@ -55,7 +51,6 @@ export const ContainerIcon = styled.div`
   gap: 8px;
   align-items: center;
 `;
-
 
 export const ContainerInput = styled.div`
   display: flex;
@@ -66,9 +61,7 @@ export const ContainerInput = styled.div`
   gap: 4px;
   text-align: center;
   border-radius: 5px;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
-
-
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
 `;
 
 export const Input = styled.input`
@@ -91,11 +84,9 @@ export const InputCheckbox = styled.input`
   margin: 2px;
   padding: 2px;
   appearance: none;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
-  
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
 
   &:checked {
-     border: 4px solid ${(props)=> props.theme.colors.pink[500]};
+    border: 4px solid ${(props) => props.theme.colors.pink[500]};
   }
 `;
-

@@ -134,7 +134,9 @@ export default function ListsView() {
 
   function HandleFilterProducts() {
     return products.filter((product) => {
-      const productAddress = product.address.includes(filterRules.address);
+      const productAddress = product.address.search(
+        filterRules.address.toLocaleLowerCase
+      );
       const minPrice =
         filterRules.minPrice > 0
           ? +product.monthly_rent > +filterRules?.minPrice
@@ -191,7 +193,10 @@ export default function ListsView() {
   return (
     <ContainerLists>
       <ContainerFilters>
-        <SearchByAddress />
+        <SearchByAddress
+          filter={filterAddress}
+          setFilter={handleAddressFilter}
+        />
         <ContainerFilter>
           <FilterPrice setFilter={handlePriceFilter} />
           <FilterProperty setFilter={handlePropertyTypeFilter} />
