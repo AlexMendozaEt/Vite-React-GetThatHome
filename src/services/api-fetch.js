@@ -8,7 +8,7 @@ export default async function apiFetch(
 
   if (token) {
     headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Token token=${token}`,
       ...headers,
     };
   }
