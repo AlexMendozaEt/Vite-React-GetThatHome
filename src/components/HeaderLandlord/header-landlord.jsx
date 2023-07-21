@@ -4,12 +4,12 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import Button from "../Button";
 import Anchor from "../Anchor";
 import Logo from "../Logo";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderLandlord() {
   return (
-    <header>
+    <StyledHeader>
       <Container size={"xl"}>
         <StyledContainer>
           <input type="checkbox" id="menu-mobile" />
@@ -43,7 +43,7 @@ function HeaderLandlord() {
           </ul>
         </StyledContainer>
       </Container>
-    </header>
+    </StyledHeader>
   );
 }
 
