@@ -2,6 +2,7 @@ import { Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useAuth } from "../../context/auth-context";
 
 import {
   SingUpBoxForm,
@@ -34,10 +35,12 @@ function MyFormikCreate({ userType }) {
 
   const navigate = useNavigate();
 
+  const { signup } = useAuth();
+
   const [showError, setShowError] = useState(false);
 
   async function onSubmit(values) {
-    console.log(values);
+    signup(values);
   }
 
   function hideError() {
