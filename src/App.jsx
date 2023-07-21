@@ -17,8 +17,6 @@ function App() {
 
   const [darkMode, SetDarkMode] = useState(isDarkModeActive());
 
-  console.log(user?.role);
-
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Global
