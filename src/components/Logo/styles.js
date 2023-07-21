@@ -34,7 +34,7 @@ export const StyledAnchor = styled(Link)`
   cursor: pointer;
 
   :hover {
-    background-color: ${(props) => props.theme.colors.background.dark};
+    background-color: ${(props) => props.theme.colors.background.darker};
   }
 
   :focus {
