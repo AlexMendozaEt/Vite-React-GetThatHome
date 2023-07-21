@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 
-export const StyledFooter = styled.div`
+export const StyledFooter = styled.footer`
+  background-color: ${(props) => props.theme.colors.background.dark};
+`;
+
+export const StyledDiv = styled.div`
   padding: 1rem 1.9375rem;
   color: ${(props) => props.theme.colors.text.highContrast};
   font-size: 0.875rem;

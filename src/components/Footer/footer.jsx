@@ -1,4 +1,4 @@
-import { StyledFooter } from "./styles";
+import { StyledDiv, StyledFooter } from "./styles";
 import { DiRuby, DiReact } from "react-icons/di";
 import { AiFillGithub } from "react-icons/ai";
 import Container from "../../layout/Container";
@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer>
+    <StyledFooter>
       <Container size={"xl"}>
         <div>
-          <StyledFooter>
+          <StyledDiv>
             <div className="logo">
               <Logo size="sm" />
               <p>© 2023 - Get That Home</p>
@@ -81,10 +81,10 @@ function Footer() {
                 <p>React Responsive SPA</p>
               </Link>
             </div>
-          </StyledFooter>
+          </StyledDiv>
         </div>
       </Container>
-    </footer>
+    </StyledFooter>
   );
 }
 
