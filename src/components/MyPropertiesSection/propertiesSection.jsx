@@ -100,13 +100,13 @@ export default function PropertiesSection() {
             ></StyledInput>
             <BoxOptions>
               <StyledLabel
-                className={`${isChecked ? "checkedOption" : ""}`}
+                className={`${isChecked ? "checkedOption" : "unCheckedOption"}`}
                 htmlFor="favorites"
               >
                 ACTIVE
               </StyledLabel>
               <StyledLabel
-                className={`${isChecked ? "" : "checkedOption"}`}
+                className={`${isChecked ? "unCheckedOption" : "checkedOption"}`}
                 htmlFor="contacted"
               >
                 CLOSED

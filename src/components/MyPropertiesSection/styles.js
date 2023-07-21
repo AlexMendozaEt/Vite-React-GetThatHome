@@ -24,9 +24,14 @@ export const BoxOptions = styled.div`
   ${typography.text.sm}
   font-weight: 500;
   color: ${(props) => props.theme.colors.text.lighter};
+
   .checkedOption {
     border-bottom: 2px solid ${(props) => props.theme.colors.pink[400]};
     color: ${(props) => props.theme.colors.text.highContrast};
+  }
+
+  .unCheckedOption {
+    color: ${(props) => props.theme.colors.text.light};
   }
 `;
 
