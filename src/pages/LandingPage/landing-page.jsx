@@ -1,5 +1,5 @@
 import TeamMembers from "../../components/TeamMembers";
-import SignUpSection from "../../components/SignUpSection";
+import SignUpMessageSection from "../../components/SignUpMessageSection";
 import BestPropertiesSection from "../../components/BestPropertiesSection";
 import MeetHomeSection from "../../components/MeetHomeSection";
 import FooterLanding from "../../components/FooterLanding";
@@ -14,7 +14,7 @@ export default function LandingPage() {
       <Header user={user} />
       <MeetHomeSection />
       <BestPropertiesSection />
-      <SignUpSection />
+      <SignUpMessageSection />
       <TeamMembers />
       <FooterLanding />
     </>

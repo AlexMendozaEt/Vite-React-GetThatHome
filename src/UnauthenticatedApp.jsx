@@ -11,8 +11,10 @@ function UnauthenticatedApp() {
       <Route path="/" element={<Navigate to="/home" />} />
       <Route path="home" element={<LandingPage />} />
       <Route path="signup" element={<SignUpPage />} />
-      <Route path="properties" element={<PropertiesPage />} />
-      <Route path="property/:id" element={<PropertyDetailPage />} />
+      <Route path="property">
+        <Route index element={<PropertiesPage />} />
+        <Route path=":id" element={<PropertyDetailPage />} />
+      </Route>
     </Routes>
   );
 }

@@ -17,7 +17,7 @@ function InputWithIcon({
   return (
     <div>
       {label ? <StyledLabel htmlFor={id || name}>{label}</StyledLabel> : ""}
-      <StyledContainer {...props}>
+      <StyledContainer>
         {icon}
         <StyledInput
           id={id || name}

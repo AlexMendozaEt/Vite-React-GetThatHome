@@ -4,12 +4,12 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import Button from "../Button";
 import Anchor from "../Anchor";
 import Logo from "../Logo";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderLandlord() {
   return (
-    <header>
+    <StyledHeader>
       <Container size={"xl"}>
         <StyledContainer>
           <input type="checkbox" id="menu-mobile" />
@@ -23,7 +23,9 @@ function HeaderLandlord() {
           </div>
           <ul className="expandable links-container">
             <li className="link">
-              <Anchor icon={<HiMagnifyingGlass />}>FIND A HOME</Anchor>
+              <Anchor icon={<HiMagnifyingGlass />} to={"/property"}>
+                FIND A HOME
+              </Anchor>
             </li>
             <li className="link">
               <Button icon={<RiLogoutCircleLine />} type={"secondary"}>
@@ -31,19 +33,23 @@ function HeaderLandlord() {
               </Button>
             </li>
             <li className="link">
-              <Anchor icon={<RiHome8Line />} type={"primary"}>
+              <Anchor
+                icon={<RiHome8Line />}
+                type={"primary"}
+                to={"/myproperties"}
+              >
                 MY PROPERTIES
               </Anchor>
             </li>
             <li className="link">
-              <Anchor icon={<RiUserLine />} type={"primary"}>
+              <Anchor icon={<RiUserLine />} type={"primary"} to={"/profile"}>
                 PROFILE
               </Anchor>
             </li>
           </ul>
         </StyledContainer>
       </Container>
-    </header>
+    </StyledHeader>
   );
 }
 

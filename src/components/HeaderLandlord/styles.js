@@ -2,10 +2,16 @@ import styled from "@emotion/styled";
 
 import { fonts } from "../../styles";
 
+export const StyledHeader = styled.header`
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+`;
+
 export const StyledContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1rem 1rem 1rem 0;
   font-family: ${fonts.secondary};
 
   .links-container {

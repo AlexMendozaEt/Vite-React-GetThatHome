@@ -1,18 +1,62 @@
+import { useState } from "react";
+
 import Container from "../../layout/Container";
-import { StyledContainer, StyledH3, StyledSection } from "./styles";
-import Anchor from "../Anchor";
+import landlord from "../../assets/images/landlordproperties.png";
+import housesearching from "../../assets/images/housesearching.png";
+import MyFormikCreate from "../SignUpInputBox/sign-up-section";
+import {
+  StyledContainer,
+  StyledH3,
+  StyledH4,
+  OptionsMainBox,
+  OptionsBox,
+  StyledP1,
+  StyledP2,
+  StyledSection,
+  InputBox,
+} from "./styles";
 
 export default function SignUpSection() {
+  const [singUpPage, setSingUpPage] = useState(false);
+  const [userType, setUserType] = useState();
+
+  const Landlord = () => {
+    setSingUpPage(true);
+    setUserType(0);
+  };
+
+  const HomeSeeker = () => {
+    setSingUpPage(true);
+    setUserType(1);
+  };
+
+  const renderOperationType = {
+    0: (
+      <>
+        <StyledH3>Selecciona el perfil con el que te identificas</StyledH3>
+        <StyledH4>¿Que estas buscando?</StyledH4>
+        <OptionsMainBox>
+          <OptionsBox onClick={Landlord}>
+            <img className="img" src={landlord} alt="landlord" />
+            <StyledP1>Landlord</StyledP1>
+            <StyledP2>You want to rent or sell a home</StyledP2>
+          </OptionsBox>
+          <OptionsBox onClick={HomeSeeker}>
+            <img className="img" src={housesearching} alt="housesearching" />
+            <StyledP1>Home seeker</StyledP1>
+            <StyledP2>You want to find a home</StyledP2>
+          </OptionsBox>
+        </OptionsMainBox>
+      </>
+    ),
+    1: <MyFormikCreate userType={userType} />,
+  };
+
   return (
     <StyledSection>
       <Container size={"xl"}>
         <StyledContainer>
-          <StyledH3>
-            Getting someone to rent your apartment has never been this easy
-          </StyledH3>
-          <Anchor type="primary" size="lg" to={"/signup"}>
-            CREATE AN ACCOUNT NOW
-          </Anchor>
+          {singUpPage ? renderOperationType[1] : renderOperationType[0]}
         </StyledContainer>
       </Container>
     </StyledSection>

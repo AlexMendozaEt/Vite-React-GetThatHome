@@ -5,12 +5,12 @@ import { GoHeartFill } from "react-icons/go";
 import Button from "../Button";
 import Anchor from "../Anchor";
 import Logo from "../Logo";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderSeeker() {
   return (
-    <header>
+    <StyledHeader>
       <Container size={"xl"}>
         <StyledContainer>
           <input type="checkbox" id="menu-mobile" />
@@ -24,7 +24,9 @@ function HeaderSeeker() {
           </div>
           <ul className="expandable links-container">
             <li className="link">
-              <Anchor icon={<HiMagnifyingGlass />}>FIND A HOME</Anchor>
+              <Anchor icon={<HiMagnifyingGlass />} to={"/property"}>
+                FIND A HOME
+              </Anchor>
             </li>
             <li className="link">
               <Button icon={<RiLogoutCircleLine />} type={"secondary"}>
@@ -32,19 +34,23 @@ function HeaderSeeker() {
               </Button>
             </li>
             <li className="link">
-              <Anchor icon={<GoHeartFill />} type={"primary"}>
+              <Anchor
+                icon={<GoHeartFill />}
+                type={"primary"}
+                to={"/savedproperties"}
+              >
                 SAVED PROPERTIES
               </Anchor>
             </li>
             <li className="link">
-              <Anchor icon={<RiUserLine />} type={"primary"}>
+              <Anchor icon={<RiUserLine />} type={"primary"} to={"/profile"}>
                 PROFILE
               </Anchor>
             </li>
           </ul>
         </StyledContainer>
       </Container>
-    </header>
+    </StyledHeader>
   );
 }
 

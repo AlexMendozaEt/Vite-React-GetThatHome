@@ -12,14 +12,8 @@ import UnauthenticatedApp from "./UnauthenticatedApp";
 import AuthenticatedSeekerApp from "./AuthenticatedSeekerApp";
 import AuthenticatedLandlordApp from "./AuthenticatedLandlordApp";
 
-// const user_mock = {
-//   type: 0,
-// };
-
 function App() {
   const { user } = useAuth();
-  // let { user } = useAuth();
-  // user = user_mock;
 
   const [darkMode, SetDarkMode] = useState(isDarkModeActive());
 

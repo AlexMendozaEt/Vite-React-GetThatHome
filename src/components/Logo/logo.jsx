@@ -20,7 +20,7 @@ function Logo({ ...props }) {
   }
 
   return (
-    <StyledAnchor {...props}>
+    <StyledAnchor {...props} to={"/"}>
       <TiHomeOutline size={iconSize()} color={theme.colors.pink[700]} />
       <div className="title">
         <p>GET THAT</p>

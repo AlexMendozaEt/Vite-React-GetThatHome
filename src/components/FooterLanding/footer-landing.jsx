@@ -1,12 +1,12 @@
-import { StyledFooter } from "./styles";
+import { StyledDiv, StyledFooter } from "./styles";
 import { DiRuby, DiReact } from "react-icons/di";
 import Container from "../../layout/Container";
 
 function FooterLanding() {
   return (
-    <footer>
+    <StyledFooter>
       <Container size={"xl"}>
-        <StyledFooter>
+        <StyledDiv>
           <p>©2023 - Find That Home</p>
           <div className="source-code">
             <p>Source Code</p>
@@ -20,9 +20,9 @@ function FooterLanding() {
             </div>
           </div>
           <p>Codeable - Cohort X Final Project</p>
-        </StyledFooter>
+        </StyledDiv>
       </Container>
-    </footer>
+    </StyledFooter>
   );
 }
 

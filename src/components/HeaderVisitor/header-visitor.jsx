@@ -5,12 +5,12 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import Button from "../Button";
 import Anchor from "../Anchor";
 import Logo from "../Logo";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderVisitor() {
   return (
-    <header>
+    <StyledHeader>
       <Container size={"xl"}>
         <StyledContainer>
           <input type="checkbox" id="menu-mobile" />
@@ -24,10 +24,12 @@ function HeaderVisitor() {
           </div>
           <ul className="expandable links-container">
             <li className="link">
-              <Anchor icon={<HiMagnifyingGlass />}>FIND A HOME</Anchor>
+              <Anchor icon={<HiMagnifyingGlass />} to={"/property"}>
+                FIND A HOME
+              </Anchor>
             </li>
             <li className="link">
-              <Anchor icon={<TbUserPlus />} type={"secondary"}>
+              <Anchor icon={<TbUserPlus />} type={"secondary"} to={"/signup"}>
                 JOIN
               </Anchor>
             </li>
@@ -39,7 +41,7 @@ function HeaderVisitor() {
           </ul>
         </StyledContainer>
       </Container>
-    </header>
+    </StyledHeader>
   );
 }
 
