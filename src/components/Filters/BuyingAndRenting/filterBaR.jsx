@@ -1,8 +1,16 @@
 import { FiChevronDown } from "react-icons/fi";
 import PropTypes from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { Container, ContainerCard, Title, ContainerIcon, ContainerInput, InputCheckbox, ContainerSelect } from ".";
+import {
+  Container,
+  ContainerCard,
+  Title,
+  ContainerIcon,
+  ContainerInput,
+  InputCheckbox,
+  ContainerSelect,
+} from ".";
 import { lightTheme } from "../../../styles";
 
 const FilterBaR = ({ setFilter }) => {
@@ -14,7 +22,10 @@ const FilterBaR = ({ setFilter }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -43,32 +54,56 @@ const FilterBaR = ({ setFilter }) => {
 
   const handleChange = (sel) => {
     if (sel === 0) {
-      setBoth(!both); // Toggle both
-      setBuying(false);
-      setRenting(false);
+      if (buying === false && renting === false) {
+        setBoth(true);
+      } else {
+        setBoth(!both);
+        setBuying(false);
+        setRenting(false);
+      }
     } else if (sel === 1) {
-      setBuying(!buying);
-      setBoth(false);
+      if (both === false && renting === false) {
+        setBuying(false);
+        setBoth(true);
+        setRenting(false);
+      } else if (both === false && renting === true) {
+        setBoth(true);
+        setBuying(false);
+        setRenting(false);
+      } else {
+        setBuying(!buying);
+        setBoth(false);
+        setRenting(false);
+      }
     } else if (sel === 2) {
-      setRenting(!renting);
-      setBoth(false);
+      if (both === false && buying === false) {
+        setRenting(false);
+        setBoth(true);
+        setBuying(false);
+      } else if (both === false && buying === true) {
+        setBoth(true);
+        setBuying(false);
+        setRenting(false);
+      } else {
+        setRenting(!renting);
+        setBoth(false);
+        setBuying(false);
+      }
     }
   };
 
   useEffect(() => {
-    // if (both) {
-    //   setFilter({
-    //     buying: true,
-    //     renting: true,
-    //   });
-    // } else {
-    //   setFilter({
-    //     buying,
-    //     renting,
-    //   });
-    // }
-    console.log("bar use 71")
-
+    if (both) {
+      setFilter({
+        buying: true,
+        renting: true,
+      });
+    } else {
+      setFilter({
+        buying,
+        renting,
+      });
+    }
   }, [buying, renting, both]);
 
   return (
