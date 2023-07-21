@@ -4,6 +4,8 @@ import { Title } from "../Filters/Price";
 import Button from "../Button";
 import { ButtonContainer } from "./Search";
 import { lightTheme } from "../../styles";
+import { useEffect, useState } from "react";
+import { getProperties } from "../../services/property-service";
 
 const Filter = styled.div`
   display: flex;
@@ -35,27 +37,87 @@ const handleDone = () => {
 };
 
 export function FilterLanding() {
+  const [products, setProducts] = useState([]);
+  const [arrayAddress, setArrayAddress] = useState([]);
+  const arrayTypeProperty = ["home", "apartment"];
+  const arrayTypeOperation = ["rent", "sale"];
+
+  const [values, setValues] = useState({
+    address: "",
+    houses: true,
+    apartments: true,
+    buying: true,
+    renting: true,
+  });
+
+  function handleChange(event) {
+    const value = event.value;
+    const object = {
+      // address: { address: true },
+      home: { apartments: false },
+      apartment: { houses: false },
+      rent: { renting: false },
+      sale: { buying: false },
+    };
+    setValues({ ...values }, object[value]);
+  }
+
+  // console.log(values);
+
+  useEffect(() => {
+    getProperties()
+      .then((properties) => {
+        setProducts(properties);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  useEffect(() => {
+    setArrayAddress(products.map((product) => product.address));
+  }, [products]);
+
   return (
     <Filter>
       <ContainerFilter width={160} height={56}>
         <Title>I'm Looking for</Title>
-        <SearchByAddress setFilter={console.log} width={160} height={40} />
+        <SearchByAddress
+          filter={arrayTypeProperty}
+          setFilter={handleChange}
+          width={160}
+          height={40}
+        />
       </ContainerFilter>
       <Line />
       <ContainerFilter width={160} height={56}>
         <Title>I want To</Title>
-        <SearchByAddress setFilter={console.log} width={160} height={40} />
+        <SearchByAddress
+          filter={arrayTypeOperation}
+          setFilter={handleChange}
+          width={160}
+          height={40}
+        />
       </ContainerFilter>
       <Line />
       <ContainerFilter width={304} height={40}>
         <Title>Were</Title>
-        <SearchByAddress setFilter={console.log} width={304} height={40} />
+        <SearchByAddress
+          filter={arrayAddress}
+          setFilter={handleChange}
+          width={304}
+          height={40}
+        />
       </ContainerFilter>
       <Line />
 
       <ButtonContainer>
-        <Button onClick={handleDone} type="primary" size="md" square theme={lightTheme}>
-        <Title>I want To</Title>
+        <Button
+          onClick={handleDone}
+          type="primary"
+          size="md"
+          square
+          theme={lightTheme}
+        >
+          <Title>I want To</Title>
         </Button>
       </ButtonContainer>
     </Filter>
