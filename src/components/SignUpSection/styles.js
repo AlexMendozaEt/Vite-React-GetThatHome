@@ -45,6 +45,7 @@ export const OptionsMainBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 4rem;
+  color: ${(props) => props.theme.colors.black.standard};
 `;
 
 export const OptionsBox = styled.div`

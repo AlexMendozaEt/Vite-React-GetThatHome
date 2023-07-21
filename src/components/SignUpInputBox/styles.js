@@ -43,6 +43,7 @@ export const CreateText = styled.p`
   line-height: 28px;
   letter-spacing: 0em;
   text-align: center;
+  color: ${(props) => props.theme.colors.black.standard};
 `;
 
 export const ErrorBox = styled.div`
