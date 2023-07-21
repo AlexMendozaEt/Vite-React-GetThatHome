@@ -36,6 +36,7 @@ function AuthProvider(props) {
     createUser(userData)
       .then((user) => {
         setUser(user);
+        navigate("/");
       })
       .catch(console.log);
   }

@@ -22,12 +22,12 @@ export default function SignUpSection() {
 
   const Landlord = () => {
     setSingUpPage(true);
-    setUserType(0);
+    setUserType("landlord");
   };
 
   const HomeSeeker = () => {
     setSingUpPage(true);
-    setUserType(1);
+    setUserType("seeker");
   };
 
   const renderOperationType = {
