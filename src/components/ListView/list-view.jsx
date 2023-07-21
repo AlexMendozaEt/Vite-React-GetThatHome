@@ -192,19 +192,21 @@ export default function ListsView() {
 
   return (
     <ContainerLists>
-      <ContainerFilters>
-        <SearchByAddress
-          filter={filterAddress}
-          setFilter={handleAddressFilter}
-        />
-        <ContainerFilter>
-          <FilterPrice setFilter={handlePriceFilter} />
-          <FilterProperty setFilter={handlePropertyTypeFilter} />
-          <FilterBdBa setFilter={handleBdBaFilter} />
-          <FilterMore setFilter={handleMoreFilter} />
-        </ContainerFilter>
-        <FilterBaR setFilter={handleBaRFilter} />
-      </ContainerFilters>
+      <Container size="xl">
+        <ContainerFilters>
+          <SearchByAddress
+            filter={filterAddress}
+            setFilter={handleAddressFilter}
+          />
+          <ContainerFilter>
+            <FilterPrice setFilter={handlePriceFilter} />
+            <FilterProperty setFilter={handlePropertyTypeFilter} />
+            <FilterBdBa setFilter={handleBdBaFilter} />
+            <FilterMore setFilter={handleMoreFilter} />
+          </ContainerFilter>
+          <FilterBaR setFilter={handleBaRFilter} />
+        </ContainerFilters>
+      </Container>
       <StyledSection>
         <Container size="xl">
           <>
