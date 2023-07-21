@@ -11,6 +11,7 @@ import {
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
+import { getMyFavorites, getMyContacts } from "../../services/property-service";
 
 export default function SavedPropertiesSection() {
   const [products, setProducts] = useState([]);
@@ -34,24 +35,28 @@ export default function SavedPropertiesSection() {
 
   const favProductsValidation = () => {
     const favProducts = [];
-    newArray.forEach((property) => {
-      if (property.pets_allowed) {
-        favProducts.push(property);
-      }
-    });
-    sessionStorage.setItem("seekerCurrentPage", 1);
-    setProducts(favProducts);
+    getMyFavorites()
+      .then((properties) => {
+        properties[0].properties.forEach((property) => {
+          favProducts.push(property);
+        });
+        sessionStorage.setItem("seekerCurrentPage", 1);
+        setProducts(favProducts);
+      })
+      .catch(console.log);
   };
 
   const noFavProductsValidation = () => {
     const contProducts = [];
-    newArray.forEach((property) => {
-      if (!property.pets_allowed) {
-        contProducts.push(property);
-      }
-    });
-    sessionStorage.setItem("seekerCurrentPage", 1);
-    setProducts(contProducts);
+    getMyContacts()
+      .then((properties) => {
+        properties[0].properties.forEach((property) => {
+          contProducts.push(property);
+        });
+        sessionStorage.setItem("seekerCurrentPage", 1);
+        setProducts(contProducts);
+      })
+      .catch(console.log);
   };
 
   const handleFilterFavorites = () => {

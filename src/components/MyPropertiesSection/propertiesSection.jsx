@@ -11,6 +11,7 @@ import {
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
+import { getMyProperties } from "../../services/property-service";
 
 export default function PropertiesSection() {
   const [products, setProducts] = useState([]);
@@ -23,7 +24,7 @@ export default function PropertiesSection() {
   );
 
   useEffect(() => {
-    favProductsValidation();
+    activeProductsValidation();
   }, []);
 
   useEffect(() => {
@@ -32,34 +33,43 @@ export default function PropertiesSection() {
     setCurrentPage(1);
   }, [products]);
 
-  const favProductsValidation = () => {
-    const favProducts = [];
-    newArray.forEach((property) => {
-      if (property.pets_allowed) {
-        favProducts.push(property);
-      }
-    });
-    sessionStorage.setItem("seekerCurrentPage", 1);
-    setProducts(favProducts);
+  const activeProductsValidation = () => {
+    const actProducts = [];
+
+    getMyProperties()
+      .then((property) => {
+        property.forEach((property) => {
+          if (!property.close) {
+            actProducts.push(property);
+          }
+        });
+        sessionStorage.setItem("seekerCurrentPage", 1);
+        setProducts(actProducts);
+      })
+      .catch(console.log);
   };
 
-  const noFavProductsValidation = () => {
-    const contProducts = [];
-    newArray.forEach((property) => {
-      if (!property.pets_allowed) {
-        contProducts.push(property);
-      }
-    });
-    sessionStorage.setItem("seekerCurrentPage", 1);
-    setProducts(contProducts);
+  const closeProductsValidation = () => {
+    const clsProducts = [];
+    getMyProperties()
+      .then((property) => {
+        property.forEach((property) => {
+          if (property.close) {
+            clsProducts.push(property);
+          }
+        });
+        sessionStorage.setItem("seekerCurrentPage", 1);
+        setProducts(clsProducts);
+      })
+      .catch(console.log);
   };
 
-  const handleFilterFavorites = () => {
-    favProductsValidation();
+  const handleFilterActive = () => {
+    activeProductsValidation();
   };
 
-  const handleFilterContacts = () => {
-    noFavProductsValidation();
+  const handleFilterClose = () => {
+    closeProductsValidation();
   };
 
   const [isChecked, setIsChecked] = useState(true);
@@ -68,13 +78,13 @@ export default function PropertiesSection() {
     setIsChecked(!isChecked);
   };
 
-  const handleFavoritesClick = () => {
-    handleFilterFavorites();
+  const handleActiveClick = () => {
+    handleFilterActive();
     handleInputChange();
   };
 
-  const handleContactedClick = () => {
-    handleFilterContacts();
+  const handleCloseClick = () => {
+    handleFilterClose();
     handleInputChange();
   };
 
@@ -90,13 +100,13 @@ export default function PropertiesSection() {
               type="radio"
               id="favorites"
               name="boxOptions"
-              onClick={handleFavoritesClick}
+              onClick={handleActiveClick}
             ></StyledInput>
             <StyledInput
               type="radio"
               id="contacted"
               name="boxOptions"
-              onClick={handleContactedClick}
+              onClick={handleCloseClick}
             ></StyledInput>
             <BoxOptions>
               <StyledLabel
@@ -115,7 +125,7 @@ export default function PropertiesSection() {
             <StyledH2>{totalProducts} Properties found</StyledH2>
             <PropertiesContainer>
               {products.slice(firstIndex, lastIndex).map((property) => {
-                const isOwner = false;
+                const isOwner = true;
 
                 return (
                   <PropertyCard
