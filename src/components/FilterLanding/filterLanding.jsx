@@ -55,16 +55,41 @@ export function FilterLanding() {
   });
 
   function handleChange(event) {
-    const value = event.value;
-    const object = {
-      // address: { address: true },
-      home: { apartments: false },
-      apartment: { houses: false },
-      rent: { renting: false },
-      sale: { buying: false },
+    const { value } = event; 
+
+    const newValues = {
+      address: values.address,
+      houses: values.houses,
+      apartments: values.apartments,
+      buying: values.buying,
+      renting: values.renting,
     };
-    setValues({ ...values }, object[value]);
+
+    switch (value) {
+      case "home":
+        newValues.houses = true;
+        newValues.apartments = false;
+        break;
+      case "apartment":
+        newValues.houses = false;
+        newValues.apartments = true;
+        break;
+      case "rent":
+        newValues.renting = true;
+        newValues.buying = false;
+        break;
+      case "sale":
+        newValues.renting = false;
+        newValues.buying = true;
+        break;
+      default:
+        break;
+    }
+
+    setValues(newValues);
+    console.log(newValues)
   }
+
 
   // console.log(values);
 
