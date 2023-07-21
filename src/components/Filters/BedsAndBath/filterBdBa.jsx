@@ -1,36 +1,51 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
-
 
 import { Container, ContainerCard, Title, ArrayContainer, Array, ButtonContainer } from ".";
 import { lightTheme } from "../../../styles";
-const FilterBdBa = ({filter,setFilter}) => {
-  const [isOpen, setIsOpen] = useState(false);
 
+
+const FilterBdBa = ({ filter, setFilter }) => {
   const array = filter || ["Any", "1+", "2+", "3+", "4+"];
-  const [selectedBeds, setSelectedBeds] = useState(0);
-  const [selectedBaths, setSelectedBaths] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef();
+  const [beds, setBeds] = useState(0);
+  const [baths, setBaths] = useState(0);
 
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   const handleClick = (index, type) => {
     if (type === "BEDS") {
-      setSelectedBeds(index);
+      setBeds(index);
     } else if (type === "BATH") {
-      setSelectedBaths(index);
+      setBaths(index);
     }
   };
 
   const getButtonLabel = () => {
-    if (selectedBeds === 0 && selectedBaths === 0) {
+    if (beds === 0 && baths === 0) {
       return "BEDS & BATH";
     }
 
-    const bedsLabel = selectedBeds !== 0 ? array[selectedBeds] : "0";
-    const bathsLabel = selectedBaths !== 0 ? array[selectedBaths] : "0";
+    const bedsLabel = beds !== 0 ? array[beds] : "0";
+    const bathsLabel = baths !== 0 ? array[baths] : "0";
 
     return `${bedsLabel} DB, ${bathsLabel} BA`;
   };
@@ -40,9 +55,7 @@ const FilterBdBa = ({filter,setFilter}) => {
       <Array
         key={index}
         onClick={() => handleClick(index, type)}
-        isSelected={
-          type === "BEDS" ? selectedBeds === index : selectedBaths === index
-        }
+        isSelected={type === "BEDS" ? beds === index : baths === index}
         isFirst={index === 0}
         isLast={index === array.length - 1}
       >
@@ -52,14 +65,16 @@ const FilterBdBa = ({filter,setFilter}) => {
   };
 
   const handleDone = () => {
-    // setFilter(selectedBeds, selectedBaths);
-    console.log("BEDS:", selectedBeds);
-    console.log("BATH:", selectedBaths);
+    const selectedOptions = {
+      beds: beds,
+      baths: baths,
+    };
+    setFilter(selectedOptions); 
     setIsOpen(!isOpen);
   };
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Button onClick={handleButtonClick} type="primary" theme={lightTheme}>
         {getButtonLabel()}
       </Button>
@@ -80,10 +95,9 @@ const FilterBdBa = ({filter,setFilter}) => {
   );
 };
 
-FilterBdBa.propTypes= { 
+FilterBdBa.propTypes = { 
   filter: PropTypes.array,
-  setFilter: PropTypes.func,
-
+  setFilter: PropTypes.func.isRequired,
 }
 
 export default FilterBdBa;
