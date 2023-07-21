@@ -5,12 +5,12 @@ import { GoHeartFill } from "react-icons/go";
 import Button from "../Button";
 import Anchor from "../Anchor";
 import Logo from "../Logo";
-import { StyledContainer } from "./styles";
+import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderSeeker() {
   return (
-    <header>
+    <StyledHeader>
       <Container size={"xl"}>
         <StyledContainer>
           <input type="checkbox" id="menu-mobile" />
@@ -44,7 +44,7 @@ function HeaderSeeker() {
           </ul>
         </StyledContainer>
       </Container>
-    </header>
+    </StyledHeader>
   );
 }
 

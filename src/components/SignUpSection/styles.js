@@ -3,7 +3,30 @@ import { fonts, typography } from "../../styles";
 
 export const StyledSection = styled.section`
   padding: 4rem 0;
-  background-color: ${(props) => props.theme.colors.primary.lighter};
+  position: relative;
+  height: 80vh;
+  display: grid;
+  place-items: center;
+
+  ::after {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    content: "";
+    background-color: ${(props) => props.theme.colors.background.lighter};
+  }
+
+  ::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    content: "";
+    background-color: ${(props) => props.theme.colors.primary.lighter};
+  }
 `;
 
 export const StyledH3 = styled.h3`
