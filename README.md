@@ -14,9 +14,7 @@ Finding the perfect rental has never been easier!
 4. [Installation](#installation)
 5. [Usage](#usage)
 6. [API Documentation](#api-documentation)
-7. [Front-end Setup](#front-end-setup)
-8. [Back-end Setup](#back-end-setup)
-9. [Contact](#contact)
+7. [Contact us](#contact)
 
 ## Description
 
@@ -54,7 +52,7 @@ If your project has an API, provide documentation on how to use it. Include endp
 
 ## Contact
 
-In case you need to reach out regarding the project. Contact us!
+In case you need to reach out regarding the project. Contact us via LinkedIn!
 
 - [Kevin Robles](https://github.com/kevinronu)
 - [Daniel Martinez](https://github.com/DanielMaHe)
