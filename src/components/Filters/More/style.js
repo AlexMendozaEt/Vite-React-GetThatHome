@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  width: 100%;
+  // width: 100%;
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -24,8 +24,9 @@ export const ContainerCard = styled.div`
   padding: 8px;
   border-radius: 8px;
   align-content: center;
-  position: fixed;
-  margin-top: 8px;
+  position: absolute;
+  margin-top: 40px;
+  z-index: 1;
 
 `;
 
@@ -53,6 +54,7 @@ export const ButtonContainer = styled.div`
 export const ContainerIcon = styled.div`
   display: flex;
   flex-direction: row;
+  width: max-content;
   gap: 8px;
   align-items: center;
 `;
