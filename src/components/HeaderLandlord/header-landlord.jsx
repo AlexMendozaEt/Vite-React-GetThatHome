@@ -1,5 +1,6 @@
 import { RiLogoutCircleLine, RiUserLine, RiHome8Line } from "react-icons/ri";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { useAuth } from "../../context/auth-context";
 
 import Button from "../Button";
 import Anchor from "../Anchor";
@@ -8,6 +9,8 @@ import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderLandlord() {
+  const { logout } = useAuth();
+
   return (
     <StyledHeader>
       <Container size={"xl"}>
@@ -28,7 +31,11 @@ function HeaderLandlord() {
               </Anchor>
             </li>
             <li className="link">
-              <Button icon={<RiLogoutCircleLine />} type={"secondary"}>
+              <Button
+                icon={<RiLogoutCircleLine />}
+                type={"secondary"}
+                onClick={logout}
+              >
                 LOGOUT
               </Button>
             </li>

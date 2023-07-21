@@ -2,13 +2,16 @@ import { RiLogoutCircleLine, RiUserLine } from "react-icons/ri";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { GoHeartFill } from "react-icons/go";
 
+import { StyledContainer, StyledHeader } from "./styles";
+import { useAuth } from "../../context/auth-context";
 import Button from "../Button";
 import Anchor from "../Anchor";
 import Logo from "../Logo";
-import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
 
 function HeaderSeeker() {
+  const { logout } = useAuth();
+
   return (
     <StyledHeader>
       <Container size={"xl"}>
@@ -29,7 +32,11 @@ function HeaderSeeker() {
               </Anchor>
             </li>
             <li className="link">
-              <Button icon={<RiLogoutCircleLine />} type={"secondary"}>
+              <Button
+                icon={<RiLogoutCircleLine />}
+                type={"secondary"}
+                onClick={logout}
+              >
                 LOGOUT
               </Button>
             </li>
