@@ -7,6 +7,8 @@ import EditPropertyPage from "./pages/EditPropertyPage";
 import SavedPropertiesPage from "./pages/SavedPropertiesPage";
 import CreateRentalPropertyPage from "./pages/CreateRentalPropertyPage";
 import CreateSalePropertyPage from "./pages/CreateSalePropertyPage";
+import ProfilePage from "./pages/ProfilePage";
+import MyPropertiesPage from "./pages/MyPropertiesPage";
 
 function AuthenticatedLandlordApp() {
   return (
@@ -14,6 +16,7 @@ function AuthenticatedLandlordApp() {
       <Route path="/">
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="home" element={<LandingPage />} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="property">
           <Route index element={<PropertiesPage />} />
           <Route path=":id">
@@ -27,7 +30,7 @@ function AuthenticatedLandlordApp() {
           </Route>
         </Route>
         <Route path="savedproperties" element={<SavedPropertiesPage />} />
-        <Route path="myproperties" element={<PropertiesPage />} />
+        <Route path="myproperties" element={<MyPropertiesPage />} />
       </Route>
     </Routes>
   );
