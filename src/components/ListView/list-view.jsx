@@ -23,21 +23,23 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(9);
-  const [filtersProducts, setFilterProducts] = useState([])
+  const [filtersProducts, setFilterProducts] = useState([]);
+  const [filterAddress, setFilterAddress] = useState([]);
 
-  const [filtersProperties, setFiltersProperties] = useState({
+
+  const [filterRules, setFilterRules] = useState({
     address : "",
     houses : true,
     apartments : true,
-    bedrooms : 2,
-    bathrooms : 1,
+    bedrooms : 0,
+    bathrooms : 0,
     minPrice : 0,
     maxPrice : 0,
-    minArea : 400,
+    minArea : 0,
     maxArea : 0,
-    pets_allowed: true,
+    pets_allowed: false,
     buying : true,
-    renting : false,}
+    renting : true,}
    )
   
   const [currentPage, setCurrentPage] = useState(
@@ -48,7 +50,7 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
 
 
   useEffect(() => {
-    setFilterProducts(products.map((product)=>product.address));
+    setFilterAddress(products.map((product)=>product.address));
     setCurrentPage(1);
   }, [products]);
   
@@ -81,14 +83,16 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
 
 
   const handleAddressFilter = (address) => {
-    setFiltersProperties((prevFilters) => ({
+    console.log(address)
+    setFilterRules((prevFilters) => ({
       ...prevFilters,
       address,
     }));
   };
 
   const handlePriceFilter = ({ minPrice, maxPrice }) => {
-    setFiltersProperties((prevFilters) => ({
+    console.log({ minPrice, maxPrice })
+    setFilterRules((prevFilters) => ({
       ...prevFilters,
       minPrice,
       maxPrice,
@@ -96,7 +100,9 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
   };
 
   const handlePropertyTypeFilter = ({houses, apartments}) => {
-    setFiltersProperties((prevFilters) => ({
+    console.log("property")
+    console.log({houses, apartments})
+    setFilterRules((prevFilters) => ({
       ...prevFilters,
       houses,
       apartments,
@@ -104,7 +110,8 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
   };
 
   const handleBdBaFilter = ({ beds, baths }) => {
-    setFiltersProperties((prevFilters) => ({
+    console.log({ beds, baths })
+    setFilterRules((prevFilters) => ({
       ...prevFilters,
       bedrooms: beds,
       bathrooms: baths,
@@ -112,7 +119,8 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
   };
 
   const handleMoreFilter = ({ minArea, maxArea, petsAllowed }) => {
-    setFiltersProperties((prevFilters) => ({
+    console.log({ minArea, maxArea, petsAllowed })
+    setFilterRules((prevFilters) => ({
       ...prevFilters,
       minArea,
       maxArea,
@@ -121,7 +129,7 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
   };
 
   // const handleBaRFilter = ({ buying, renting }) => {
-  //   setFiltersProperties((prevFilters) => ({
+  //   setFilterRules((prevFilters) => ({
   //     ...prevFilters,
   //     buying,
   //     renting,
@@ -129,32 +137,32 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
   // };
 
   useEffect(() => {
-    const filteredProducts = filterProducts();
+    const filteredProducts = HandleFilterProducts();
     setFilterProducts(filteredProducts);
-    setCurrentPage(1); 
-    console.log("use 179")
+    // setCurrentPage(1); 
+    // console.log("use 179")
 
-  }, [filtersProperties]); //products
+  }, [filterRules,products]); //products
 
 
-  function filterProducts(){  
+  function HandleFilterProducts(){  
   
     return products.filter((product)=>{
 
-        const productAddress =  product.address.includes(filtersProperties.address);
-        const minPrice = filtersProperties.minPrice > 0 ? +product.price > +filtersProperties?.minPrice : true;
-        const maxPrice = filtersProperties.maxPrice > 0 ? +product.price > +filtersProperties?.maxPrice : true;
-        const productHouses = filtersProperties.houses ?  (+product.property_type == 0) : false;
-        const productApartments =  filtersProperties.apartments ?  (+product.property_type == 1) : false;
+        const productAddress =  product.address.includes(filterRules.address);
+        const minPrice = filterRules.minPrice > 0 ? +product.monthly_rent > +filterRules?.minPrice : true;
+        const maxPrice = filterRules.maxPrice > 0 ? +product.monthly_rent < +filterRules?.maxPrice : true;
+        const productHouses = filterRules.houses ?  (+product.property_type == 0) : false;
+        const productApartments =  filterRules.apartments ?  (+product.property_type == 1) : false;
         const apartmentHome = productHouses || productApartments;
-        const bedrooms = (filtersProperties.bedrooms > 0) ?  product.bedrooms >= filtersProperties.bedrooms : true;
-        const bathrooms = (filtersProperties.bathrooms > 0) ?  product.bathrooms >= filtersProperties.bathrooms : true;
-        const minArea = filtersProperties.minArea > 0 ? +product.area > +filtersProperties?.minArea : true;
-        const maxArea = filtersProperties.maxArea > 0 ? +product.area > +filtersProperties?.maxArea : true;
-        const pets =  filtersProperties.pets_allowed ? product.pets_allowed : true;
+        const bedrooms = (filterRules.bedrooms > 0) ?  product.bedrooms >= filterRules.bedrooms : true;
+        const bathrooms = (filterRules.bathrooms > 0) ?  product.bathrooms >= filterRules.bathrooms : true;
+        const minArea = filterRules.minArea > 0 ? +product.area > +filterRules?.minArea : true;
+        const maxArea = filterRules.maxArea > 0 ? +product.area > +filterRules?.maxArea : true;
+        const pets =  filterRules.pets_allowed ? product.pets_allowed : true;
 
-        const buying = filtersProperties.buying ?  (+product.operation_type == "buy") : false;
-        const renting =  filtersProperties.renting ?  (+product.operation_type == "rent") : false;
+        const buying = (filterRules.buying  == "1")?  (+product.operation_type == "1") : false;
+        const renting =  (filterRules.renting == "0") ?  (+product.operation_type == "0") : false;
         const buyingRenting = buying || renting;
 
         const status = productAddress && minPrice && maxPrice && apartmentHome && bedrooms && bathrooms && minArea && maxArea && pets && buyingRenting;
@@ -163,11 +171,13 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
     }) 
   }
 
-
+  console.log(filtersProducts)
+  console.log(products)
+  console.log(filterRules)
   return(
     <ContainerLists>
     <ContainerFilters>
-        <SearchByAddress filter={filtersProducts} setFilter={handleAddressFilter} />
+        <SearchByAddress filter={filterAddress} setFilter={handleAddressFilter} />
         <ContainerFilter>
           <FilterPrice setFilter={handlePriceFilter} />
           <FilterProperty setFilter={handlePropertyTypeFilter} />
@@ -181,7 +191,7 @@ import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
           <>
             <StyledH2>{totalProducts} Properties found</StyledH2>
             <PropertiesContainer>
-              {products.slice(firstIndex, lastIndex).map((property) => {
+              {filtersProducts.slice(firstIndex, lastIndex).map((property) => {
                 const isOwner = false;
 
                 return (
