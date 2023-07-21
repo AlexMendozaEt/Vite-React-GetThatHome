@@ -9,7 +9,7 @@ import { lightTheme } from "../../../styles";
 const FilterProperty = ({ filter, setFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const array = filter || ["Houses", "Apartments"];
+  const array = filter || ["houses", "apartments"];
   const [selectedOptions, setSelectedOptions] = useState([]);
   const containerRef = useRef();
 
@@ -79,7 +79,11 @@ const FilterProperty = ({ filter, setFilter }) => {
     selectedOptions.forEach((option) => {
       selectedTypes[option] = true;
     });
-    setFilter(selectedTypes); 
+    if (!selectedTypes.houses && !selectedTypes.apartments) {
+      setFilter({ houses: true, apartments: true }); // Set the filter to {houses: true, apartments: true}
+    } else {
+      setFilter(selectedTypes);
+    }
     console.log(selectedTypes)
     setIsOpen(!isOpen);
   };
