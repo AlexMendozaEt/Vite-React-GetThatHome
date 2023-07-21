@@ -30,18 +30,19 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     bathrooms,
     area,
     pets_allowed,
+    close,
   } = property;
 
   const photo = [Image1, Image2, Image3, Image4, Image5, Image6];
 
   const renderPropertyType = {
-    0: (
+    apartment: (
       <div className="info-title__type">
         <HiOutlineBuildingOffice2 size={"1.5rem"} />
         <p>Apartment</p>
       </div>
     ),
-    1: (
+    home: (
       <div className="info-title__type">
         <BsHouseDoor size={"1.5rem"} />
         <p>House</p>
@@ -50,13 +51,13 @@ function PropertyCard({ property, isOwner, isFavorite }) {
   };
 
   const renderOperationType = {
-    0: (
+    rent: (
       <div className="operation-type">
         <RiCoinsLine color={theme.colors.white.standard} size={"1.25rem"} />
         <p>For Rental</p>
       </div>
     ),
-    1: (
+    sale: (
       <div className="operation-type">
         <TbCoin color={theme.colors.white.standard} size={"1.25rem"} />
         <p>For Sale</p>
@@ -108,7 +109,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
             type="tertiary"
             to={`/property/${id}/edit`}
           >
-            EDIT
+            {close ? "RESTORE" : "EDIT"}
           </Anchor>
           <Button
             icon={
@@ -119,7 +120,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
             }
             type={"tertiary"}
           >
-            CLOSE
+            {close ? "DELETE" : "CLOSE"}
           </Button>
         </OwnerMenu>
       ) : null}
@@ -131,6 +132,7 @@ PropertyCard.propTypes = {
   property: PropTypes.object,
   isOwner: PropTypes.bool,
   isFavorite: PropTypes.bool,
+  close: PropTypes.bool,
 };
 
 export default PropertyCard;

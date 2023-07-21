@@ -5,6 +5,7 @@ export const NavBox = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  margin-bottom: 2rem;
 
   .null {
     width: 31px;

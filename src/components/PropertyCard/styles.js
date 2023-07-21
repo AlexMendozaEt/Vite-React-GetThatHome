@@ -12,7 +12,7 @@ export const StyledDiv = styled.div`
   border-radius: 0.5rem 0.5rem 0 0;
   border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
   font-family: ${fonts.primary};
-  ${typography.head.sm}
+  ${typography.text.xl}
   font-weight: 500;
 
   .operation-type {
@@ -59,6 +59,7 @@ export const StyledDiv = styled.div`
     align-items: center;
     padding: 0 16px 0 16px;
     min-height: 64px;
+    max-height: 65px;
   }
 
   .info-footer {
