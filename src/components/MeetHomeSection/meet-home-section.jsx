@@ -1,5 +1,6 @@
 import { Info, StyledContainer, StyledH1, StyledMain } from "./styles";
 import Container from "../../layout/Container";
+import { FilterLanding } from "../FilterLanding/filterLanding";
 
 export default function MeetHomeSection() {
   return (
@@ -8,7 +9,7 @@ export default function MeetHomeSection() {
         <StyledContainer>
           <StyledH1>Meet your new Home</StyledH1>
           <Info>The easiest way to find where you belong</Info>
-          <div>Filters</div>
+          <FilterLanding/>
         </StyledContainer>
       </Container>
     </StyledMain>

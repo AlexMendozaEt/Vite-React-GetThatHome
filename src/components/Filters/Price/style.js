@@ -32,7 +32,7 @@ export const Title = styled.div`
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 1.5px;
-  text-align: left;
+  // text-align: left;
 `;
 
 export const PriceContainer = styled.div`
