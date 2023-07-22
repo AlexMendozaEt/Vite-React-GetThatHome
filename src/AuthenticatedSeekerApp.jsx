@@ -13,9 +13,15 @@ function AuthenticatedSeekerApp() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="home" element={<LandingPage />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="property">
+        <Route path="properties">
           <Route index element={<PropertiesPage />} />
-          <Route path=":id" element={<PropertyDetailPage />} />
+          <Route
+            path=":address/:houses/:apartment/:buying/:renting"
+            element={<PropertiesPage />}
+          />
+        </Route>
+        <Route path="property">
+          <Route path="detail/:id" element={<PropertyDetailPage />} />
         </Route>
         <Route path="savedproperties" element={<SavedPropertiesPage />} />
       </Route>

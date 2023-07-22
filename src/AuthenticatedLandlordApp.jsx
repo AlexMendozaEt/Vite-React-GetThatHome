@@ -17,17 +17,21 @@ function AuthenticatedLandlordApp() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="home" element={<LandingPage />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="property">
+        <Route path="properties">
           <Route index element={<PropertiesPage />} />
-          <Route path=":id">
-            <Route index element={<PropertyDetailPage />} />
-            <Route path="edit" element={<EditPropertyPage />} />
-          </Route>
+          <Route
+            path=":address/:houses/:apartment/:buying/:renting"
+            element={<PropertiesPage />}
+          />
+        </Route>
+        <Route path="property">
+          <Route index element={<Navigate to="/property/create/rent" />} />
           <Route path="create">
             <Route index element={<Navigate to="/property/create/rent" />} />
             <Route path="rent" element={<CreateRentalPropertyPage />} />
             <Route path="sale" element={<CreateSalePropertyPage />} />
           </Route>
+          <Route path="detail/:id" element={<PropertyDetailPage />} />
         </Route>
         <Route path="savedproperties" element={<SavedPropertiesPage />} />
         <Route path="myproperties" element={<MyPropertiesPage />} />
