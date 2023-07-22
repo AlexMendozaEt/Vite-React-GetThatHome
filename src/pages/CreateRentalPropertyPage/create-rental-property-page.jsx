@@ -54,12 +54,13 @@ function CreateRentalPropertyPage() {
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.type === "file"
-        ? URL.createObjectURL(event.target.files[0])
+        ? event.target.files[0]
         : event.target.value;
 
     let newValues;
     if (event.target.type === "file") {
       let { images } = formData;
+      // images = []
       images = [...images, value];
       newValues = { ...formData, images };
     } else {
@@ -67,8 +68,6 @@ function CreateRentalPropertyPage() {
     }
     setFormData(newValues);
   }
-
-  // console.log(formData);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -79,7 +78,8 @@ function CreateRentalPropertyPage() {
       user_id: user.id,
     };
 
-    createProperty(query).catch(console.log);
+    console.log(formData);
+    // createProperty(query).catch((e) => console.log(e.message));
   }
 
   return (
