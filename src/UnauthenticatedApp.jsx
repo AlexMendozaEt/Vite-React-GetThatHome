@@ -21,7 +21,7 @@ function UnauthenticatedApp() {
         />
       </Route>
       <Route path="property">
-        <Route path=":id" element={<PropertyDetailPage />} />
+        <Route path="detail/:id" element={<PropertyDetailPage />} />
       </Route>
     </Routes>
   );
