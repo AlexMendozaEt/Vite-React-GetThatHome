@@ -1,11 +1,12 @@
 import { RiUserReceived2Line } from "react-icons/ri";
+import PropTypes from "prop-types";
 
 import { useAuth } from "../../context/auth-context";
 import { Modal, ModalContent } from "./styles";
 import Input from "../Input";
 import Button from "../Button";
 
-function LoginModal() {
+function LoginModal({ toggleModal }) {
   const { login } = useAuth();
 
   function handleSubmit(e) {
@@ -15,9 +16,13 @@ function LoginModal() {
     login(credentials);
   }
 
+  function handlePropagation(event) {
+    event.stopPropagation();
+  }
+
   return (
-    <Modal>
-      <ModalContent>
+    <Modal onClick={toggleModal}>
+      <ModalContent onClick={handlePropagation}>
         <p className="title">Login</p>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form__inputs">
@@ -49,5 +54,9 @@ function LoginModal() {
     </Modal>
   );
 }
+
+LoginModal.propTypes = {
+  toggleModal: PropTypes.func,
+};
 
 export default LoginModal;

@@ -25,6 +25,7 @@ import Image1 from "../../assets/images/image1.png";
 import { useAuth } from "../../context/auth-context";
 
 function PropertyDetailPage() {
+  const { handleModal } = useAuth();
   const { id } = useParams();
   const { user } = useAuth();
 
@@ -61,6 +62,7 @@ function PropertyDetailPage() {
             className="button"
             icon={<RiUserReceived2Line />}
             type={"primary"}
+            onClick={handleModal}
           >
             LOGIN
           </Button>

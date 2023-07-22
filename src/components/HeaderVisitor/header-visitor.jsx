@@ -7,8 +7,11 @@ import Anchor from "../Anchor";
 import Logo from "../Logo";
 import { StyledContainer, StyledHeader } from "./styles";
 import Container from "../../layout/Container";
+import { useAuth } from "../../context/auth-context";
 
 function HeaderVisitor() {
+  const { handleModal } = useAuth();
+
   return (
     <StyledHeader>
       <Container size={"xl"}>
@@ -34,13 +37,14 @@ function HeaderVisitor() {
               </Anchor>
             </li>
             <li className="link">
-              <Anchor
+              <Button
                 icon={<RiUserReceived2Line />}
                 type={"primary"}
                 to={"/login"}
+                onClick={handleModal}
               >
                 LOGIN
-              </Anchor>
+              </Button>
             </li>
           </ul>
         </StyledContainer>

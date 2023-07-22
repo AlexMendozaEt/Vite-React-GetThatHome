@@ -9,7 +9,7 @@ const AuthContext = createContext();
 
 function AuthProvider(props) {
   const [user, setUser] = useState(null);
-  // const [user, setUser] = useState({ type: 0 });
+  const [isLoginModalActive, setIsLoginModalActive] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,11 +22,16 @@ function AuthProvider(props) {
       .catch(console.log);
   }, []);
 
+  function handleModal() {
+    setIsLoginModalActive(!isLoginModalActive);
+  }
+
   function login(credentials) {
     auth
       .login(credentials)
       .then((user) => {
         setUser(user);
+        handleModal();
         navigate("/");
       })
       .catch(console.log);
@@ -57,6 +62,8 @@ function AuthProvider(props) {
     login,
     signup,
     logout,
+    isLoginModalActive,
+    handleModal,
   };
 
   return <AuthContext.Provider value={value} {...props} />;

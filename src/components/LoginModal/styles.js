@@ -9,6 +9,7 @@ export const Modal = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(51, 51, 51, 0.6);
+  z-index: 1;
 `;
 
 export const ModalContent = styled.div`
