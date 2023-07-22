@@ -57,11 +57,7 @@ export function FilterLanding() {
     const { value } = event;
 
     const newValues = {
-      address: values.address,
-      houses: values.houses,
-      apartments: values.apartments,
-      buying: values.buying,
-      renting: values.renting,
+      ...values,
     };
 
     switch (value) {
@@ -82,11 +78,12 @@ export function FilterLanding() {
         newValues.buying = true;
         break;
       default:
+        newValues.address = value;
         break;
     }
+    setValues(newValues)
   }
 
-  // console.log(values);
 
   useEffect(() => {
     getProperties()
@@ -102,14 +99,11 @@ export function FilterLanding() {
 
 
   const handleDone = () => {
-    navigate(`/property/${values.address.toString()}/${values.houses.toString()}/${values.apartments.toString()}/${values.buying.toString()}/${values.renting.toString()}`)
+    console.log(values)
+    navigate(`/properties/${values.address.toString()}/${values.houses.toString()}/${values.apartments.toString()}/${values.buying.toString()}/${values.renting.toString()}`)
 
   };
   
-  console.log(values)
-
-
-
 
   return (
     <Filter>
