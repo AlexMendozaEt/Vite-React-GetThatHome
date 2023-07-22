@@ -99,6 +99,7 @@ export const StyledDetail = styled.section`
     gap: 1rem;
     border-radius: 0.5rem;
     background: ${(props) => props.theme.colors.white.standard};
+    color: ${(props) => props.theme.colors.black.standard};
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
   }
 
