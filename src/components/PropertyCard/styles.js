@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { fonts, typography } from "../../styles";
+import { Link } from "react-router-dom";
 
 export const StyledContainer = styled.div`
   // max-width: 300px;
@@ -7,7 +8,7 @@ export const StyledContainer = styled.div`
   position: relative;
 `;
 
-export const StyledDiv = styled.div`
+export const StyledLink = styled(Link)`
   position: relative;
   border-radius: 0.5rem 0.5rem 0 0;
   border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
