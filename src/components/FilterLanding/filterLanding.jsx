@@ -6,6 +6,7 @@ import { ButtonContainer } from "./Search";
 import { lightTheme } from "../../styles";
 import { useEffect, useState } from "react";
 import { getProperties } from "../../services/property-service";
+import { useNavigate } from "react-router-dom";
 
 const Filter = styled.div`
   display: flex;
@@ -36,18 +37,16 @@ const ContainerFilter = styled.div`
   height: ${(props) => props.height}px;
 `;
 
-const handleDone = () => {
-  console.log("HEY! ;) ");
-};
 
 export function FilterLanding() {
   const [products, setProducts] = useState([]);
   const [arrayAddress, setArrayAddress] = useState([]);
   const arrayTypeProperty = ["home", "apartment"];
   const arrayTypeOperation = ["rent", "sale"];
+  const navigate = useNavigate()
 
   const [values, setValues] = useState({
-    address: "",
+    address: false,
     houses: true,
     apartments: true,
     buying: true,
@@ -85,9 +84,6 @@ export function FilterLanding() {
       default:
         break;
     }
-
-    setValues(newValues);
-    console.log(newValues);
   }
 
   // console.log(values);
@@ -103,6 +99,17 @@ export function FilterLanding() {
   useEffect(() => {
     setArrayAddress(products.map((product) => product.address));
   }, [products]);
+
+
+  const handleDone = () => {
+    navigate(`/property/${values.address.toString()}/${values.houses.toString()}/${values.apartments.toString()}/${values.buying.toString()}/${values.renting.toString()}`)
+
+  };
+  
+  console.log(values)
+
+
+
 
   return (
     <Filter>

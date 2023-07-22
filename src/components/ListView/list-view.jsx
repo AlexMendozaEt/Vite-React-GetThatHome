@@ -14,28 +14,38 @@ import SearchByAddress from "../Filters/Search/filterSearch";
 import { useEffect, useState } from "react";
 import Pagination from "../Pagination";
 import FilterBaR from "../Filters/BuyingAndRenting/filterBaR";
+import { useParams } from "react-router-dom";
 
-export default function ListsView() {
+export default function ListsView(filter) {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(9);
   const [filtersProducts, setFilterProducts] = useState([]);
   const [filterAddress, setFilterAddress] = useState([]);
-
+  const params = useParams();
   const [filterRules, setFilterRules] = useState({
-    address: "",
+    address: false,
     houses: true,
     apartments: true,
-    bedrooms: 0,
-    bathrooms: 0,
-    minPrice: 0,
-    maxPrice: 0,
-    minArea: 0,
-    maxArea: 0,
-    pets_allowed: false,
-    buying: true,
-    renting: true,
-  });
+      bedrooms: 0,
+      bathrooms: 0,
+      minPrice: 0,
+      maxPrice: 0,
+      minArea: 0,
+      maxArea: 0,
+      pets_allowed: false,
+      buying: true,
+      renting: true,
+    });
+  
+    console.log(filterRules)
+  
+  useEffect(()=> {
+    const local = localStorage.getItem(filter)
+    if(local){
+
+    }
+  },[])
 
   const [currentPage, setCurrentPage] = useState(
     sessionStorage.getItem("seekerCurrentPage")
@@ -134,9 +144,12 @@ export default function ListsView() {
 
   function HandleFilterProducts() {
     return products.filter((product) => {
-      const productAddress = product.address.search(
-        filterRules.address.toLocaleLowerCase
-      );
+      let productAddress;
+      if(!filterRules.address){
+          productAddress = product.address.search(filterRules.address.toLocaleLowerCase)
+      }else{
+       productAddress = true;
+      }
       const minPrice =
         filterRules.minPrice > 0
           ? +product.monthly_rent > +filterRules?.minPrice
