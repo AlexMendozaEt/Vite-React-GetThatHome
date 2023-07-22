@@ -21,7 +21,7 @@ export async function getProperty(propertyId) {
 }
 
 export async function createProperty(propertyData) {
-  return await apiFetch("/property", {
+  return await apiFetch("/properties", {
     body: propertyData,
   });
 }

@@ -12,37 +12,40 @@ import InputWithIcon from "../../components/InputWithIcon";
 import { TbCoin } from "react-icons/tb";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../context/auth-context";
+import { createProperty } from "../../services/property-service";
 
 function CreateRentalPropertyPage() {
   const { user } = useAuth();
-  const operation_type = 0;
+  const operation_type = "rent";
 
   const [formData, setFormData] = useState({
     address: "",
+    district: "",
+    state: "",
     montly_rent: null,
-    maintanance: null,
+    maintenance: null,
     property_type: null,
     bedrooms: null,
     bathrooms: null,
     area: null,
     pets_allowed: null,
     about: "",
-    close: null,
-    photo_url: [],
+    images: [],
   });
 
   const {
     address,
+    district,
+    state,
     montly_rent,
-    maintanance,
+    maintenance,
     property_type,
     bedrooms,
     bathrooms,
     area,
     pets_allowed,
     about,
-    close,
-    photo_url,
+    images,
   } = formData;
 
   function handleChange(event) {
@@ -56,9 +59,9 @@ function CreateRentalPropertyPage() {
 
     let newValues;
     if (event.target.type === "file") {
-      let { photo_url } = formData;
-      photo_url = [...photo_url, value];
-      newValues = { ...formData, photo_url };
+      let { images } = formData;
+      images = [...images, value];
+      newValues = { ...formData, images };
     } else {
       newValues = { ...formData, [name]: value };
     }
@@ -69,9 +72,14 @@ function CreateRentalPropertyPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
-    console.log(operation_type);
-    console.log(user.id);
+
+    const query = {
+      ...formData,
+      operation_type: operation_type,
+      user_id: user.id,
+    };
+
+    createProperty(query).catch(console.log);
   }
 
   return (
@@ -113,6 +121,24 @@ function CreateRentalPropertyPage() {
                 onChange={handleChange}
               />
               <InputWithIcon
+                label={"DISTRICT"}
+                icon={<HiMagnifyingGlass size={"1.25rem"} />}
+                isFullWidth
+                name="district"
+                type="text"
+                placeholder="District"
+                onChange={handleChange}
+              />
+              <InputWithIcon
+                label={"STATE"}
+                icon={<HiMagnifyingGlass size={"1.25rem"} />}
+                isFullWidth
+                name="state"
+                type="text"
+                placeholder="STATE"
+                onChange={handleChange}
+              />
+              <InputWithIcon
                 label="MONTLY RENT"
                 icon={<TbCoin size={"1.25rem"} />}
                 type="number"
@@ -121,10 +147,10 @@ function CreateRentalPropertyPage() {
                 onChange={handleChange}
               />
               <InputWithIcon
-                label="MAINTANANCE"
+                label="MAINTENANCE"
                 icon={<TbCoin size={"1.25rem"} />}
                 type="number"
-                name="maintanance"
+                name="maintenance"
                 placeholder="100"
                 onChange={handleChange}
               />
@@ -133,7 +159,7 @@ function CreateRentalPropertyPage() {
                 name="property_type"
                 options={[
                   { label: "Apartment", value: "apartment" },
-                  { label: "House", value: "house" },
+                  { label: "Home", value: "home" },
                 ]}
                 defaultValue={"Select..."}
                 onChange={handleChange}
@@ -215,14 +241,14 @@ function CreateRentalPropertyPage() {
                   <p className="photos-instructions">
                     Upload as many photos as you wish
                   </p>
-                  <input type="file" name="photo_url" onChange={handleChange} />
+                  <input type="file" name="images" onChange={handleChange} />
                   <blockquote className="quote">
                     Only images, max 5MB
                   </blockquote>
                 </label>
                 <div className="images-container">
                   <img
-                    src={formData.photo_url[0]}
+                    src={formData.images[0]}
                     className="images-container__image"
                   />
                 </div>
