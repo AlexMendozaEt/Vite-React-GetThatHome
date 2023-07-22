@@ -27,7 +27,7 @@ function HeaderSeeker() {
           </div>
           <ul className="expandable links-container">
             <li className="link">
-              <Anchor icon={<HiMagnifyingGlass />} to={"/property"}>
+              <Anchor icon={<HiMagnifyingGlass />} to={"/properties"}>
                 FIND A HOME
               </Anchor>
             </li>

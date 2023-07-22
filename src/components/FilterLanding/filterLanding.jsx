@@ -54,7 +54,7 @@ export function FilterLanding() {
   });
 
   function handleChange(event) {
-    const { value } = event; 
+    const { value } = event;
 
     const newValues = {
       address: values.address,
@@ -84,10 +84,7 @@ export function FilterLanding() {
       default:
         break;
     }
-
-    setValues(newValues);
   }
-
 
   // console.log(values);
 
@@ -148,13 +145,7 @@ export function FilterLanding() {
       <Line />
 
       <ButtonContainer>
-        <Button
-          onClick={handleDone}
-          type="primary"
-          size="md"
-          square
-          theme={lightTheme}
-        >
+        <Button onClick={handleDone} type="primary" square theme={lightTheme}>
           <Title>I want To</Title>
         </Button>
       </ButtonContainer>

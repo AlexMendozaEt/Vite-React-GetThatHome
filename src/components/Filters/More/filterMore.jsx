@@ -27,7 +27,10 @@ const FilterMore = ({ setFilter }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -48,7 +51,10 @@ const FilterMore = ({ setFilter }) => {
     if (maxMeter < 0) setMaxMeter(0);
 
     if (minMeter !== 0 && maxMeter !== 0) {
-      return `${((minMeter * 10) / 10).toFixed(1)} M2 - ${((maxMeter * 10) / 10).toFixed(1)} M2`;
+      return `${((minMeter * 10) / 10).toFixed(1)} M2 - ${(
+        (maxMeter * 10) /
+        10
+      ).toFixed(1)} M2`;
     } else if (minMeter !== 0) {
       return `>= ${((minMeter * 10) / 10).toFixed(1)} M2`;
     } else if (maxMeter !== 0) {
@@ -71,10 +77,12 @@ const FilterMore = ({ setFilter }) => {
   return (
     <Container ref={containerRef}>
       <Button onClick={handleButtonClick} type="primary" theme={lightTheme}>
-        <ContainerIcon>
-          {petsAllowed && <MdPets />}
-          {getButtonLabel()} <FiChevronDown />
-        </ContainerIcon>
+        <>
+          <ContainerIcon>
+            {petsAllowed && <MdPets />}
+            {getButtonLabel()} <FiChevronDown />
+          </ContainerIcon>
+        </>
       </Button>
       {isOpen && (
         <ContainerCard>
@@ -110,7 +118,13 @@ const FilterMore = ({ setFilter }) => {
             </ContainerInput>
           </PriceContainer>
           <ButtonContainer>
-            <Button onClick={handleDone} square size="sm" type="primary" theme={lightTheme}>
+            <Button
+              onClick={handleDone}
+              square
+              size="sm"
+              type="primary"
+              theme={lightTheme}
+            >
               DONE
             </Button>
           </ButtonContainer>
@@ -121,7 +135,7 @@ const FilterMore = ({ setFilter }) => {
 };
 
 FilterMore.propTypes = {
-  setFilter: PropTypes.func.isRequired, 
+  setFilter: PropTypes.func.isRequired,
 };
 
 export default FilterMore;

@@ -17,7 +17,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(["sm", "lg"]),
   icon: PropTypes.element,
   isFullWidth: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   onClick: PropTypes.func,
   rounded: PropTypes.bool,
 };
