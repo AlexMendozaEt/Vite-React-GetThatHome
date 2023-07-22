@@ -8,7 +8,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <Header />
+      <Header user={user} />
       <ProfileSection />
       <Footer />
     </>
