@@ -7,7 +7,7 @@ import { BiBed, BiBath, BiArea, BiEdit } from "react-icons/bi";
 import { MdOutlinePets, MdFavorite } from "react-icons/md";
 import { RiCloseCircleLine, RiCoinsLine } from "react-icons/ri";
 
-import { OwnerMenu, StyledContainer, StyledDiv } from "./styles";
+import { OwnerMenu, StyledContainer, StyledLink } from "./styles";
 import Anchor from "../Anchor";
 import Button from "../Button";
 import Image1 from "../../assets/images/image1.png";
@@ -67,7 +67,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
 
   return (
     <StyledContainer>
-      <StyledDiv>
+      <StyledLink to={`/property/${id}`}>
         {renderOperationType[operation_type]}
         <img
           src={photo[Math.floor(Math.random() * photo.length)]}
@@ -101,7 +101,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
             <MdFavorite size={"1.5rem"} color={theme.colors.pink[500]} />
           ) : null}
         </div>
-      </StyledDiv>
+      </StyledLink>
       {isOwner ? (
         <OwnerMenu>
           <Anchor
