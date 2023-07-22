@@ -43,7 +43,7 @@ InputWithIcon.propTypes = {
     PropTypes.bool,
   ]),
   onChange: PropTypes.func,
-  isFullWidth: PropTypes.string,
+  isFullWidth: PropTypes.bool,
   placeholder: PropTypes.string,
   label: PropTypes.string,
 };
