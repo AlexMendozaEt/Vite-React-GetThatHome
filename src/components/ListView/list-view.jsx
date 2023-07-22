@@ -38,14 +38,36 @@ export default function ListsView(filter) {
       renting: true,
     });
   
-    console.log(filterRules)
-  
-  useEffect(()=> {
-    const local = localStorage.getItem(filter)
-    if(local){
+  useEffect(() => {
+    const getFilterRules = () => {
+      const localStorageFilter = localStorage.getItem('filter');
+      if (localStorageFilter) {
+        return JSON.parse(localStorageFilter);
+      }
+      console.log(params)
 
-    }
-  },[])
+
+      if (Object.keys(params).length > 0) {
+
+        const paramsFilter = {
+          address: params.address === "false" ? false : params.address,
+          houses: params.houses === "true",
+          apartments: params.apartment === "true",
+          buying: params.buying === "true",
+          renting: params.renting === "true",
+        };
+        return paramsFilter
+      }
+
+      return filter;
+    };
+
+    const selectFilters = getFilterRules();
+    setFilterRules((prevFilterRules) => ({
+      ...prevFilterRules,
+      ...selectFilters,
+    }));
+  }, [params]);
 
   const [currentPage, setCurrentPage] = useState(
     sessionStorage.getItem("seekerCurrentPage")
@@ -143,12 +165,13 @@ export default function ListsView(filter) {
   }, [filterRules, products]);
 
   function HandleFilterProducts() {
+    console.log(filterRules)
     return products.filter((product) => {
       let productAddress;
-      if(!filterRules.address){
-          productAddress = product.address.search(filterRules.address.toLocaleLowerCase)
+      if(!filterRules.address){ 
+        productAddress = true;          
       }else{
-       productAddress = true;
+        productAddress = product.address.search(filterRules.address.toLocaleLowerCase)
       }
       const minPrice =
         filterRules.minPrice > 0
