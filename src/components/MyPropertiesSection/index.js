@@ -1,3 +1,3 @@
-import PropertiesSection from "./propertiesSection";
+import MyPropertiesSection from "./my-properties-section";
 
-export default PropertiesSection;
+export default MyPropertiesSection;

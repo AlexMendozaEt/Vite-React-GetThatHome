@@ -13,7 +13,7 @@ import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
 import { getMyProperties } from "../../services/property-service";
 
-export default function PropertiesSection() {
+export default function MyPropertiesSection() {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(9);
