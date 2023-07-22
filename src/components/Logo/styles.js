@@ -31,6 +31,7 @@ export const StyledAnchor = styled(Link)`
   gap: 0.5rem;
   ${(props) => sizeStyles(props.size)}
   border: none;
+  border-radius: 0.5rem;
   cursor: pointer;
 
   :hover {
