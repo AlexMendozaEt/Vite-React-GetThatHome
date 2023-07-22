@@ -17,7 +17,7 @@ export async function getMyContacts() {
 }
 
 export async function getProperty(propertyId) {
-  return await apiFetch(`/property/${propertyId}`);
+  return await apiFetch(`/properties/${propertyId}`);
 }
 
 export async function createProperty(propertyData) {
