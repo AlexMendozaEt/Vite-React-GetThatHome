@@ -67,7 +67,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
 
   return (
     <StyledContainer>
-      <StyledLink to={`/property/${id}`}>
+      <StyledLink to={`/property/detail/${id}`}>
         {renderOperationType[operation_type]}
         <img
           src={photo[Math.floor(Math.random() * photo.length)]}
