@@ -63,8 +63,7 @@ const FilterPrice = ({ filter, setFilter }) => {
   };
 
   const handleDone = () => {
-    if (minPrice > maxPrice)
-      return console.log("the minimum cannot be greater than the maximum");
+      
     filtered(minPrice, maxPrice);
     setIsOpen(!isOpen);
   };
