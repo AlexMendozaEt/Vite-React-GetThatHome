@@ -19,7 +19,7 @@ import { useParams } from "react-router-dom";
 export default function ListsView(filter) {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [productsPerpage, setProductsPerpage] = useState(9);
+  const [productsPerpage, setProductsPerpage] = useState(10);
   const [filtersProducts, setFilterProducts] = useState([]);
   const [filterAddress, setFilterAddress] = useState([]);
   const params = useParams();
@@ -37,17 +37,31 @@ export default function ListsView(filter) {
       buying: true,
       renting: true,
     });
-  
+
+    useEffect(()=>{
+      console.log("Filter rules")
+      console.log(filterRules)
+      const locals = localStorage.getItem("filter")
+      if(locals){
+        console.log("LOCALS")
+        console.log(locals)
+        // localStorage.setItem("filter", JSON.stringify(filterRules))
+      }else if(Object.keys(params).length === 0){
+      localStorage.setItem("filter", JSON.stringify(filterRules))
+      console.log("BEFORE")
+      console.log(locals)
+  }
+    },[filterRules])
+
   useEffect(() => {
     const getFilterRules = () => {
-      const localStorageFilter = localStorage.getItem('filter');
+      const localStorageFilter = localStorage.getItem("filter");
       if (localStorageFilter) {
+        console.log("local Storage")
         return JSON.parse(localStorageFilter);
-      }
-      console.log(params)
+      }else if (Object.keys(params).length > 0) {
+        console.log("Params url")
 
-
-      if (Object.keys(params).length > 0) {
 
         const paramsFilter = {
           address: params.address === "false" ? false : params.address,
@@ -56,6 +70,7 @@ export default function ListsView(filter) {
           buying: params.buying === "true",
           renting: params.renting === "true",
         };
+        localStorage.setItem("filter", JSON.stringify(paramsFilter))
         return paramsFilter
       }
 
@@ -68,6 +83,8 @@ export default function ListsView(filter) {
       ...selectFilters,
     }));
   }, [params]);
+
+ 
 
   const [currentPage, setCurrentPage] = useState(
     sessionStorage.getItem("seekerCurrentPage")
@@ -95,6 +112,7 @@ export default function ListsView(filter) {
   useEffect(() => {
     const totalProducts = filtersProducts.length;
     setTotalProducts(totalProducts);
+    // localStorage.setItem("filter", JSON.stringify(filterRules))
   }, [filtersProducts]);
 
   const favProductsValidation = () => {
@@ -124,6 +142,8 @@ export default function ListsView(filter) {
       minPrice,
       maxPrice,
     }));
+    // localStorage.setItem("filter", JSON.stringify(filterRules))
+
   };
 
   const handlePropertyTypeFilter = ({ houses, apartments }) => {
@@ -165,7 +185,6 @@ export default function ListsView(filter) {
   }, [filterRules, products]);
 
   function HandleFilterProducts() {
-    console.log(filterRules)
     return products.filter((product) => {
       let productAddress;
       if(!filterRules.address){ 
