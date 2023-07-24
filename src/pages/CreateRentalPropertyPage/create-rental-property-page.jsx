@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 import Select from "../../components/Select";
 import Input from "../../components/Input";
@@ -16,6 +17,7 @@ import { createProperty } from "../../services/property-service";
 
 function CreateRentalPropertyPage() {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     address: "",
@@ -60,6 +62,7 @@ function CreateRentalPropertyPage() {
 
     createProperty(propertyData)
       .then((data) => {
+        navigate(`/property/detail/${data.id}`);
         console.log(data);
       })
       .catch((error) => {
