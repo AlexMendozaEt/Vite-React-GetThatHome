@@ -59,13 +59,10 @@ function CreateRentalPropertyPage() {
     }
 
     createProperty(propertyData)
-      .then((response) => response.json())
       .then((data) => {
-        // Handle the API response if needed
         console.log(data);
       })
       .catch((error) => {
-        // Handle any errors that occurred during the API request
         console.error(error);
       });
   }
