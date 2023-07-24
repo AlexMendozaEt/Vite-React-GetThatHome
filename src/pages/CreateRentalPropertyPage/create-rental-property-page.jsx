@@ -249,7 +249,13 @@ function CreateRentalPropertyPage() {
                   </blockquote>
                 </label>
                 <div className="images-container">
-                  <img className="images-container__image" />
+                  {images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={URL.createObjectURL(image)}
+                      className="images-container__image"
+                    />
+                  ))}
                 </div>
               </div>
               <Button type="primary" size="lg">
