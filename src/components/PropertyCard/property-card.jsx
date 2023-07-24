@@ -80,7 +80,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
           </div>
           {renderPropertyType[property_type]}
         </div>
-        <div className="info-body">{address}</div>
+        <div className="info-address">{address}</div>
         <div className="info-footer">
           <div className="info-footer__icons">
             <div className="info-footer__icon">

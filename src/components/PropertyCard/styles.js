@@ -6,12 +6,12 @@ export const StyledContainer = styled.div`
   // max-width: 300px;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
   position: relative;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
 `;
 
 export const StyledLink = styled(Link)`
   position: relative;
-  border-radius: 0.5rem 0.5rem 0 0;
-  border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
   font-family: ${fonts.primary};
   ${typography.text.xl}
   font-weight: 500;
@@ -31,6 +31,8 @@ export const StyledLink = styled(Link)`
   }
 
   .photo {
+    max-height: 12.5rem;
+    width: 100%;
     object-fit: cover;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -40,7 +42,7 @@ export const StyledLink = styled(Link)`
     display: flex;
     gap: 0.25rem;
     justify-content: space-between;
-    padding: 8px 16px 4px 16px;
+    padding: 0.5rem 1rem 0.25rem 1rem;
   }
 
   .info-title__rent {
@@ -55,12 +57,10 @@ export const StyledLink = styled(Link)`
     align-items: center;
   }
 
-  .info-body {
+  .info-address {
     display: flex;
     align-items: center;
-    padding: 0 16px 0 16px;
-    min-height: 64px;
-    max-height: 65px;
+    padding: 0 1rem;
   }
 
   .info-footer {
@@ -89,8 +89,6 @@ export const OwnerMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding-bottom: 0.4rem;
-  border-radius: 0 0 0.5rem 0.5rem;
 
   .owner_menu__edit {
     display: flex;
