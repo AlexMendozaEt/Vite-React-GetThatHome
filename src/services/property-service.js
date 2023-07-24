@@ -1,4 +1,5 @@
 import apiFetch from "./api-fetch";
+import { tokenKey, BASE_URI } from "../config";
 
 export async function getProperties() {
   return await apiFetch("/properties");
@@ -21,7 +22,13 @@ export async function getProperty(propertyId) {
 }
 
 export async function createProperty(propertyData) {
-  return await apiFetch("/properties", {
+  const token = sessionStorage.getItem(tokenKey);
+
+  return await fetch(`${BASE_URI}/properties`, {
+    method: "POST",
+    headers: {
+      Authorization: `Token token=${token}`,
+    },
     body: propertyData,
   });
 }

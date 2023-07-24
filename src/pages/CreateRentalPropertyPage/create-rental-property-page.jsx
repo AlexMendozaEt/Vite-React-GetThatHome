@@ -17,8 +17,6 @@ import { createProperty } from "../../services/property-service";
 function CreateRentalPropertyPage() {
   const { user } = useAuth();
 
-  const imagesRef = useRef([]);
-
   const [formData, setFormData] = useState({
     address: "",
     district: "",
@@ -50,31 +48,17 @@ function CreateRentalPropertyPage() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // const propertyData = new FormData();
-
-    // images.forEach((image, index) => {
-    //   propertyData.append(`post[images][${index}]`, image);
-    // });
-
-    event.preventDefault();
-
     const propertyData = new FormData();
 
     for (const [key, value] of Object.entries(formData)) {
       propertyData.append(key, value);
     }
 
-    for (let i = 0; i < imagesRef.current.files.length; i++) {
-      propertyData.append("images[]", imagesRef.current.files[i]);
+    for (let i = 0; i < images.length; i++) {
+      propertyData.append("images[]", images[i]);
     }
 
-    fetch("http://localhost:3000/properties", {
-      method: "POST",
-      headers: {
-        Authorization: `Token token=yeU9rSjjcTy1UXHdZZAMHKFr`,
-      },
-      body: propertyData,
-    })
+    createProperty(propertyData)
       .then((response) => response.json())
       .then((data) => {
         // Handle the API response if needed
@@ -87,9 +71,14 @@ function CreateRentalPropertyPage() {
   }
 
   function handleImageChange(e) {
-    const selectedImages = Array.from(e.target.files);
+    console.log(e.target.files);
+    // const selectedImages = Array.from(e.target.files);
+
+    const selectedImages = [...images, e.target.files[0]];
     setImages(selectedImages);
   }
+
+  // console.log("images", images);
 
   return (
     <>
@@ -256,10 +245,9 @@ function CreateRentalPropertyPage() {
                   </p>
                   <input
                     type="file"
+                    multiple
                     name="images"
                     onChange={handleImageChange}
-                    multiple
-                    ref={imagesRef}
                   />
                   <blockquote className="quote">
                     Only images, max 5MB
