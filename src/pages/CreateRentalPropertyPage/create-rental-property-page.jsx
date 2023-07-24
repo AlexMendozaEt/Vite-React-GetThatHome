@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
@@ -16,7 +16,8 @@ import { createProperty } from "../../services/property-service";
 
 function CreateRentalPropertyPage() {
   const { user } = useAuth();
-  const operation_type = "rent";
+
+  const imagesRef = useRef([]);
 
   const [formData, setFormData] = useState({
     address: "",
@@ -30,56 +31,64 @@ function CreateRentalPropertyPage() {
     area: null,
     pets_allowed: null,
     about: "",
-    images: [],
+    operation_type: "rent",
+    user_id: user?.id,
   });
 
-  const {
-    address,
-    district,
-    state,
-    montly_rent,
-    maintenance,
-    property_type,
-    bedrooms,
-    bathrooms,
-    area,
-    pets_allowed,
-    about,
-    images,
-  } = formData;
+  const [images, setImages] = useState([]);
 
   function handleChange(event) {
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
-        : event.target.type === "file"
-        ? event.target.files[0]
         : event.target.value;
-
-    let newValues;
-    if (event.target.type === "file") {
-      let { images } = formData;
-      // images = []
-      images = [...images, value];
-      newValues = { ...formData, images };
-    } else {
-      newValues = { ...formData, [name]: value };
-    }
+    const newValues = { ...formData, [name]: value };
     setFormData(newValues);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    const query = {
-      ...formData,
-      operation_type: operation_type,
-      user_id: user.id,
-    };
+    // const propertyData = new FormData();
 
-    console.log(formData);
-    // createProperty(query).catch((e) => console.log(e.message));
+    // images.forEach((image, index) => {
+    //   propertyData.append(`post[images][${index}]`, image);
+    // });
+
+    event.preventDefault();
+
+    const propertyData = new FormData();
+
+    for (const [key, value] of Object.entries(formData)) {
+      propertyData.append(key, value);
+    }
+
+    for (let i = 0; i < imagesRef.current.files.length; i++) {
+      propertyData.append("images[]", imagesRef.current.files[i]);
+    }
+
+    fetch("http://localhost:3000/properties", {
+      method: "POST",
+      headers: {
+        Authorization: `Token token=yeU9rSjjcTy1UXHdZZAMHKFr`,
+      },
+      body: propertyData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the API response if needed
+        console.log(data);
+      })
+      .catch((error) => {
+        // Handle any errors that occurred during the API request
+        console.error(error);
+      });
+  }
+
+  function handleImageChange(e) {
+    const selectedImages = Array.from(e.target.files);
+    setImages(selectedImages);
   }
 
   return (
@@ -110,7 +119,11 @@ function CreateRentalPropertyPage() {
                 </NavLink>
               </div>
             </div>
-            <form className="form" onSubmit={handleSubmit}>
+            <form
+              className="form"
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+            >
               <InputWithIcon
                 label={"ADDRESS"}
                 icon={<HiMagnifyingGlass size={"1.25rem"} />}
@@ -241,16 +254,19 @@ function CreateRentalPropertyPage() {
                   <p className="photos-instructions">
                     Upload as many photos as you wish
                   </p>
-                  <input type="file" name="images" onChange={handleChange} />
+                  <input
+                    type="file"
+                    name="images"
+                    onChange={handleImageChange}
+                    multiple
+                    ref={imagesRef}
+                  />
                   <blockquote className="quote">
                     Only images, max 5MB
                   </blockquote>
                 </label>
                 <div className="images-container">
-                  <img
-                    src={formData.images[0]}
-                    className="images-container__image"
-                  />
+                  <img className="images-container__image" />
                 </div>
               </div>
               <Button type="primary" size="lg">
