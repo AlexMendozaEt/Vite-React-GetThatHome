@@ -1,14 +1,6 @@
 import PropTypes from "prop-types";
-import {
-  RiUserReceived2Line,
-  RiMoneyDollarCircleLine,
-  RiContactsBookLine,
-} from "react-icons/ri";
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-  MdOutlinePets,
-} from "react-icons/md";
+import { RiUserReceived2Line, RiMoneyDollarCircleLine } from "react-icons/ri";
+import { MdOutlinePets } from "react-icons/md";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -18,10 +10,8 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { StyledDetail } from "./styles";
 import Button from "../../components/Button";
-import Property from "../../../src/assets/images/property.png";
 import GoogleMaps from "../../../src/assets/images/googlemaps.png";
 import { getProperty } from "../../services/property-service";
-import Image1 from "../../assets/images/image1.png";
 import { useAuth } from "../../context/auth-context";
 import ImageSlider from "../../components/SliderImages/SliderImages";
 
