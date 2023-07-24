@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useTheme } from "@emotion/react";
 import { TbCoin } from "react-icons/tb";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { BsHouseDoor } from "react-icons/bs";
+import { BsHouseDoor, BsArrowBarUp, BsFillTrashFill } from "react-icons/bs";
 import { BiBed, BiBath, BiArea, BiEdit } from "react-icons/bi";
 import { MdOutlinePets, MdFavorite } from "react-icons/md";
 import { RiCloseCircleLine, RiCoinsLine } from "react-icons/ri";
@@ -65,6 +65,57 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     ),
   };
 
+  const renderFirstElement = {
+    edit: (
+      <Anchor
+        icon={<BiEdit color={theme.colors.white.standard} size={"1.5rem"} />}
+        type="tertiary"
+        to={`/property/${id}/edit`}
+      >
+        EDIT
+      </Anchor>
+    ),
+    restore: (
+      <Button
+        icon={
+          <BsArrowBarUp size={"1.5rem"} color={theme.colors.white.standard} />
+        }
+        type={"tertiary"}
+      >
+        RESTORE
+      </Button>
+    ),
+  };
+
+  const renderSecondElement = {
+    close: (
+      <Button
+        icon={
+          <RiCloseCircleLine
+            size={"1.5rem"}
+            color={theme.colors.white.standard}
+          />
+        }
+        type={"tertiary"}
+      >
+        CLOSE
+      </Button>
+    ),
+    delete: (
+      <Button
+        icon={
+          <BsFillTrashFill
+            size={"1.5rem"}
+            color={theme.colors.white.standard}
+          />
+        }
+        type={"tertiary"}
+      >
+        DELETE
+      </Button>
+    ),
+  };
+
   return (
     <StyledContainer>
       <StyledLink to={`/property/detail/${id}`}>
@@ -104,24 +155,8 @@ function PropertyCard({ property, isOwner, isFavorite }) {
       </StyledLink>
       {isOwner ? (
         <OwnerMenu>
-          <Anchor
-            icon={<BiEdit color={theme.colors.white.standard} />}
-            type="tertiary"
-            to={`/property/${id}/edit`}
-          >
-            {close ? "RESTORE" : "EDIT"}
-          </Anchor>
-          <Button
-            icon={
-              <RiCloseCircleLine
-                size={"1.5rem"}
-                color={theme.colors.white.standard}
-              />
-            }
-            type={"tertiary"}
-          >
-            {close ? "DELETE" : "CLOSE"}
-          </Button>
+          {close ? renderFirstElement.restore : renderFirstElement.edit}
+          {close ? renderSecondElement.delete : renderSecondElement.close}
         </OwnerMenu>
       ) : null}
     </StyledContainer>

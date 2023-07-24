@@ -3,9 +3,7 @@ import { fonts, typography } from "../../styles";
 import { Link } from "react-router-dom";
 
 export const StyledContainer = styled.div`
-  // max-width: 300px;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
-  position: relative;
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
@@ -14,7 +12,6 @@ export const StyledContainer = styled.div`
 export const StyledLink = styled(Link)`
   position: relative;
   font-family: ${fonts.primary};
-  ${typography.text.xl}
   font-weight: 500;
 
   .operation-type {
@@ -25,10 +22,14 @@ export const StyledLink = styled(Link)`
     background-color: ${(props) => props.theme.colors.pink[400]};
     border-top-right-radius: 0.5rem;
     padding: 0.25rem 0.5rem;
-    white-space: nowrap;
+    // white-space: nowrap;
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    font-family: ${fonts.secondary};
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.01563rem;
   }
 
   .photo {
@@ -50,12 +51,15 @@ export const StyledLink = styled(Link)`
     display: flex;
     gap: 0.25rem;
     align-items: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .info-title__type {
     display: flex;
     gap: 0.25rem;
     align-items: center;
+    letter-spacing: 0.03125rem;
   }
 
   .info-address {
@@ -83,15 +87,12 @@ export const StyledLink = styled(Link)`
 `;
 
 export const OwnerMenu = styled.div`
-  position: absolute;
-  width: 100%;
   background-color: ${(props) => props.theme.colors.pink[600]};
   color: ${(props) => props.theme.colors.white.standard};
   display: flex;
   align-items: center;
+  padding-top: 0.4rem;
   justify-content: space-evenly;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 
   .owner_menu__edit {
     display: flex;
