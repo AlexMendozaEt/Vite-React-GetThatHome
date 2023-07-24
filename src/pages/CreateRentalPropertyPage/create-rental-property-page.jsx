@@ -71,14 +71,9 @@ function CreateRentalPropertyPage() {
   }
 
   function handleImageChange(e) {
-    console.log(e.target.files);
-    // const selectedImages = Array.from(e.target.files);
-
-    const selectedImages = [...images, e.target.files[0]];
-    setImages(selectedImages);
+    const selectedImages = Array.from(e.target.files);
+    setImages([...images, ...selectedImages]);
   }
-
-  // console.log("images", images);
 
   return (
     <>
