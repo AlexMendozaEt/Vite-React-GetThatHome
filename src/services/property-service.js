@@ -1,5 +1,5 @@
 import apiFetch from "./api-fetch";
-import { tokenKey, BASE_URI } from "../config";
+import apiFetchWithImage from "./api-fetch-with-image";
 
 export async function getProperties() {
   return await apiFetch("/properties");
@@ -22,15 +22,7 @@ export async function getProperty(propertyId) {
 }
 
 export async function createProperty(propertyData) {
-  const token = sessionStorage.getItem(tokenKey);
-
-  return await fetch(`${BASE_URI}/properties`, {
-    method: "POST",
-    headers: {
-      Authorization: `Token token=${token}`,
-    },
-    body: propertyData,
-  });
+  return await apiFetchWithImage(`/properties`, { body: propertyData });
 }
 
 export async function updateProperty(propertyData, propertyId) {
