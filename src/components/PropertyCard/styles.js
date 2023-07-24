@@ -6,7 +6,8 @@ export const StyledContainer = styled.div`
   // max-width: 300px;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
   position: relative;
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
 `;
 
@@ -89,6 +90,8 @@ export const OwnerMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 
   .owner_menu__edit {
     display: flex;
