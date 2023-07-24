@@ -23,6 +23,13 @@ import GoogleMaps from "../../../src/assets/images/googlemaps.png";
 import { getProperty } from "../../services/property-service";
 import Image1 from "../../assets/images/image1.png";
 import { useAuth } from "../../context/auth-context";
+import ImageSlider from "../../components/SliderImages/SliderImages";
+
+const containerStyles = {
+  width: "500px",
+  height: "280px",
+  margin: "0 auto",
+};
 
 function PropertyDetailPage() {
   const { handleModal } = useAuth();
@@ -30,11 +37,18 @@ function PropertyDetailPage() {
   const { user } = useAuth();
 
   const [property, setProperty] = useState({});
+  const [areImagesLoaded, setAreImagesLoaded] = useState(false);
   useEffect(() => {
     if (!id) return;
 
     getProperty(id)
-      .then((property) => setProperty(property))
+      .then((property) => {
+        setProperty(property);
+
+        if (property.images && property.images.length > 0) {
+          setAreImagesLoaded(true);
+        }
+      })
       .catch((error) => console.log(error));
   }, [id]);
 
@@ -49,6 +63,7 @@ function PropertyDetailPage() {
     area,
     pets_allowed,
     about,
+    images,
   } = property;
 
   const viewBox = {
@@ -72,9 +87,13 @@ function PropertyDetailPage() {
     1: (
       <div className="login">
         <div className="login__card">
-          <p className="login__title">
-            Log in or Join to contact the advertiser
-          </p>
+          {user ? (
+            <>
+              <p className="login__title">{user.name}</p>
+              <p className="login__title">{user.email}</p>
+              <p className="login__title">{user.phone}</p>
+            </>
+          ) : null}
           <Button
             className="button"
             icon={<RiUserReceived2Line />}
@@ -109,10 +128,8 @@ function PropertyDetailPage() {
       <Container size={"xl"}>
         <StyledDetail>
           <div>
-            <div className="property-image-container">
-              <MdOutlineKeyboardArrowLeft />
-              <img className="property-image-container__img" src={Image1} />
-              <MdOutlineKeyboardArrowRight />
+            <div style={containerStyles}>
+              {areImagesLoaded ? <ImageSlider slides={images} /> : null}
             </div>
             <div className="info-address-price">
               <p>{address}</p>
