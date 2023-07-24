@@ -1,4 +1,8 @@
-import { getProperties } from "../../services/property-service";
+import {
+  getMyFavorites,
+  getMyProperties,
+  getProperties,
+} from "../../services/property-service";
 
 import PropertyCard from "../PropertyCard";
 import FilterPrice from "../Filters/Price/filterPrice";
@@ -18,6 +22,8 @@ import { useParams } from "react-router-dom";
 
 export default function ListsView(filter) {
   const [products, setProducts] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [ownProperties, setOwnProperties] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(10);
   const [filtersProducts, setFilterProducts] = useState([]);
@@ -27,42 +33,32 @@ export default function ListsView(filter) {
     address: false,
     houses: true,
     apartments: true,
-      bedrooms: 0,
-      bathrooms: 0,
-      minPrice: 0,
-      maxPrice: 0,
-      minArea: 0,
-      maxArea: 0,
-      pets_allowed: false,
-      buying: true,
-      renting: true,
-    });
+    bedrooms: 0,
+    bathrooms: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    minArea: 0,
+    maxArea: 0,
+    pets_allowed: false,
+    buying: true,
+    renting: true,
+  });
 
-    useEffect(()=>{
-      console.log("Filter rules")
-      console.log(filterRules)
-      const locals = localStorage.getItem("filter")
-      if(locals){
-        console.log("LOCALS")
-        console.log(locals)
-        // localStorage.setItem("filter", JSON.stringify(filterRules))
-      }else if(Object.keys(params).length === 0){
-      localStorage.setItem("filter", JSON.stringify(filterRules))
-      console.log("BEFORE")
-      console.log(locals)
-  }
-    },[filterRules])
+  useEffect(() => {
+    const locals = localStorage.getItem("filter");
+    if (locals) {
+      // localStorage.setItem("filter", JSON.stringify(filterRules))
+    } else if (Object.keys(params).length === 0) {
+      localStorage.setItem("filter", JSON.stringify(filterRules));
+    }
+  }, [filterRules]);
 
   useEffect(() => {
     const getFilterRules = () => {
       const localStorageFilter = localStorage.getItem("filter");
       if (localStorageFilter) {
-        console.log("local Storage")
         return JSON.parse(localStorageFilter);
-      }else if (Object.keys(params).length > 0) {
-        console.log("Params url")
-
-
+      } else if (Object.keys(params).length > 0) {
         const paramsFilter = {
           address: params.address === "false" ? false : params.address,
           houses: params.houses === "true",
@@ -70,8 +66,8 @@ export default function ListsView(filter) {
           buying: params.buying === "true",
           renting: params.renting === "true",
         };
-        localStorage.setItem("filter", JSON.stringify(paramsFilter))
-        return paramsFilter
+        localStorage.setItem("filter", JSON.stringify(paramsFilter));
+        return paramsFilter;
       }
 
       return filter;
@@ -84,8 +80,6 @@ export default function ListsView(filter) {
     }));
   }, [params]);
 
- 
-
   const [currentPage, setCurrentPage] = useState(
     sessionStorage.getItem("seekerCurrentPage")
       ? sessionStorage.getItem("seekerCurrentPage")
@@ -96,6 +90,18 @@ export default function ListsView(filter) {
     getProperties()
       .then((properties) => {
         setProducts(properties);
+      })
+      .catch((e) => console.log(e));
+
+    getMyFavorites()
+      .then((favorites) => {
+        setFavorites(favorites);
+      })
+      .catch((e) => console.log(e));
+
+    getMyProperties()
+      .then((ownProperties) => {
+        setOwnProperties(ownProperties);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -143,7 +149,6 @@ export default function ListsView(filter) {
       maxPrice,
     }));
     // localStorage.setItem("filter", JSON.stringify(filterRules))
-
   };
 
   const handlePropertyTypeFilter = ({ houses, apartments }) => {
@@ -187,10 +192,12 @@ export default function ListsView(filter) {
   function HandleFilterProducts() {
     return products.filter((product) => {
       let productAddress;
-      if(!filterRules.address){ 
-        productAddress = true;          
-      }else{
-        productAddress = product.address.search(filterRules.address.toLocaleLowerCase)
+      if (!filterRules.address) {
+        productAddress = true;
+      } else {
+        productAddress = product.address.search(
+          filterRules.address.toLocaleLowerCase
+        );
       }
       const minPrice =
         filterRules.minPrice > 0
@@ -268,13 +275,17 @@ export default function ListsView(filter) {
             <StyledH2>{totalProducts} Properties found</StyledH2>
             <PropertiesContainer>
               {filtersProducts.slice(firstIndex, lastIndex).map((property) => {
-                const isOwner = false;
+                const isOwner = ownProperties.some((e) => e.id === property.id);
+                const isFavorite = favorites.properties?.some(
+                  (e) => e.id === property.id
+                );
 
                 return (
                   <PropertyCard
                     key={`property-${property.id}`}
                     property={property}
                     isOwner={isOwner}
+                    isFavorite={isFavorite}
                   />
                 );
               })}
