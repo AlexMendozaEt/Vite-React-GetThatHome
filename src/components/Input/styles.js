@@ -11,6 +11,9 @@ export const StyledInput = styled("input")`
   ::placeholder {
     color: ${(props) => props.theme.colors.text.light};
   }
+  :focus {
+    outline: 0.1875rem solid ${(props) => props.theme.colors.info};
+  }
 `;
 
 export const StyledLabel = styled.label`
