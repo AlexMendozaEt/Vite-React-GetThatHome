@@ -7,6 +7,10 @@ export const StyledContainer = styled.div`
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   border-bottom: 0.4rem solid ${(props) => props.theme.colors.pink[600]};
+
+  .property-with-owner-menu {
+    min-height: 87.5%;
+  }
 `;
 
 export const StyledLink = styled(Link)`

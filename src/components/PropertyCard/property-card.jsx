@@ -7,17 +7,14 @@ import { BiBed, BiBath, BiArea, BiEdit } from "react-icons/bi";
 import { MdOutlinePets, MdFavorite } from "react-icons/md";
 import { RiCloseCircleLine, RiCoinsLine } from "react-icons/ri";
 
+import DefaultImage from "../../assets/images/default-image.png";
 import { OwnerMenu, StyledContainer, StyledLink } from "./styles";
 import Anchor from "../Anchor";
 import Button from "../Button";
-import Image1 from "../../assets/images/image1.png";
-import Image2 from "../../assets/images/image2.png";
-import Image3 from "../../assets/images/image3.png";
-import Image4 from "../../assets/images/image4.png";
-import Image5 from "../../assets/images/image5.png";
-import Image6 from "../../assets/images/image6.png";
+import { useAuth } from "../../context/auth-context";
 
 function PropertyCard({ property, isOwner, isFavorite }) {
+  const { user } = useAuth();
   const theme = useTheme();
 
   const {
@@ -31,9 +28,8 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     area,
     pets_allowed,
     close,
+    images,
   } = property;
-
-  const photo = [Image1, Image2, Image3, Image4, Image5, Image6];
 
   const renderPropertyType = {
     apartment: (
@@ -70,7 +66,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
       <Anchor
         icon={<BiEdit color={theme.colors.white.standard} size={"1.5rem"} />}
         type="tertiary"
-        to={`/property/${id}/edit`}
+        to={`/property/edit/${id}`}
       >
         EDIT
       </Anchor>
@@ -116,14 +112,20 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     ),
   };
 
+  console.log(property);
+
   return (
     <StyledContainer>
-      <StyledLink to={`/property/detail/${id}`}>
+      <StyledLink
+        to={`/property/detail/${id}`}
+        className={isOwner ? "property-with-owner-menu" : ""}
+      >
         {renderOperationType[operation_type]}
-        <img
-          src={photo[Math.floor(Math.random() * photo.length)]}
-          className="photo"
-        />
+        {images ? (
+          <img src={images[0]} className="photo" />
+        ) : (
+          <img src={DefaultImage} className="photo" />
+        )}
         <div className="info-title">
           <div className="info-title__rent">
             <TbCoin size={"2rem"} />
