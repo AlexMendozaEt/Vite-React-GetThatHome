@@ -11,12 +11,11 @@ export const Container = styled.div`
   line-height: 24px;
   letter-spacing: 1.25px;
   color: #616161;
-
 `;
 
 export const ContainerCard = styled.div`
   display: grid;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white.standard};
   width: 247px;
   height: 168px;
   gap: 8px;
@@ -27,7 +26,6 @@ export const ContainerCard = styled.div`
   position: absolute;
   margin-top: 40px;
   z-index: 1;
-
 `;
 
 export const Title = styled.div`
@@ -42,7 +40,7 @@ export const PriceContainer = styled.div`
   flex-direction: row;
   width: 231px;
   align-items: center;
-  `;
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -59,13 +57,12 @@ export const ContainerIcon = styled.div`
   align-items: center;
 `;
 
-
 export const Line = styled.div`
-background-color: gray;
-width: 11px;
-height: 2px;
-border-radius: 1px;
-margin: auto;
+  background-color: gray;
+  width: 11px;
+  height: 2px;
+  border-radius: 1px;
+  margin: auto;
 `;
 
 export const ContainerInput = styled.div`
@@ -84,10 +81,10 @@ export const Input = styled.input`
   // padding-left: 36px;
   // appearance: none;
   border-radius: 8px;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
 
   &:checked {
-    border: 4px solid ${(props)=> props.theme.colors.pink[500]};
+    border: 4px solid ${(props) => props.theme.colors.pink[500]};
   }
 `;
 
@@ -97,11 +94,5 @@ export const InputCheckbox = styled.input`
   height: 20px;
   margin: 2px;
   padding: 2px;
-  appearance: none;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
-
-  &:checked {
-     border: 4px solid ${(props)=> props.theme.colors.pink[500]};
-  }
+  accent-color: ${(props) => props.theme.colors.pink[500]};
 `;
-

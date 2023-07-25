@@ -1,7 +1,7 @@
 import { MdPets } from "react-icons/md";
 import { FiChevronDown } from "react-icons/fi";
 import PropTypes from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
 
 import {
