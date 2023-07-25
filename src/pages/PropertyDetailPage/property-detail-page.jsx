@@ -1,3 +1,6 @@
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import axios from "axios";
+
 import PropTypes from "prop-types";
 import { RiUserReceived2Line, RiMoneyDollarCircleLine } from "react-icons/ri";
 import { MdOutlinePets } from "react-icons/md";
@@ -16,9 +19,36 @@ import { useAuth } from "../../context/auth-context";
 import ImageSlider from "../../components/SliderImages/SliderImages";
 
 const containerStyles = {
-  width: "500px",
-  height: "280px",
-  margin: "0 auto",
+  width: "760px",
+  height: "760px",
+  margin: "auto",
+};
+
+const getCoordinates = async (address) => {
+  try {
+    const response = await axios.get(
+      "https://maps.googleapis.com/maps/api/geocode/json",
+      {
+        params: {
+          address: address,
+          key: import.meta.env.VITE_GOOGLE_API_KEY,
+        },
+      }
+    );
+
+    if (
+      response.data &&
+      response.data.results &&
+      response.data.results.length > 0
+    ) {
+      const { lat, lng } = response.data.results[0].geometry.location;
+      return { lat, lng };
+    }
+  } catch (error) {
+    console.error("Error from google maps", error);
+  }
+
+  return null;
 };
 
 function PropertyDetailPage() {
@@ -28,6 +58,8 @@ function PropertyDetailPage() {
 
   const [property, setProperty] = useState({});
   const [areImagesLoaded, setAreImagesLoaded] = useState(false);
+  const [coordinates, setCoordinates] = useState(null);
+
   useEffect(() => {
     if (!id) return;
 
@@ -38,6 +70,12 @@ function PropertyDetailPage() {
         if (property.images && property.images.length > 0) {
           setAreImagesLoaded(true);
         }
+
+        getCoordinates(property.address).then((coords) => {
+          if (coords) {
+            setCoordinates(coords);
+          }
+        });
       })
       .catch((error) => console.log(error));
   }, [id]);
@@ -124,7 +162,9 @@ function PropertyDetailPage() {
             <div className="info-address-price">
               <p>{address}</p>
               <div className="info-address-price__price">
-                <RiMoneyDollarCircleLine />
+                <div className="container-dollar">
+                  <RiMoneyDollarCircleLine />
+                </div>
                 <p>{monthly_rent}</p>
               </div>
             </div>
@@ -165,7 +205,20 @@ function PropertyDetailPage() {
               <div className="simple-text">
                 {address}, {district}, {state}
               </div>
-              <img src={GoogleMaps} />
+              {coordinates && (
+                <LoadScript
+                  googleMapsApiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+                >
+                  <GoogleMap
+                    mapContainerStyle={containerStyles}
+                    center={coordinates}
+                    zoom={14}
+                  >
+                    <Marker position={coordinates} />
+                  </GoogleMap>
+                </LoadScript>
+              )}
+              {coordinates ? null : <p>Loading map...</p>}
             </div>
           </div>
           {user === null

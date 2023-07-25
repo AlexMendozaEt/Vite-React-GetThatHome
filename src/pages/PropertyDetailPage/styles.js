@@ -38,6 +38,13 @@ export const StyledDetail = styled.section`
     align-items: center;
   }
 
+  .container-dollar {
+    display: flex;
+    align-items: center;
+    min-width: 3rem;
+    min-height: 3rem;
+  }
+
   .info-district {
     display: flex;
     align-items: center;
