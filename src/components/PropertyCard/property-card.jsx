@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useTheme } from "@emotion/react";
+import { useNavigate } from "react-router-dom";
 import { TbCoin } from "react-icons/tb";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { BsHouseDoor, BsArrowBarUp, BsFillTrashFill } from "react-icons/bs";
@@ -11,11 +12,15 @@ import DefaultImage from "../../assets/images/default-image.png";
 import { OwnerMenu, StyledContainer, StyledLink } from "./styles";
 import Anchor from "../Anchor";
 import Button from "../Button";
-import { useAuth } from "../../context/auth-context";
+import {
+  deleteProperty,
+  updateCloseProperty,
+  updateRestoreProperty,
+} from "../../services/property-service";
 
 function PropertyCard({ property, isOwner, isFavorite }) {
-  const { user } = useAuth();
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const {
     id,
@@ -30,6 +35,24 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     close,
     images,
   } = property;
+
+  const handleRestore = () => {
+    updateRestoreProperty(id)
+      .then(navigate(0))
+      .catch((e) => console.log(e));
+  };
+
+  const handleClose = () => {
+    updateCloseProperty(id)
+      .then(navigate(0))
+      .catch((e) => console.log(e));
+  };
+
+  const handleDelete = () => {
+    deleteProperty(id)
+      .then(navigate(0))
+      .catch((e) => console.log(e));
+  };
 
   const renderPropertyType = {
     apartment: (
@@ -77,6 +100,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
           <BsArrowBarUp size={"1.5rem"} color={theme.colors.white.standard} />
         }
         type={"tertiary"}
+        onClick={handleRestore}
       >
         RESTORE
       </Button>
@@ -93,6 +117,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
           />
         }
         type={"tertiary"}
+        onClick={handleClose}
       >
         CLOSE
       </Button>
@@ -106,6 +131,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
           />
         }
         type={"tertiary"}
+        onClick={handleDelete}
       >
         DELETE
       </Button>

@@ -30,9 +30,27 @@ export async function updateProperty(propertyData, propertyId) {
     Object.entries(propertyData).filter(([, v]) => v !== "")
   );
 
-  return await apiFetch(`/property/${propertyId}`, {
+  return await apiFetch(`/properties/${propertyId}`, {
     method: "PATCH",
     body: dataCleaned,
+  });
+}
+
+export async function updateRestoreProperty(propertyId) {
+  const propertyData = { close: false };
+
+  return await apiFetch(`/properties/${propertyId}`, {
+    method: "PATCH",
+    body: propertyData,
+  });
+}
+
+export async function updateCloseProperty(propertyId) {
+  const propertyData = { close: true };
+
+  return await apiFetch(`/properties/${propertyId}`, {
+    method: "PATCH",
+    body: propertyData,
   });
 }
 
