@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  // width: 100%;
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -14,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerCard = styled.div`
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background.lighter};
   width: 270px;
   height: 184px;
   gap: 4px;
@@ -29,10 +28,10 @@ export const ContainerCard = styled.div`
 `;
 
 export const Title = styled.div`
-font-size: 10px;
-font-weight: 400;
-letter-spacing: 1.5px;
-text-align: left;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-align: left;
 `;
 
 export const ArrayContainer = styled.div`
@@ -52,7 +51,8 @@ export const Array = styled.div`
   width: 50px;
   height: 36px;
   border: 1px solid #8e8e8e;
-  background-color: ${({ isSelected, theme }) => (isSelected ? theme.colors.pink[500] : "white")};
+  background-color: ${({ isSelected, theme }) =>
+    isSelected ? theme.colors.pink[500] : "white"};
   color: ${({ isSelected }) => (isSelected ? "white" : "#FFFFF")};
   text-align: center;
   cursor: pointer;

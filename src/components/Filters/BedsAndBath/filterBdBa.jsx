@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
 
-import { Container, ContainerCard, Title, ArrayContainer, Array, ButtonContainer } from ".";
+import {
+  Container,
+  ContainerCard,
+  Title,
+  ArrayContainer,
+  Array,
+  ButtonContainer,
+} from ".";
 import { lightTheme } from "../../../styles";
-
 
 const FilterBdBa = ({ filter, setFilter }) => {
   const array = filter || ["Any", "1+", "2+", "3+", "4+"];
@@ -19,7 +25,10 @@ const FilterBdBa = ({ filter, setFilter }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -69,7 +78,7 @@ const FilterBdBa = ({ filter, setFilter }) => {
       beds: beds,
       baths: baths,
     };
-    setFilter(selectedOptions); 
+    setFilter(selectedOptions);
     setIsOpen(!isOpen);
   };
 
@@ -95,9 +104,9 @@ const FilterBdBa = ({ filter, setFilter }) => {
   );
 };
 
-FilterBdBa.propTypes = { 
+FilterBdBa.propTypes = {
   filter: PropTypes.array,
   setFilter: PropTypes.func.isRequired,
-}
+};
 
 export default FilterBdBa;
