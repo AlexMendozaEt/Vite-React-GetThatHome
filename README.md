@@ -52,7 +52,7 @@ If your project has an API, provide documentation on how to use it. Include endp
 
 ## Contact
 
-In case you need to reach out regarding the project. Contact us via LinkedIn!
+In case you need to reach out regarding the project. Contact us via Github!
 
 - [Kevin Robles](https://github.com/kevinronu)
 - [Daniel Martinez](https://github.com/DanielMaHe)
