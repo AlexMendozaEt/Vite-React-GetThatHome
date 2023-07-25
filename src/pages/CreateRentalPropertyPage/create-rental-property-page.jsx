@@ -117,7 +117,7 @@ function CreateRentalPropertyPage() {
               encType="multipart/form-data"
             >
               <label className="label">ADDRESS</label>
-              <div className="autocomplete-wrapper">
+              <div className="container-autocomplete ">
                 <HiMagnifyingGlass size={"1.25rem"} />
                 <GooglePlacesAutocomplete
                   apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
