@@ -4,11 +4,11 @@ import LandingPage from "./pages/LandingPage";
 import PropertiesPage from "./pages/PropertiesPage";
 import PropertyDetailPage from "./pages/PropertyDetailPage";
 import EditPropertyPage from "./pages/EditPropertyPage";
-import SavedPropertiesPage from "./pages/SavedPropertiesPage";
 import CreateRentalPropertyPage from "./pages/CreateRentalPropertyPage";
 import CreateSalePropertyPage from "./pages/CreateSalePropertyPage";
 import ProfilePage from "./pages/ProfilePage";
-import MyPropertiesPage from "./pages/MyPropertiesPage";
+import MyActivePropertiesPage from "./pages/MyActivePropertiesPage";
+import MyClosedPropertiesPage from "./pages/MyClosedPropertiesPage";
 
 function AuthenticatedLandlordApp() {
   return (
@@ -34,8 +34,11 @@ function AuthenticatedLandlordApp() {
           <Route path="detail/:id" element={<PropertyDetailPage />} />
           <Route path="edit/:id" element={<PropertyDetailPage />} />
         </Route>
-        <Route path="savedproperties" element={<SavedPropertiesPage />} />
-        <Route path="myproperties" element={<MyPropertiesPage />} />
+        <Route path="myproperties">
+          <Route index element={<Navigate to="/myproperties/active" />} />
+          <Route path="active" element={<MyActivePropertiesPage />} />
+          <Route path="closed" element={<MyClosedPropertiesPage />} />
+        </Route>
       </Route>
     </Routes>
   );

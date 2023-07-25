@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
-import { newArray } from "../../assets/mockdata/datafake";
 import {
   PropertiesContainer,
   StyledSection,
   BoxOptions,
-  StyledInput,
-  StyledLabel,
   StyledH2,
+  StyledLinkInactive,
+  StyledLinkActive,
 } from "./styles";
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
 import { getMyProperties } from "../../services/property-service";
 
-export default function MyPropertiesSection() {
+export default function MyClosedPropertiesSection() {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(12);
@@ -24,22 +23,12 @@ export default function MyPropertiesSection() {
   );
 
   useEffect(() => {
-    activeProductsValidation();
-  }, []);
-
-  useEffect(() => {
-    const totalProducts = products.length;
-    setTotalProducts(totalProducts);
-    setCurrentPage(1);
-  }, [products]);
-
-  const activeProductsValidation = () => {
     const actProducts = [];
 
     getMyProperties()
       .then((property) => {
         property.forEach((property) => {
-          if (!property.close) {
+          if (property.close) {
             actProducts.push(property);
           }
         });
@@ -47,46 +36,13 @@ export default function MyPropertiesSection() {
         setProducts(actProducts);
       })
       .catch(console.log);
-  };
+  }, []);
 
-  const closeProductsValidation = () => {
-    const clsProducts = [];
-    getMyProperties()
-      .then((property) => {
-        property.forEach((property) => {
-          if (property.close) {
-            clsProducts.push(property);
-          }
-        });
-        sessionStorage.setItem("seekerCurrentPage", 1);
-        setProducts(clsProducts);
-      })
-      .catch(console.log);
-  };
-
-  const handleFilterActive = () => {
-    activeProductsValidation();
-  };
-
-  const handleFilterClose = () => {
-    closeProductsValidation();
-  };
-
-  const [isChecked, setIsChecked] = useState(true);
-
-  const handleInputChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  const handleActiveClick = () => {
-    handleFilterActive();
-    handleInputChange();
-  };
-
-  const handleCloseClick = () => {
-    handleFilterClose();
-    handleInputChange();
-  };
+  useEffect(() => {
+    const totalProducts = products.length;
+    setTotalProducts(totalProducts);
+    setCurrentPage(1);
+  }, [products]);
 
   function handleDeleteProperty(id) {
     const newProducts = products.filter((product) => product.id != id);
@@ -101,31 +57,17 @@ export default function MyPropertiesSection() {
       <StyledSection>
         <Container size="xl">
           <>
-            <StyledInput
-              type="radio"
-              id="favorites"
-              name="boxOptions"
-              onClick={handleActiveClick}
-            ></StyledInput>
-            <StyledInput
-              type="radio"
-              id="contacted"
-              name="boxOptions"
-              onClick={handleCloseClick}
-            ></StyledInput>
             <BoxOptions>
-              <StyledLabel
-                className={`${isChecked ? "checkedOption" : "unCheckedOption"}`}
-                htmlFor="favorites"
-              >
-                ACTIVE
-              </StyledLabel>
-              <StyledLabel
-                className={`${isChecked ? "unCheckedOption" : "checkedOption"}`}
-                htmlFor="contacted"
-              >
-                CLOSED
-              </StyledLabel>
+              <div>
+                <StyledLinkInactive to={"/myproperties/active"}>
+                  ACTIVE
+                </StyledLinkInactive>
+                <hr className="inactive" />
+              </div>
+              <div>
+                <StyledLinkActive>CLOSED</StyledLinkActive>
+                <hr className="active" />
+              </div>
             </BoxOptions>
             <StyledH2>{totalProducts} Properties found</StyledH2>
             <PropertiesContainer>

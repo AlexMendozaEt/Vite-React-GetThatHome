@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 import { fonts, typography } from "../../styles";
 
 export const StyledSection = styled.section`
@@ -10,29 +11,34 @@ export const StyledInput = styled.input`
   display: none;
 `;
 
-export const StyledLabel = styled.label`
-  height: 32px;
-  padding: 0px 4px 0px 4px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-`;
-
 export const BoxOptions = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   ${typography.text.sm}
   font-weight: 500;
-  color: ${(props) => props.theme.colors.text.lighter};
+  margin-bottom: 1rem;
 
-  .checkedOption {
-    border-bottom: 2px solid ${(props) => props.theme.colors.pink[400]};
-    color: ${(props) => props.theme.colors.text.highContrast};
+  .active {
+    border: 0.125rem solid ${(props) => props.theme.colors.pink[500]};
   }
 
-  .unCheckedOption {
-    color: ${(props) => props.theme.colors.text.light};
+  .inactive {
+    border: 0.125rem solid ${(props) => props.theme.colors.text.light};
   }
+`;
+
+export const StyledLinkActive = styled(Link)`
+  padding: 0 0.25rem;
+  cursor: pointer;
+  margin-bottom: 0.25rem;
+`;
+
+export const StyledLinkInactive = styled(Link)`
+  padding: 0 0.25rem;
+  cursor: pointer;
+  margin-bottom: 0.25rem;
+  color: ${(props) => props.theme.colors.text.light};
 `;
 
 export const StyledH2 = styled.h2`
