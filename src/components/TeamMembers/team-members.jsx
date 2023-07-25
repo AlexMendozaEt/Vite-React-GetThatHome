@@ -18,25 +18,25 @@ const team = [
     avatar: daniel,
     name: "Daniel Martinez",
     github_link: "https://github.com/DanielMaHe",
-    linkedin_link: "https://www.linkedin.com/in/.../",
+    linkedin_link: "https://www.linkedin.com/in/damarez/",
   },
   {
     avatar: alex,
     name: "Alex Mendoza",
     github_link: "https://github.com/AlexMendozaEt",
-    linkedin_link: "https://www.linkedin.com/in/.../",
+    linkedin_link: "https://www.linkedin.com/in/alex-mendoza-etchebarne/",
   },
   {
     avatar: gabriela,
     name: "Gabriela Cruz",
     github_link: "https://github.com/gabcruzti",
-    linkedin_link: "https://www.linkedin.com/in/.../",
+    linkedin_link: "https://www.linkedin.com/in/gabcruzti/",
   },
   {
     avatar: gerardo,
     name: "Gerardo Avena",
     github_link: "https://github.com/Avenator02",
-    linkedin_link: "https://www.linkedin.com/in/.../",
+    linkedin_link: "https://www.linkedin.com/in/avenator02/",
   },
 ];
 
