@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerCard = styled.div`
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white.standard};
   width: 211px;
   height: 116px;
   gap: 4px;
@@ -26,7 +26,6 @@ export const ContainerCard = styled.div`
   position: absolute;
   margin-top: 40px;
   z-index: 1;
-
 `;
 
 export const Title = styled.div`
@@ -62,12 +61,7 @@ export const Input = styled.input`
   width: 20px;
   height: 20px;
   margin: 2px;
-  appearance: none;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
-
-  &:checked {
-    border: 4px solid ${(props)=> props.theme.colors.pink[500]};
-  }
+  accent-color: ${(props) => props.theme.colors.pink[500]};
 `;
 
 export const Label = styled.label`
@@ -79,6 +73,4 @@ export const Label = styled.label`
   letter-spacing: 0.25px;
   text-align: left;
   align-content: center;
- 
-
 `;
