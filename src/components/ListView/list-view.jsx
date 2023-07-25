@@ -6,7 +6,6 @@ import FilterProperty from "../Filters/PropertyType/filterProperty";
 import FilterBdBa from "../Filters/BedsAndBath/filterBdBa";
 import FilterMore from "../Filters/More/filterMore";
 
-import { newArray } from "../../assets/mockdata/datafake";
 import { PropertiesContainer, StyledSection, StyledH2 } from "./styles";
 import { ContainerFilters, ContainerFilter, ContainerLists } from ".";
 import Container from "../../layout/Container/container";
@@ -27,42 +26,37 @@ export default function ListsView(filter) {
     address: false,
     houses: true,
     apartments: true,
-      bedrooms: 0,
-      bathrooms: 0,
-      minPrice: 0,
-      maxPrice: 0,
-      minArea: 0,
-      maxArea: 0,
-      pets_allowed: false,
-      buying: true,
-      renting: true,
-    });
+    bedrooms: 0,
+    bathrooms: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    minArea: 0,
+    maxArea: 0,
+    pets_allowed: false,
+    buying: true,
+    renting: true,
+  });
 
-    useEffect(()=>{
-      console.log("Filter rules")
-      console.log(filterRules)
-      const locals = localStorage.getItem("filter")
-      if(locals){
-        console.log("LOCALS")
-        console.log(locals)
-        // localStorage.setItem("filter", JSON.stringify(filterRules))
-      }else if(Object.keys(params).length === 0){
-      localStorage.setItem("filter", JSON.stringify(filterRules))
-      console.log("BEFORE")
-      console.log(locals)
-  }
-    },[filterRules])
+  useEffect(() => {
+    // const locals = localStorage.getItem("filter")
+    // if(locals){
+    //   console.log("LOCALS")
+    //   console.log(locals)
+    //   // localStorage.setItem("filter", JSON.stringify(filterRules))
+    // }else
+    if (!Object.keys(params).length === 0) {
+      // localStorage.setItem("filter", JSON.stringify(filterRules))
+    }
+  }, [filterRules]);
 
   useEffect(() => {
     const getFilterRules = () => {
-      const localStorageFilter = localStorage.getItem("filter");
-      if (localStorageFilter) {
-        console.log("local Storage")
-        return JSON.parse(localStorageFilter);
-      }else if (Object.keys(params).length > 0) {
-        console.log("Params url")
-
-
+      // const localStorageFilter = localStorage.getItem("filter");
+      // if (localStorageFilter) {
+      //   console.log("local Storage")
+      //   return JSON.parse(localStorageFilter);
+      // }else
+      if (Object.keys(params).length > 0) {
         const paramsFilter = {
           address: params.address === "false" ? false : params.address,
           houses: params.houses === "true",
@@ -70,8 +64,8 @@ export default function ListsView(filter) {
           buying: params.buying === "true",
           renting: params.renting === "true",
         };
-        localStorage.setItem("filter", JSON.stringify(paramsFilter))
-        return paramsFilter
+        // localStorage.setItem("filter", JSON.stringify(paramsFilter))
+        return paramsFilter;
       }
 
       return filter;
@@ -83,8 +77,6 @@ export default function ListsView(filter) {
       ...selectFilters,
     }));
   }, [params]);
-
- 
 
   const [currentPage, setCurrentPage] = useState(
     sessionStorage.getItem("seekerCurrentPage")
@@ -106,25 +98,10 @@ export default function ListsView(filter) {
   }, [products]);
 
   useEffect(() => {
-    favProductsValidation();
-  }, []);
-
-  useEffect(() => {
     const totalProducts = filtersProducts.length;
     setTotalProducts(totalProducts);
     // localStorage.setItem("filter", JSON.stringify(filterRules))
   }, [filtersProducts]);
-
-  const favProductsValidation = () => {
-    const favProducts = [];
-    newArray.forEach((property) => {
-      if (property.pets_allowed) {
-        favProducts.push(property);
-      }
-    });
-    sessionStorage.setItem("seekerCurrentPage", 1);
-    setProducts(favProducts);
-  };
 
   const lastIndex = currentPage * productsPerpage;
   const firstIndex = lastIndex - productsPerpage;
@@ -143,7 +120,6 @@ export default function ListsView(filter) {
       maxPrice,
     }));
     // localStorage.setItem("filter", JSON.stringify(filterRules))
-
   };
 
   const handlePropertyTypeFilter = ({ houses, apartments }) => {
@@ -186,12 +162,10 @@ export default function ListsView(filter) {
 
   function HandleFilterProducts() {
     return products.filter((product) => {
-      let productAddress;
-      if(!filterRules.address){ 
-        productAddress = true;          
-      }else{
-        productAddress = product.address.search(filterRules.address.toLocaleLowerCase)
-      }
+      const productAddress =
+        filterRules.address === false ||
+        !product.address.search(filterRules.address);
+
       const minPrice =
         filterRules.minPrice > 0
           ? +product.monthly_rent > +filterRules?.minPrice
@@ -245,6 +219,22 @@ export default function ListsView(filter) {
     });
   }
 
+  const setCurrentFilterType = () => {
+    return filterRules.apartments && !filterRules.houses
+      ? ["apartments"]
+      : !filterRules.apartments && filterRules.houses
+      ? ["houses"]
+      : [];
+  };
+
+  const setCurrentFilterBaR = () => {
+    return filterRules.renting && !filterRules.buying
+      ? "renting"
+      : !filterRules.renting && filterRules.buying
+      ? "buying"
+      : "";
+  };
+
   return (
     <ContainerLists>
       <Container size="xl">
@@ -252,14 +242,21 @@ export default function ListsView(filter) {
           <SearchByAddress
             filter={filterAddress}
             setFilter={handleAddressFilter}
+            currentSearch={filterRules.address.toString()}
           />
           <ContainerFilter>
             <FilterPrice setFilter={handlePriceFilter} />
-            <FilterProperty setFilter={handlePropertyTypeFilter} />
+            <FilterProperty
+              setFilter={handlePropertyTypeFilter}
+              currentFilter={setCurrentFilterType()}
+            />
             <FilterBdBa setFilter={handleBdBaFilter} />
             <FilterMore setFilter={handleMoreFilter} />
           </ContainerFilter>
-          <FilterBaR setFilter={handleBaRFilter} />
+          <FilterBaR
+            setFilter={handleBaRFilter}
+            currentFilter={setCurrentFilterBaR()}
+          />
         </ContainerFilters>
       </Container>
       <StyledSection>
