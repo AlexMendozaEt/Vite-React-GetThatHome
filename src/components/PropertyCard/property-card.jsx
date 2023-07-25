@@ -26,6 +26,8 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
     id,
     operation_type,
     address,
+    district,
+    state,
     monthly_rent,
     property_type,
     bedrooms,
@@ -157,7 +159,7 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
           </div>
           {renderPropertyType[property_type]}
         </div>
-        <div className="info-address">{address}</div>
+        <div className="info-address">{`${address}, ${district}, ${state}`}</div>
         <div className="info-footer">
           <div className="info-footer__icons">
             <div className="info-footer__icon">
