@@ -1,3 +1,4 @@
+import GooglePlacesAutocomplete from "react-google-autocomplete";
 import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
@@ -75,6 +76,13 @@ function CreateRentalPropertyPage() {
     setImages([...images, ...selectedImages]);
   }
 
+  function handleAddressChange(address) {
+    setFormData({
+      ...formData,
+      address: address.formatted_address,
+    });
+  }
+
   return (
     <>
       <HeaderLandlord />
@@ -108,15 +116,21 @@ function CreateRentalPropertyPage() {
               onSubmit={handleSubmit}
               encType="multipart/form-data"
             >
-              <InputWithIcon
-                label={"ADDRESS"}
-                icon={<HiMagnifyingGlass size={"1.25rem"} />}
-                isFullWidth
-                name="address"
-                type="text"
-                placeholder="start typing to autocomplete"
-                onChange={handleChange}
-              />
+              <label className="label">ADDRESS</label>
+              <div className="autocomplete-wrapper">
+                <HiMagnifyingGlass size={"1.25rem"} />
+                <GooglePlacesAutocomplete
+                  apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+                  autocompletionRequest={{
+                    types: ["address"],
+                  }}
+                  selectProps={{
+                    name: "address",
+                    onChange: handleAddressChange,
+                    placeholder: "Start typing to autocomplete ",
+                  }}
+                />
+              </div>
               <InputWithIcon
                 label={"DISTRICT"}
                 icon={<HiMagnifyingGlass size={"1.25rem"} />}
