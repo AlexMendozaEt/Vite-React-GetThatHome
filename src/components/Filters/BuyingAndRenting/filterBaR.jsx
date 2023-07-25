@@ -13,7 +13,7 @@ import {
 } from ".";
 import { lightTheme } from "../../../styles";
 
-const FilterBaR = ({ setFilter }) => {
+const FilterBaR = ({ setFilter, currentFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [both, setBoth] = useState(true);
   const [buying, setBuying] = useState(false);
@@ -37,6 +37,12 @@ const FilterBaR = ({ setFilter }) => {
     };
   }, []);
 
+  useEffect(() => {
+    setRenting(currentFilter === "renting");
+    setBuying(currentFilter === "buying");
+    setBoth(currentFilter !== "renting" && currentFilter !== "buying");
+  }, [currentFilter]);
+
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
   };
@@ -54,41 +60,17 @@ const FilterBaR = ({ setFilter }) => {
 
   const handleChange = (sel) => {
     if (sel === 0) {
-      if (buying === false && renting === false) {
-        setBoth(true);
-      } else {
-        setBoth(!both);
-        setBuying(false);
-        setRenting(false);
-      }
+      setBoth(both ? both : !both);
+      setBuying(false);
+      setRenting(false);
     } else if (sel === 1) {
-      if (both === false && renting === false) {
-        setBuying(false);
-        setBoth(true);
-        setRenting(false);
-      } else if (both === false && renting === true) {
-        setBoth(true);
-        setBuying(false);
-        setRenting(false);
-      } else {
-        setBuying(!buying);
-        setBoth(false);
-        setRenting(false);
-      }
+      setBuying(buying ? buying : !buying);
+      setBoth(false);
+      setRenting(false);
     } else if (sel === 2) {
-      if (both === false && buying === false) {
-        setRenting(false);
-        setBoth(true);
-        setBuying(false);
-      } else if (both === false && buying === true) {
-        setBoth(true);
-        setBuying(false);
-        setRenting(false);
-      } else {
-        setRenting(!renting);
-        setBoth(false);
-        setBuying(false);
-      }
+      setRenting(renting ? renting : !renting);
+      setBoth(false);
+      setBuying(false);
     }
   };
 
@@ -153,6 +135,7 @@ const FilterBaR = ({ setFilter }) => {
 
 FilterBaR.propTypes = {
   setFilter: PropTypes.func,
+  currentFilter: PropTypes.string,
 };
 
 export default FilterBaR;

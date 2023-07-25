@@ -37,13 +37,12 @@ const ContainerFilter = styled.div`
   height: ${(props) => props.height}px;
 `;
 
-
 export function FilterLanding() {
   const [products, setProducts] = useState([]);
   const [arrayAddress, setArrayAddress] = useState([]);
   const arrayTypeProperty = ["home", "apartment"];
   const arrayTypeOperation = ["rent", "sale"];
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     address: false,
@@ -81,9 +80,8 @@ export function FilterLanding() {
         newValues.address = value;
         break;
     }
-    setValues(newValues)
+    setValues(newValues);
   }
-
 
   useEffect(() => {
     getProperties()
@@ -97,13 +95,11 @@ export function FilterLanding() {
     setArrayAddress(products.map((product) => product.address));
   }, [products]);
 
-
   const handleDone = () => {
-    console.log(values)
-    navigate(`/properties/${values.address.toString()}/${values.houses.toString()}/${values.apartments.toString()}/${values.buying.toString()}/${values.renting.toString()}`)
-
+    navigate(
+      `/properties/${values.address.toString()}/${values.houses.toString()}/${values.apartments.toString()}/${values.buying.toString()}/${values.renting.toString()}`
+    );
   };
-  
 
   return (
     <Filter>

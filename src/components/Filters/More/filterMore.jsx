@@ -20,8 +20,8 @@ import { Line } from "./style";
 
 const FilterMore = ({ setFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [minMeter, setMinMeter] = useState(0);
-  const [maxMeter, setMaxMeter] = useState(0);
+  const [minArea, setMinAminArea] = useState(0);
+  const [maxArea, setMaxArmaxArea] = useState(0);
   const [petsAllowed, setPetsAllowed] = useState(false);
   const containerRef = useRef();
 
@@ -47,18 +47,18 @@ const FilterMore = ({ setFilter }) => {
   };
 
   const getButtonLabel = () => {
-    if (minMeter < 0) setMinMeter(0);
-    if (maxMeter < 0) setMaxMeter(0);
+    if (minArea < 0) setMinAminArea(0);
+    if (maxArea < 0) setMaxArmaxArea(0);
 
-    if (minMeter !== 0 && maxMeter !== 0) {
-      return `${((minMeter * 10) / 10).toFixed(1)} M2 - ${(
-        (maxMeter * 10) /
+    if (minArea !== 0 && maxArea !== 0) {
+      return `${((minArea * 10) / 10).toFixed(1)} M2 - ${(
+        (maxArea * 10) /
         10
       ).toFixed(1)} M2`;
-    } else if (minMeter !== 0) {
-      return `>= ${((minMeter * 10) / 10).toFixed(1)} M2`;
-    } else if (maxMeter !== 0) {
-      return `<= ${((maxMeter * 10) / 10).toFixed(1)} M2`;
+    } else if (minArea !== 0) {
+      return `>= ${((minArea * 10) / 10).toFixed(1)} M2`;
+    } else if (maxArea !== 0) {
+      return `<= ${((maxArea * 10) / 10).toFixed(1)} M2`;
     } else {
       return "MORE";
     }
@@ -66,8 +66,8 @@ const FilterMore = ({ setFilter }) => {
 
   const handleDone = () => {
     const selectedOptions = {
-      minMeter,
-      maxMeter,
+      minArea,
+      maxArea,
       petsAllowed,
     };
     setFilter(selectedOptions);
@@ -102,8 +102,8 @@ const FilterMore = ({ setFilter }) => {
                 type="number"
                 theme={lightTheme}
                 placeholder="min"
-                value={minMeter > 0 ? minMeter : ""}
-                onChange={(e) => setMinMeter(+e.target.value)}
+                value={minArea > 0 ? minArea : ""}
+                onChange={(e) => setMinAminArea(+e.target.value)}
               />
             </ContainerInput>
             <Line />
@@ -112,8 +112,8 @@ const FilterMore = ({ setFilter }) => {
                 type="number"
                 theme={lightTheme}
                 placeholder="max"
-                value={maxMeter > 0 ? maxMeter : ""}
-                onChange={(e) => setMaxMeter(+e.target.value)}
+                value={maxArea > 0 ? maxArea : ""}
+                onChange={(e) => setMaxArmaxArea(+e.target.value)}
               />
             </ContainerInput>
           </PriceContainer>
