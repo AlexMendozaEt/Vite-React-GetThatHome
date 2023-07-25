@@ -6,11 +6,6 @@ export const StyledSection = styled.section`
   padding: 1rem 0;
 `;
 
-export const StyledInput = styled.input`
-  all: unset;
-  display: none;
-`;
-
 export const BoxOptions = styled.div`
   display: flex;
   align-items: center;
