@@ -16,7 +16,7 @@ import { getMyFavorites, getMyContacts } from "../../services/property-service";
 export default function SavedPropertiesSection() {
   const [products, setProducts] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [productsPerpage, setProductsPerpage] = useState(9);
+  const [productsPerpage, setProductsPerpage] = useState(12);
   const [currentPage, setCurrentPage] = useState(
     sessionStorage.getItem("seekerCurrentPage")
       ? sessionStorage.getItem("seekerCurrentPage")

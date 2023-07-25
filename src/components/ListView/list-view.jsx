@@ -24,7 +24,7 @@ export default function ListsView(filter) {
   const [favorites, setFavorites] = useState([]);
   const [ownProperties, setOwnProperties] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [productsPerpage, setProductsPerpage] = useState(10);
+  const [productsPerpage, setProductsPerpage] = useState(12);
   const [filtersProducts, setFilterProducts] = useState([]);
   const [filterAddress, setFilterAddress] = useState([]);
   const params = useParams();
