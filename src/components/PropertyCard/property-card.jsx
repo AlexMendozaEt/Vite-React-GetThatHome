@@ -191,6 +191,7 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
 
 PropertyCard.propTypes = {
   property: PropTypes.object,
+  handleDeleteProperty: PropTypes.func,
   setProperties: PropTypes.func,
   isOwner: PropTypes.bool,
   isFavorite: PropTypes.bool,
