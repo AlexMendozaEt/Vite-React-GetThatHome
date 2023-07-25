@@ -112,8 +112,6 @@ function PropertyCard({ property, isOwner, isFavorite }) {
     ),
   };
 
-  console.log(property);
-
   return (
     <StyledContainer>
       <StyledLink
