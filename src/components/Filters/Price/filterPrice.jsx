@@ -1,6 +1,6 @@
 import { BiSolidDollarCircle } from "react-icons/bi";
 import PropTypes from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../Button/button";
 
 import {
@@ -63,7 +63,6 @@ const FilterPrice = ({ filter, setFilter }) => {
   };
 
   const handleDone = () => {
-      
     filtered(minPrice, maxPrice);
     setIsOpen(!isOpen);
   };

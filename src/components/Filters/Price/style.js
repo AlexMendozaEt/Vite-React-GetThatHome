@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  // width: 100%;
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -14,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerCard = styled.div`
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.white.standard};
   width: 247px;
   height: 116px;
   gap: 4px;
@@ -25,7 +24,6 @@ export const ContainerCard = styled.div`
   position: absolute;
   margin-top: 40px;
   z-index: 1;
-
 `;
 
 export const Title = styled.div`
@@ -40,7 +38,7 @@ export const PriceContainer = styled.div`
   flex-direction: row;
   width: 231px;
   align-items: center;
-  `;
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -51,7 +49,7 @@ export const ButtonContainer = styled.div`
 
 export const ContainerIcon = styled.div`
   display: flex;
-  position: absolute; 
+  position: absolute;
   width: 20px;
   height: 20px;
   margin-left: 8px;
@@ -83,9 +81,9 @@ export const Input = styled.input`
   padding-left: 36px;
   appearance: none;
   border-radius: 8px;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
 
   &:checked {
-    border: 4px solid ${(props)=> props.theme.colors.pink[500]};
+    border: 4px solid ${(props) => props.theme.colors.pink[500]};
   }
 `;
