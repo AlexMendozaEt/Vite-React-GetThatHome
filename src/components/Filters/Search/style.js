@@ -50,6 +50,7 @@ export const ContainerIcon = styled.div`
   flex-direction: row;
   gap: 8px;
   align-items: center;
+  color: ${(props) => props.theme.colors.pink[500]};
 `;
 
 export const ContainerInput = styled.div`
@@ -71,6 +72,7 @@ export const Input = styled.input`
   padding: 8px;
   border: none;
   align-self: center;
+  color: ${(props) => props.theme.colors.text.standard};
 
   &:focus {
     outline: 2px solid ${(props) => props.theme.colors.pink[500]};

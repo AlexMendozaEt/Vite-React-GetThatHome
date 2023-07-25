@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import PropTypes from "prop-types";
 
@@ -78,7 +78,7 @@ const SearchByAddress = ({ filter, setFilter, currentSearch }) => {
       <ButtonContainer>
         <ContainerInput theme={lightTheme}>
           <ContainerIcon>
-            <CiSearch />
+            <CiSearch size={"1.5rem"} />
           </ContainerIcon>
           <Input
             type="text"

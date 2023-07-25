@@ -1,16 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
-import styled from "@emotion/styled";
-import { CiSearch } from "react-icons/ci";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-import Button from "../../Button/button";
 
-import {
-  Container,
-  ContainerCard,
-  ButtonContainer,
-  ContainerIcon,
-  ContainerElement,
-} from ".";
+import { Container, ContainerCard, ButtonContainer, ContainerElement } from ".";
 import { lightTheme } from "../../../styles";
 
 const SearchByAddress = ({ filter, setFilter, width, height }) => {
