@@ -116,6 +116,49 @@ export const StyledContainer = styled.div`
     font-size: 0.625rem;
     letter-spacing: 0.09375rem;
   }
+
+  .autocomplete-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid ${(props) => props.theme.colors.pink[400]};
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .autocomplete-wrapper input[type="text"] {
+    accent-color: ${(props) => props.theme.colors.pink[400]};
+    position: relative;
+
+    width: 100%;
+    padding: 0.25rem 0;
+    border: none;
+  }
+
+  .autocomplete-wrapper input::placeholder {
+    color: ${(props) => props.theme.colors.text.light};
+    font-family: ${fonts.secondary};
+    letter-spacing: 0.03125rem;
+  }
+
+  .autocomplete-wrapper input:focus {
+    outline: 0.1875rem solid ${(props) => props.theme.colors.info};
+  }
+`;
+
+export const ContainerAutocomplete = styled.div`
+  border: none;
+  padding: 0.25rem 0;
+  width: ${({ isFullWidth }) => (isFullWidth ? "100%" : "fit-content")};
+  accent-color: ${(props) => props.theme.colors.pink[400]};
+  ::placeholder {
+    color: ${(props) => props.theme.colors.text.light};
+    font-family: ${fonts.secondary};
+    letter-spacing: 0.03125rem;
+  }
+  :focus {
+    outline: 0.1875rem solid ${(props) => props.theme.colors.info};
+  }
 `;
 
 export const StyledTextArea = styled.textarea`
