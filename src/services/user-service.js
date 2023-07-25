@@ -2,7 +2,7 @@ import { tokenKey } from "../config";
 import apiFetch from "./api-fetch";
 
 export async function createUser(userData) {
-  const { token, ...user } = await apiFetch("/users", {
+  const { token, ...user } = await apiFetch("/user", {
     body: userData,
   });
 

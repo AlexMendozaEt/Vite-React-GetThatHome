@@ -29,7 +29,7 @@ function MyFormikCreate({ userType }) {
     phone: "",
     password: "",
     password_confirmation: "",
-    rol: userType,
+    role: userType,
   };
 
   const navigate = useNavigate();
@@ -162,7 +162,7 @@ function MyFormikCreate({ userType }) {
 }
 
 MyFormikCreate.propTypes = {
-  userType: PropTypes.number,
+  userType: PropTypes.string,
 };
 
 export default MyFormikCreate;
