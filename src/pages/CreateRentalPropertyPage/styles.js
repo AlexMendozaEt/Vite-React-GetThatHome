@@ -130,4 +130,8 @@ export const StyledTextArea = styled.textarea`
   ::placeholder {
     color: ${(props) => props.theme.colors.text.light};
   }
+
+  :focus {
+    outline: 0.1875rem solid ${(props) => props.theme.colors.info};
+  }
 `;

@@ -32,6 +32,7 @@ function AuthenticatedLandlordApp() {
             <Route path="sale" element={<CreateSalePropertyPage />} />
           </Route>
           <Route path="detail/:id" element={<PropertyDetailPage />} />
+          <Route path="edit/:id" element={<PropertyDetailPage />} />
         </Route>
         <Route path="savedproperties" element={<SavedPropertiesPage />} />
         <Route path="myproperties" element={<MyPropertiesPage />} />

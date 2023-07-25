@@ -12,62 +12,64 @@ import InputWithIcon from "../../components/InputWithIcon";
 import { TbCoin } from "react-icons/tb";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../context/auth-context";
+import { createProperty } from "../../services/property-service";
 
 function CreateSalePropertyPage() {
   const { user } = useAuth();
-  const operation_type = 1;
 
   const [formData, setFormData] = useState({
     address: "",
-    price: null,
+    district: "",
+    state: "",
+    montly_rent: null,
+    maintenance: null,
     property_type: null,
     bedrooms: null,
     bathrooms: null,
     area: null,
+    pets_allowed: null,
     about: "",
-    close: null,
-    photo_url: [],
+    operation_type: "sale",
+    user_id: user?.id,
   });
 
-  const {
-    address,
-    price,
-    property_type,
-    bedrooms,
-    bathrooms,
-    area,
-    about,
-    close,
-    photo_url,
-  } = formData;
+  const [images, setImages] = useState([]);
 
   function handleChange(event) {
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
-        : event.target.type === "file"
-        ? URL.createObjectURL(event.target.files[0])
         : event.target.value;
-
-    let newValues;
-    if (event.target.type === "file") {
-      let { photo_url } = formData;
-      photo_url = [...photo_url, value];
-      newValues = { ...formData, photo_url };
-    } else {
-      newValues = { ...formData, [name]: value };
-    }
+    const newValues = { ...formData, [name]: value };
     setFormData(newValues);
   }
 
-  // console.log(formData);
-
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
-    console.log(operation_type);
-    console.log(user.id);
+
+    const propertyData = new FormData();
+
+    for (const [key, value] of Object.entries(formData)) {
+      propertyData.append(key, value);
+    }
+
+    for (let i = 0; i < images.length; i++) {
+      propertyData.append("images[]", images[i]);
+    }
+
+    createProperty(propertyData)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  function handleImageChange(e) {
+    const selectedImages = Array.from(e.target.files);
+    setImages([...images, ...selectedImages]);
   }
 
   return (
@@ -106,6 +108,24 @@ function CreateSalePropertyPage() {
                 name="address"
                 type="text"
                 placeholder="start typing to autocomplete"
+                onChange={handleChange}
+              />
+              <InputWithIcon
+                label={"DISTRICT"}
+                icon={<HiMagnifyingGlass size={"1.25rem"} />}
+                isFullWidth
+                name="district"
+                type="text"
+                placeholder="District"
+                onChange={handleChange}
+              />
+              <InputWithIcon
+                label={"STATE"}
+                icon={<HiMagnifyingGlass size={"1.25rem"} />}
+                isFullWidth
+                name="state"
+                type="text"
+                placeholder="STATE"
                 onChange={handleChange}
               />
               <InputWithIcon
@@ -189,16 +209,24 @@ function CreateSalePropertyPage() {
                   <p className="photos-instructions">
                     Upload as many photos as you wish
                   </p>
-                  <input type="file" name="photo_url" onChange={handleChange} />
+                  <input
+                    type="file"
+                    name="photo_url"
+                    multiple
+                    onChange={handleImageChange}
+                  />
                   <blockquote className="quote">
                     Only images, max 5MB
                   </blockquote>
                 </label>
                 <div className="images-container">
-                  <img
-                    src={formData.photo_url[0]}
-                    className="images-container__image"
-                  />
+                  {images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={URL.createObjectURL(image)}
+                      className="images-container__image"
+                    />
+                  ))}
                 </div>
               </div>
               <Button type="primary" size="lg">

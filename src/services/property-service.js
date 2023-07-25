@@ -1,4 +1,5 @@
 import apiFetch from "./api-fetch";
+import apiFetchWithImage from "./api-fetch-with-image";
 
 export async function getProperties() {
   return await apiFetch("/properties");
@@ -21,9 +22,7 @@ export async function getProperty(propertyId) {
 }
 
 export async function createProperty(propertyData) {
-  return await apiFetch("/properties", {
-    body: propertyData,
-  });
+  return await apiFetchWithImage(`/properties`, { body: propertyData });
 }
 
 export async function updateProperty(propertyData, propertyId) {

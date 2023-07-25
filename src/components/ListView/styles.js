@@ -11,7 +11,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledLabel = styled.label`
-  height: 32px;
+  height: 2rem;
   padding: 0px 4px 0px 4px;
   cursor: pointer;
   margin-bottom: 1rem;
@@ -45,43 +45,36 @@ export const PropertiesContainer = styled.div`
 `;
 
 export const ContainerFilters = styled.div`
-display: flex;
-flex-wrap: wrap;
-justify: space-between;
-max-width: 100%;
-// height: 40px;
-gap: 8px;
-justify-content: center;
-align-items: center;
-margin: auto;
-// background: white;
-
+  display: flex;
+  flex-wrap: wrap;
+  justify: space-between;
+  max-width: 100%;
+  // height: 40px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  // background: white;
 `;
 
 export const ContainerFilter = styled.div`
-display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-justify: space-between;
-max-width: 518px;
-min-height: 40px;
-gap: 8px;
-justify-content: center;
-align-items: center;
-margin: auto;
-
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify: space-between;
+  max-width: 518px;
+  min-height: 40px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 `;
-
-
 
 export const ContainerLists = styled.div`
   display: block:
   // background: gray;
   width: 100%px;
-  padding: 32px;
-  gap: 16px;
   margin: auto;
-  padding: 32px;
-  gap: 16px;
-
+  padding: 2rem;
+  gap: 1rem;
 `;

@@ -1,4 +1,8 @@
-import { getProperties } from "../../services/property-service";
+import {
+  getMyFavorites,
+  getMyProperties,
+  getProperties,
+} from "../../services/property-service";
 
 import PropertyCard from "../PropertyCard";
 import FilterPrice from "../Filters/Price/filterPrice";
@@ -17,6 +21,8 @@ import { useParams } from "react-router-dom";
 
 export default function ListsView(filter) {
   const [products, setProducts] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [ownProperties, setOwnProperties] = useState([]);
   const [totalProducts, setTotalProducts] = useState(0);
   const [productsPerpage, setProductsPerpage] = useState(10);
   const [filtersProducts, setFilterProducts] = useState([]);
@@ -46,6 +52,7 @@ export default function ListsView(filter) {
     // }else
     if (!Object.keys(params).length === 0) {
       // localStorage.setItem("filter", JSON.stringify(filterRules))
+
     }
   }, [filterRules]);
 
@@ -64,6 +71,7 @@ export default function ListsView(filter) {
           buying: params.buying === "true",
           renting: params.renting === "true",
         };
+
         // localStorage.setItem("filter", JSON.stringify(paramsFilter))
         return paramsFilter;
       }
@@ -88,6 +96,18 @@ export default function ListsView(filter) {
     getProperties()
       .then((properties) => {
         setProducts(properties);
+      })
+      .catch((e) => console.log(e));
+
+    getMyFavorites()
+      .then((favorites) => {
+        setFavorites(favorites);
+      })
+      .catch((e) => console.log(e));
+
+    getMyProperties()
+      .then((ownProperties) => {
+        setOwnProperties(ownProperties);
       })
       .catch((e) => console.log(e));
   }, []);
@@ -162,6 +182,7 @@ export default function ListsView(filter) {
 
   function HandleFilterProducts() {
     return products.filter((product) => {
+      
       const productAddress =
         filterRules.address === false ||
         !product.address.search(filterRules.address);
@@ -265,13 +286,17 @@ export default function ListsView(filter) {
             <StyledH2>{totalProducts} Properties found</StyledH2>
             <PropertiesContainer>
               {filtersProducts.slice(firstIndex, lastIndex).map((property) => {
-                const isOwner = false;
+                const isOwner = ownProperties.some((e) => e.id === property.id);
+                const isFavorite = favorites.properties?.some(
+                  (e) => e.id === property.id
+                );
 
                 return (
                   <PropertyCard
                     key={`property-${property.id}`}
                     property={property}
                     isOwner={isOwner}
+                    isFavorite={isFavorite}
                   />
                 );
               })}
