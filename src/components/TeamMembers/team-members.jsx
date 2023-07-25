@@ -36,7 +36,7 @@ const team = [
     avatar: gerardo,
     name: "Gerardo Avena",
     github_link: "https://github.com/Avenator02",
-    linkedin_link: "https://www.linkedin.com/in/avenator02/,
+    linkedin_link: "https://www.linkedin.com/in/avenator02/",
   },
 ];
 
