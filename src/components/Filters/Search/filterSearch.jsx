@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled from "@emotion/styled";
 import { CiSearch } from "react-icons/ci";
 import PropTypes from "prop-types";
-import Button from "../../Button/button";
 
 import {
   Container,
@@ -15,24 +13,13 @@ import {
 } from ".";
 import { lightTheme } from "../../../styles";
 
-const SearchByAddress = ({ filter, setFilter }) => {
-  // const array = filter || [
-  //   "Las Vegas Boulevard",
-  //   "Music Row en Nashville",
-  //   "Wall Street Nueva York",
-  //   "5th. Avenue en Nueva York",
-  //   "Bourbon St. New Orleans",
-  //   "Hollywood Blvd",
-  //   " Lombard St. San Francisco",
-  //   "Pennsylvania Ave. Washington D.C.",
-  //   "Michigan Ave. en Chicago",
-  //   "Ocean Drive en Miami",
-  // ];
+const SearchByAddress = ({ filter, setFilter, currentSearch }) => {
   const array = filter || [];
 
   const [search, setSearch] = useState("");
   const [selection, setSelection] = useState([]);
   const containerRef = useRef();
+  const [flag, setFlag] = useState(false);
 
   const handleInputChange = (event) => {
     setSearch(event.target.value);
@@ -44,7 +31,10 @@ const SearchByAddress = ({ filter, setFilter }) => {
   };
 
   useEffect(() => {
-    if (search === "") return;
+    if (search === "") {
+      setFilter(search);
+      return;
+    }
 
     const searchProperty = () => {
       setFilter(search);
@@ -52,6 +42,13 @@ const SearchByAddress = ({ filter, setFilter }) => {
     const timerId = setTimeout(searchProperty, 1000);
     return () => clearTimeout(timerId);
   }, [search]);
+
+  useEffect(() => {
+    if (currentSearch !== "false" && flag === false) {
+      setSearch(currentSearch);
+      setFlag(true);
+    }
+  }, [currentSearch]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -110,6 +107,7 @@ const SearchByAddress = ({ filter, setFilter }) => {
 SearchByAddress.propTypes = {
   filter: PropTypes.array,
   setFilter: PropTypes.func.isRequired,
+  currentSearch: PropTypes.string,
 };
 
 export default SearchByAddress;
