@@ -88,6 +88,11 @@ export default function MyPropertiesSection() {
     handleInputChange();
   };
 
+  function handleDeleteProperty(id) {
+    const newProducts = products.filter((product) => product.id != id);
+    setProducts(newProducts);
+  }
+
   const lastIndex = currentPage * productsPerpage;
   const firstIndex = lastIndex - productsPerpage;
 
@@ -132,6 +137,7 @@ export default function MyPropertiesSection() {
                     key={`property-${property.id}`}
                     property={property}
                     isOwner={isOwner}
+                    handleDeleteProperty={handleDeleteProperty}
                   />
                 );
               })}

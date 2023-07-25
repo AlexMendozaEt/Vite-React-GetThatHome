@@ -55,5 +55,5 @@ export async function updateCloseProperty(propertyId) {
 }
 
 export async function deleteProperty(propertyId) {
-  return await apiFetch(`/property/${propertyId}`, { method: "DELETE" });
+  return await apiFetch(`/properties/${propertyId}`, { method: "DELETE" });
 }

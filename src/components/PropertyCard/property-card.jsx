@@ -18,7 +18,7 @@ import {
   updateRestoreProperty,
 } from "../../services/property-service";
 
-function PropertyCard({ property, isOwner, isFavorite }) {
+function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
   const theme = useTheme();
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
 
   const handleDelete = () => {
     deleteProperty(id)
-      .then(navigate(0))
+      .then(() => handleDeleteProperty(id))
       .catch((e) => console.log(e));
   };
 
@@ -191,6 +191,7 @@ function PropertyCard({ property, isOwner, isFavorite }) {
 
 PropertyCard.propTypes = {
   property: PropTypes.object,
+  setProperties: PropTypes.func,
   isOwner: PropTypes.bool,
   isFavorite: PropTypes.bool,
   close: PropTypes.bool,
