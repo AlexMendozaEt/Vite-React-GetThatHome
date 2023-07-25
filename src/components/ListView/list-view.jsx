@@ -52,7 +52,6 @@ export default function ListsView(filter) {
     // }else
     if (!Object.keys(params).length === 0) {
       // localStorage.setItem("filter", JSON.stringify(filterRules))
-
     }
   }, [filterRules]);
 
@@ -182,18 +181,17 @@ export default function ListsView(filter) {
 
   function HandleFilterProducts() {
     return products.filter((product) => {
-      
       const productAddress =
         filterRules.address === false ||
         !product.address.search(filterRules.address);
 
       const minPrice =
         filterRules.minPrice > 0
-          ? +product.monthly_rent > +filterRules?.minPrice
+          ? +product.monthly_rent >= +filterRules?.minPrice
           : true;
       const maxPrice =
         filterRules.maxPrice > 0
-          ? +product.monthly_rent < +filterRules?.maxPrice
+          ? +product.monthly_rent <= +filterRules?.maxPrice
           : true;
       const productHouses = filterRules.houses
         ? product.property_type == "home"
@@ -211,9 +209,9 @@ export default function ListsView(filter) {
           ? product.bathrooms >= filterRules.bathrooms
           : true;
       const minArea =
-        filterRules.minArea > 0 ? +product.area > +filterRules?.minArea : true;
+        filterRules.minArea > 0 ? +product.area >= +filterRules?.minArea : true;
       const maxArea =
-        filterRules.maxArea > 0 ? +product.area > +filterRules?.maxArea : true;
+        filterRules.maxArea > 0 ? +product.area >= +filterRules?.maxArea : true;
       const pets = filterRules.pets_allowed ? product.pets_allowed : true;
 
       const buying = filterRules.buying
