@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   display: grid;
-  // width: 100%;
+  // background-color: ${(props) => props.theme.colors.background.light};
   justify-items: center;
   align-items: start;
   font-family: inter;
@@ -10,12 +10,11 @@ export const Container = styled.div`
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 1.25px;
-
 `;
 
 export const ContainerCard = styled.div`
   display: grid;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background.lighter};
   width: 187px;
   height: 108px;
   gap: 8px;
@@ -26,9 +25,7 @@ export const ContainerCard = styled.div`
   position: absolute;
   margin-top: 40px;
   z-index: 1;
-
 `;
-
 
 export const Title = styled.label`
   width: 100%;
@@ -43,7 +40,7 @@ export const PriceContainer = styled.div`
   flex-direction: row;
   width: 231px;
   align-items: center;
-  `;
+`;
 
 export const ButtonContainer = styled.div`
   display: flex;
@@ -61,16 +58,14 @@ export const ContainerIcon = styled.div`
   gap: 8px;
   align-items: center;
   padding: 7px;
-
 `;
 
-
 export const Line = styled.div`
-background-color: gray;
-width: 11px;
-height: 2px;
-border-radius: 1px;
-margin: auto;
+  background-color: gray;
+  width: 11px;
+  height: 2px;
+  border-radius: 1px;
+  margin: auto;
 `;
 
 export const ContainerInput = styled.button`
@@ -79,8 +74,8 @@ export const ContainerInput = styled.button`
   gap: 4px;
   text-align: center;
   align-items: center;
-  &:focus{
-    background: #F48FB126;
+  &:focus {
+    background-color: ${(props) => props.theme.colors.info};
   }
 `;
 
@@ -95,10 +90,10 @@ export const ContainerSelect = styled.button`
   margin: 2px;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
 
-   &:focus {
-    outline: 2px solid ${(props)=> props.theme.colors.pink[500]};
+  &:focus {
+    outline: 2px solid ${(props) => props.theme.colors.info};
   }
 `;
 
@@ -111,24 +106,17 @@ export const Input = styled.input`
   // padding-left: 36px;
   // appearance: none;
   border-radius: 8px;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
+  border: 1px solid ${(props) => props.theme.colors.pink[500]};
 
   &:focus {
-    outline: 2px solid ${(props)=> props.theme.colors.pink[500]};
+    outline: 2px solid ${(props) => props.theme.colors.info};
   }
 `;
 
 export const InputCheckbox = styled.input`
-  // display: inline-block;
   width: 20px;
   height: 20px;
   margin: 2px;
   padding: 2px;
-  appearance: none;
-  border: 1px solid ${(props)=> props.theme.colors.pink[500]};
-
-  &:checked {
-     border: 4px solid ${(props)=> props.theme.colors.pink[500]};
-  }
+  accent-color: ${(props) => props.theme.colors.pink[500]};
 `;
-
