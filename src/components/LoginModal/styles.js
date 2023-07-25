@@ -35,4 +35,8 @@ export const ModalContent = styled.div`
   .form__inputs {
     margin-bottom: 1rem;
   }
+
+  @media only screen and (max-width: 410px) {
+    width: fit-content;
+  }
 `;

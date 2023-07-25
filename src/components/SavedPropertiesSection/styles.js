@@ -39,7 +39,6 @@ export const StyledH2 = styled.h2`
 
 export const PropertiesContainer = styled.div`
   display: grid;
-  padding-inline: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
   gap: 3rem;
 `;
