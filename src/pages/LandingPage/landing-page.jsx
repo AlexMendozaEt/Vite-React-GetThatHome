@@ -26,7 +26,7 @@ export default function LandingPage() {
       <Header user={user} />
       <MeetHomeSection />
       <BestPropertiesSection best_properties={properties.slice(0, 3)} />
-      <SignUpMessageSection />
+      {user ? "" : <SignUpMessageSection />}
       <TeamMembers />
       <FooterLanding />
     </>
