@@ -91,7 +91,9 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
       <Anchor
         icon={<BiEdit color={theme.colors.white.standard} size={"1.5rem"} />}
         type="tertiary"
-        to={`/property/edit/${id}`}
+        to={`/property/edit/${
+          operation_type === "rent" ? "rent" : "sale"
+        }/${id}`}
       >
         EDIT
       </Anchor>

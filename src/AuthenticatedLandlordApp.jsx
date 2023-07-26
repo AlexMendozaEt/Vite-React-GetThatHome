@@ -3,8 +3,9 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import PropertiesPage from "./pages/PropertiesPage";
 import PropertyDetailPage from "./pages/PropertyDetailPage";
-import EditPropertyPage from "./pages/EditPropertyPage";
 import CreateRentalPropertyPage from "./pages/CreateRentalPropertyPage";
+import EditRentPropertyPage from "./pages/EditRentPropertyPage ";
+import EditSalePropertyPage from "./pages/EditSalePropertyPage";
 import CreateSalePropertyPage from "./pages/CreateSalePropertyPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyActivePropertiesPage from "./pages/MyActivePropertiesPage";
@@ -32,7 +33,10 @@ function AuthenticatedLandlordApp() {
             <Route path="sale" element={<CreateSalePropertyPage />} />
           </Route>
           <Route path="detail/:id" element={<PropertyDetailPage />} />
-          <Route path="edit/:id" element={<EditPropertyPage />} />
+          <Route path="edit">
+            <Route path="rent/:id" element={<EditRentPropertyPage />} />
+            <Route path="sale/:id" element={<EditSalePropertyPage />} />
+          </Route>
         </Route>
         <Route path="myproperties">
           <Route index element={<Navigate to="/myproperties/active" />} />
