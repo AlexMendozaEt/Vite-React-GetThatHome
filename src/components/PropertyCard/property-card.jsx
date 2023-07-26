@@ -66,7 +66,7 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
     home: (
       <div className="info-title__type">
         <BsHouseDoor size={"1.5rem"} />
-        <p>House</p>
+        <p>Home</p>
       </div>
     ),
   };

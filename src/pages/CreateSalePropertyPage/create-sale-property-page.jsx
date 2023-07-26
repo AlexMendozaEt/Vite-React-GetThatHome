@@ -28,8 +28,7 @@ function CreateSalePropertyPage() {
     address: "",
     district: "",
     state: "",
-    monthly_rent: null,
-    maintenance: null,
+    price: null,
     property_type: null,
     bedrooms: null,
     bathrooms: null,
@@ -154,7 +153,7 @@ function CreateSalePropertyPage() {
                 name="property_type"
                 options={[
                   { label: "Apartment", value: "apartment" },
-                  { label: "House", value: "house" },
+                  { label: "Home", value: "home" },
                 ]}
                 defaultValue={"Select..."}
                 onChange={handleChange}

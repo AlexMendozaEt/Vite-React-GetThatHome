@@ -110,6 +110,7 @@ function PropertyDetailPage() {
     monthly_rent,
     district,
     state,
+    price,
     maintenance,
     bedrooms,
     bathrooms,
@@ -236,7 +237,7 @@ function PropertyDetailPage() {
                 <div className="container-dollar">
                   <RiMoneyDollarCircleLine />
                 </div>
-                <p>{monthly_rent}</p>
+                <p>{monthly_rent || price}</p>
               </div>
             </div>
             <div className="info-district">

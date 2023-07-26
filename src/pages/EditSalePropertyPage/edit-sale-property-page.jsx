@@ -191,7 +191,7 @@ function EditSalePropertyPage() {
                 name="property_type"
                 options={[
                   { label: "Apartment", value: "apartment" },
-                  { label: "House", value: "house" },
+                  { label: "Home", value: "home" },
                 ]}
                 defaultValue={formData.property_type}
                 onChange={handleChange}
