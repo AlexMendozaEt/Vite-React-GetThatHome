@@ -58,7 +58,7 @@ function MyFormikCreate({ userType }) {
 
     if (values.phone === "") {
       errors.phone = "Phone is required";
-    } else if (!/\b(?:\d{9}|\d{3}-\d{3}-\d{3})\b/.test(values.phone)) {
+    } else if (!/^(?:\d{9}|\d{10}|\d{3}-\d{3}-\d{3})$/.test(values.phone)) {
       errors.phone = "Invalid phone";
     }
 
