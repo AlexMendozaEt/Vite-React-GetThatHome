@@ -16,11 +16,11 @@ export async function getUser() {
   return user;
 }
 
-export async function updateUser(userData) {
+export async function updateUser(userData, id) {
   let dataCleaned = Object.fromEntries(
     Object.entries(userData).filter(([k, v]) => v !== "")
   );
-  const { token, ...user } = await apiFetch("/user", {
+  const { token, ...user } = await apiFetch(`/users/${id}`, {
     method: "PATCH",
     body: dataCleaned,
   });
