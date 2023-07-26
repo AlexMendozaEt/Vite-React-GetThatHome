@@ -1,5 +1,5 @@
 import AddressAutocomplete from "./addressAutocomplete";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,11 @@ function CreateRentalPropertyPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const [districtEstate, setDistrictEstate] = useState({
+    district: "",
+    state: "",
+  });
+
   const [formData, setFormData] = useState({
     address: "",
     district: "",
@@ -38,14 +43,24 @@ function CreateRentalPropertyPage() {
 
   const [images, setImages] = useState([]);
 
+  function handleAddressChange(data) {
+    setDistrictEstate({
+      district: data.address_components[0].long_name,
+      state: data.address_components[1].long_name,
+    });
+  }
+
   function handleChange(event) {
+    console.log(formData);
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
         ? event.target.checked
         : event.target.value;
-    const newValues = { ...formData, [name]: value };
-    setFormData(newValues);
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   }
 
   function handleSubmit(event) {
@@ -76,18 +91,16 @@ function CreateRentalPropertyPage() {
     setImages([...images, ...selectedImages]);
   }
 
-  function handleAddressChange(address) {
-    console.log(address.address_components[0].long_name);
-    console.log(address.address_components[1].long_name);
-    console.log(address.address_components[2].long_name);
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...districtEstate,
+    }));
+  }, [districtEstate]);
 
-    // console.log(address[1].long_name);
-    // console.log(address[2].long_name);
-    // setFormData({
-    //   ...formData,
-    //   address: address.formatted_address,
-    // });
-  }
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   return (
     <>
@@ -126,9 +139,9 @@ function CreateRentalPropertyPage() {
                 label={"ADDRESS"}
                 icon={<HiMagnifyingGlass size={"1.25rem"} />}
                 isFullWidth
-                name="district"
+                name="address"
                 type="text"
-                placeholder="District"
+                placeholder="Address"
                 onChange={handleChange}
               />
               <label className="label">
