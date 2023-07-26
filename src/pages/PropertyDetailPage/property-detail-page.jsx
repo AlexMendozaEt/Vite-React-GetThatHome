@@ -13,14 +13,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { StyledDetail } from "./styles";
 import Button from "../../components/Button";
-import GoogleMaps from "../../../src/assets/images/googlemaps.png";
 import { getProperty } from "../../services/property-service";
 import { useAuth } from "../../context/auth-context";
-import ImageSlider from "../../components/SliderImages/SliderImages";
+import { ImagesSlider } from "../../components/ImagesSlider/images-slider";
 
 const containerStyles = {
-  width: "760px",
-  height: "760px",
+  width: "375px",
+  height: "375px",
   margin: "auto",
 };
 
@@ -71,7 +70,9 @@ function PropertyDetailPage() {
           setAreImagesLoaded(true);
         }
 
-        getCoordinates(property.address).then((coords) => {
+        getCoordinates(
+          `${property.address}, ${property.district}, ${property.state}`
+        ).then((coords) => {
           if (coords) {
             setCoordinates(coords);
           }
@@ -156,9 +157,7 @@ function PropertyDetailPage() {
       <Container size={"xl"}>
         <StyledDetail>
           <div>
-            <div style={containerStyles}>
-              {areImagesLoaded ? <ImageSlider slides={images} /> : null}
-            </div>
+            {areImagesLoaded ? <ImagesSlider slides={images} /> : null}
             <div className="info-address-price">
               <p>{address}</p>
               <div className="info-address-price__price">
@@ -203,7 +202,7 @@ function PropertyDetailPage() {
             <div>
               <div className="title-pink">Location</div>
               <div className="simple-text">
-                {address}, {district}, {state}
+                {property.address}, {property.district}, {property.state}
               </div>
               {coordinates && (
                 <LoadScript

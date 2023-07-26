@@ -3,7 +3,6 @@ import { fonts } from "../../styles";
 
 export const StyledDetail = styled.section`
   display: flex;
-  /* flex-wrap: wrap; */
   width: 100%;
   justify-content: space-between;
   text-align: center;
@@ -58,6 +57,7 @@ export const StyledDetail = styled.section`
     border: 0.0625rem solid ${(props) => props.theme.colors.pink[600]};
     border-radius: 0.5rem;
   }
+
   .info-property {
     display: flex;
     justify-content: space-between;
@@ -125,5 +125,21 @@ export const StyledDetail = styled.section`
     line-height: 1.5rem; /* 171.429% */
     letter-spacing: 0.07813rem;
     text-transform: uppercase;
+  }
+
+  @media only screen and (max-width: 1130px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media only screen and (max-width: 640px) {
+    .info-address-price {
+      font-size: 1.5rem;
+    }
+
+    .info-property__child {
+      font-size: 1rem;
+      gap: 0.25rem;
+    }
   }
 `;
