@@ -2,8 +2,6 @@
 
 Homes and apartments for rent at the best prices.
 
-Finding the perfect rental has never been easier!
-
 ![landing view](./src/assets/images/landingview.png)
 
 ## Table of Contents
@@ -22,11 +20,11 @@ Get That Home is a user-friendly website designed to streamline your search for 
 
 Features:
 
-- Seamless Browsing: Whether you're a visitor or a registered user, our platform offers a smooth browsing experience, enabling you to effortlessly explore a wide range of houses and apartments.
+- **Seamless Browsing**: Whether you're a visitor or a registered user, our platform offers a smooth browsing experience, enabling you to effortlessly explore a wide range of houses and apartments.
 
-- Personalized Favorites List: Sign in to enjoy the perks of having your own account. You can easily create and manage a curated list of your favorite properties, making your search organized and stress-free.
+- **Personalized Favorites List**: Sign in to enjoy the perks of having your own account. You can easily create and manage a curated list of your favorite properties, making your search organized and stress-free.
 
-- Landlord-Friendly: List your rental properties hassle-free. Expand your reach and connect with more potential tenants effortlessly.
+- **Landlord-Friendly**: List your rental properties hassle-free. Expand your reach and connect with more potential tenants effortlessly.
 
 ## Demo
 
@@ -34,21 +32,69 @@ Link and instructions to access a live demo.
 
 ## Technologies used
 
-- Front-end: Javascript | React
+- Front-end: Javascript & React
 
 - Back-end: Ruby on rails
 
+##### [Link here to go to the back-end repository](https://github.com/kevinronu/ruby-on-rails-api-get-that-home)
+
 ## Installation
 
-Step-by-step instructions on how to install and set up the project locally. Include both front-end and back-end setup instructions.
+Front-end:
 
-## Usage
+    1. `npm install`
+    2. `npm run dev`
 
-Explain how to use the project once it's set up. Provide examples and any relevant information for users.
+Back-end:
+
+    1. `sudo service postgresql start`
+    2. `npm run dev`
+    3. `rails db:reset`
+    4. `rails s`
 
 ## API Documentation
 
-If your project has an API, provide documentation on how to use it. Include endpoints, request and response formats, and any authentication requirements.
+<!-- If your project has an API, provide documentation on how to use it.
+
+Include endpoints, request and response formats, and any authentication requirements. -->
+
+Endopoints:
+
+`get '/profile'`
+
+`post '/login'`
+
+`delete '/logout'`
+
+`get '/properties'`
+
+`get '/myproperties'`
+
+`post '/properties'`
+
+`get '/properties/:id'`
+
+`patch '/properties/:id'`
+
+`delete '/properties/:id'`
+
+`get '/favorites'`
+
+`post '/favorites'`
+
+`delete '/favorites/:id'`
+
+`get '/contacts'`
+
+`post '/contacts'`
+
+`delete '/contacts/:id'`
+
+`get '/user'`
+
+`post '/user'`
+
+`patch '/users/:id'`
 
 ## Contact
 
