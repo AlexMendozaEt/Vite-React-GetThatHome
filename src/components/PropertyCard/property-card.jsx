@@ -29,6 +29,7 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
     district,
     state,
     monthly_rent,
+    price,
     property_type,
     bedrooms,
     bathrooms,
@@ -157,7 +158,12 @@ function PropertyCard({ property, isOwner, isFavorite, handleDeleteProperty }) {
         <div className="info-title">
           <div className="info-title__rent">
             <TbCoin size={"2rem"} />
-            <p>{monthly_rent}</p>
+            {/* <p>{monthly_rent}</p> */}
+            {operation_type === "rent" ? (
+              <p>{property.monthly_rent}</p>
+            ) : (
+              <p>{property.price}</p>
+            )}
           </div>
           {renderPropertyType[property_type]}
         </div>
