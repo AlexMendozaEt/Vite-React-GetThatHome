@@ -181,3 +181,25 @@ export const ButtonFavorite = styled.button`
     background-color: ${(props) => props.theme.colors.background.dark};
   }
 `;
+
+export const DivInfo = styled.div`
+  font-family: Inter;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; /* 142.857% */
+  letter-spacing: 0.01563rem;
+
+  .title {
+    font-family: Montserrat;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.75rem; /* 140% */
+    letter-spacing: 0.00938rem;
+  }
+
+  .email__title,
+  .phone__title {
+    color: ${(props) => props.theme.colors.pink[600]};
+  }
+`;

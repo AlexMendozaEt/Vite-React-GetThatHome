@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import Container from "../../layout/Container";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { ButtonFavorite, StyledDetail } from "./styles";
+import { ButtonFavorite, DivInfo, StyledDetail } from "./styles";
 import Button from "../../components/Button";
 import {
   createFavorite,
@@ -179,18 +179,22 @@ function PropertyDetailPage() {
       let firstPart;
       let secondPart;
       if (contacts.properties?.some((e) => e.id === Number(id))) {
+        const temp_contact = contacts.contacts.find(
+          (e) => e.user_id === user.id
+        );
+        const { user_email, user_phone } = temp_contact;
         firstPart = (
-          <div>
-            <h3>Contact Information</h3>
+          <DivInfo>
+            <h3 className="title">Contact Information</h3>
             <div className="email">
-              <p>Email</p>
-              <p>dude@mail.com</p>
+              <p className="email__title">Email</p>
+              <p>{user_email}</p>
             </div>
             <div className="phone">
-              <p>Phone</p>
-              <p>987654321</p>
+              <p className="phone__title">Phone</p>
+              <p>{user_phone}</p>
             </div>
-          </div>
+          </DivInfo>
         );
       } else {
         firstPart = (
