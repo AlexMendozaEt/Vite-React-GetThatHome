@@ -9,8 +9,8 @@ import {
 } from "./styles";
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
+import { getMyFavorites } from "../../services/favorite-service";
 import {
-  getMyFavorites,
   getMyProperties,
   getProperties,
 } from "../../services/property-service";

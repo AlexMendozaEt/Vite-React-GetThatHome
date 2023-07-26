@@ -9,14 +9,6 @@ export async function getMyProperties() {
   return await apiFetch("/myproperties");
 }
 
-export async function getMyFavorites() {
-  return await apiFetch("/favorites");
-}
-
-export async function getMyContacts() {
-  return await apiFetch("/contacts");
-}
-
 export async function getProperty(propertyId) {
   return await apiFetch(`/properties/${propertyId}`);
 }

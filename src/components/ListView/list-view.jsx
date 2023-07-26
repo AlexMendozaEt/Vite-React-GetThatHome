@@ -1,8 +1,8 @@
 import {
-  getMyFavorites,
   getMyProperties,
   getProperties,
 } from "../../services/property-service";
+import { getMyFavorites } from "../../services/favorite-service";
 
 import PropertyCard from "../PropertyCard";
 import FilterPrice from "../Filters/Price/filterPrice";

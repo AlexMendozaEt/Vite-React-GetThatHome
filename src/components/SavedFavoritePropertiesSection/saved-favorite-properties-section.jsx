@@ -11,7 +11,7 @@ import {
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
-import { getMyFavorites } from "../../services/property-service";
+import { getMyFavorites } from "../../services/favorite-service";
 
 export default function SavedFavoritePropertiesSection() {
   const [products, setProducts] = useState([]);

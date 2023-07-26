@@ -11,7 +11,8 @@ import {
 import Container from "../../layout/Container/container";
 import PropertyCard from "../PropertyCard";
 import Pagination from "../Pagination";
-import { getMyContacts, getMyFavorites } from "../../services/property-service";
+import { getMyContacts } from "../../services/contacts-service";
+import { getMyFavorites } from "../../services/property-service";
 
 export default function SavedContactedPropertiesSection() {
   const [products, setProducts] = useState([]);
