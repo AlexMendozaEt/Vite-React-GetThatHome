@@ -26,8 +26,10 @@ import Anchor from "../../components/Anchor";
 import { useTheme } from "@emotion/react";
 
 const containerStyles = {
-  width: "760px",
-  height: "760px",
+  "min-width": "360px",
+  "min-height": "360px",
+  "max-width": "760px",
+  "max-height": "760px",
   margin: "auto",
 };
 
