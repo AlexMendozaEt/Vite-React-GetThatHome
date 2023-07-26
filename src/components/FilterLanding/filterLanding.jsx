@@ -10,17 +10,15 @@ import { useNavigate } from "react-router-dom";
 
 const Filter = styled.div`
   display: flex;
-  width: 800px;
-  height: 72px;
   padding: 8px 16px 8px 16px;
   border-radius: 8px;
-  gap: 4px;
+  gap: 8px;
   background: white;
   box-shadow: 3px 3px 10px gray;
   justify-content: space-between;
 
   @media only screen and (max-width: 815px) {
-    display: none;
+    flex-direction: column;
   }
 `;
 
@@ -28,14 +26,13 @@ const Line = styled.div`
   width: 1px;
   height: 56px;
   border: 1px;
-  // angle: -90 deg;
   background: gray;
+  @media only screen and (max-width: 815px) {
+    display: none;
+  }
 `;
 
-const ContainerFilter = styled.div`
-  width: ${(props) => props.width}px;
-  height: ${(props) => props.height}px;
-`;
+const ContainerFilter = styled.div``;
 
 export function FilterLanding() {
   const [products, setProducts] = useState([]);
@@ -103,7 +100,7 @@ export function FilterLanding() {
 
   return (
     <Filter>
-      <ContainerFilter width={160} height={56}>
+      <ContainerFilter>
         <Title>I'm Looking for</Title>
         <SearchByAddress
           filter={arrayTypeProperty}
@@ -113,7 +110,7 @@ export function FilterLanding() {
         />
       </ContainerFilter>
       <Line />
-      <ContainerFilter width={160} height={56}>
+      <ContainerFilter>
         <Title>I want To</Title>
         <SearchByAddress
           filter={arrayTypeOperation}
@@ -123,7 +120,7 @@ export function FilterLanding() {
         />
       </ContainerFilter>
       <Line />
-      <ContainerFilter width={304} height={40}>
+      <ContainerFilter>
         <Title>Were</Title>
         <SearchByAddress
           filter={arrayAddress}
