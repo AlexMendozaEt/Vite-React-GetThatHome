@@ -1,9 +1,5 @@
-// export default function EditRentPropertyPage() {
-//   return <div>Edit Rent Property Page</div>;
-// }
-
 import GooglePlacesAutocomplete from "react-google-autocomplete";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
@@ -19,16 +15,21 @@ import { TbCoin } from "react-icons/tb";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../context/auth-context";
 import { createProperty } from "../../services/property-service";
+import { useParams } from "react-router-dom";
+import { getProperty } from "../../services/property-service";
 
 function EditRentPropertyPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [images, setImages] = useState([]);
+  const { id } = useParams();
+  const [property, setProperty] = useState({});
 
   const [formData, setFormData] = useState({
     address: "",
     district: "",
     state: "",
-    montly_rent: null,
+    monthly_rent: null,
     maintenance: null,
     property_type: null,
     bedrooms: null,
@@ -36,11 +37,37 @@ function EditRentPropertyPage() {
     area: null,
     pets_allowed: null,
     about: "",
-    operation_type: "rent",
+    operation_type: "sale",
     user_id: user?.id,
   });
 
-  const [images, setImages] = useState([]);
+  useEffect(() => {
+    if (!id) return;
+
+    getProperty(id)
+      .then((property) => {
+        setProperty(property);
+        setFormData({
+          address: property.address,
+          district: property.district,
+          state: property.state,
+          monthly_rent: property.monthly_rent,
+          price: property.price,
+          maintenance: property.maintenance,
+          property_type: property.property_type,
+          bedrooms: property.bedrooms,
+          bathrooms: property.bathrooms,
+          area: property.area,
+          pets_allowed: property.pets_allowed,
+          about: property.about,
+          operation_type: property.operation_type,
+          user_id: property.user_id,
+        });
+      })
+      .catch((error) => console.log(error));
+  }, [id]);
+
+  console.log(formData);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -87,6 +114,8 @@ function EditRentPropertyPage() {
     });
   }
 
+  console.log(property);
+
   return (
     <>
       <HeaderLandlord />
@@ -125,6 +154,7 @@ function EditRentPropertyPage() {
                 <HiMagnifyingGlass size={"1.25rem"} />
                 <GooglePlacesAutocomplete
                   apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+                  value={formData.address}
                   autocompletionRequest={{
                     types: ["address"],
                   }}
@@ -143,6 +173,7 @@ function EditRentPropertyPage() {
                 type="text"
                 placeholder="District"
                 onChange={handleChange}
+                value={formData.district}
               />
               <InputWithIcon
                 label={"STATE"}
@@ -152,14 +183,16 @@ function EditRentPropertyPage() {
                 type="text"
                 placeholder="STATE"
                 onChange={handleChange}
+                value={formData.state}
               />
               <InputWithIcon
-                label="MONTLY RENT"
+                label="MONTHLY RENT"
                 icon={<TbCoin size={"1.25rem"} />}
                 type="number"
-                name="montly_rent"
+                name="monthly_rent"
                 placeholder="2000"
                 onChange={handleChange}
+                value={formData.monthly_rent}
               />
               <InputWithIcon
                 label="MAINTENANCE"
@@ -168,6 +201,7 @@ function EditRentPropertyPage() {
                 name="maintenance"
                 placeholder="100"
                 onChange={handleChange}
+                value={formData.maintenance}
               />
               <Select
                 label={"PROPERTY TYPE"}
@@ -176,7 +210,7 @@ function EditRentPropertyPage() {
                   { label: "Apartment", value: "apartment" },
                   { label: "Home", value: "home" },
                 ]}
-                defaultValue={"Select..."}
+                defaultValue={formData.property_type}
                 onChange={handleChange}
               />
               <div className="form__property">
@@ -195,7 +229,7 @@ function EditRentPropertyPage() {
                     { label: "9", value: "9" },
                     { label: "10", value: "10" },
                   ]}
-                  defaultValue={"Select..."}
+                  defaultValue={formData.bedrooms}
                   onChange={handleChange}
                 />
                 <Select
@@ -213,7 +247,7 @@ function EditRentPropertyPage() {
                     { label: "9", value: "9" },
                     { label: "10", value: "10" },
                   ]}
-                  defaultValue={"Select..."}
+                  defaultValue={formData.bathrooms}
                   onChange={handleChange}
                 />
                 <Input
@@ -222,6 +256,7 @@ function EditRentPropertyPage() {
                   type="number"
                   placeholder="##"
                   onChange={handleChange}
+                  value={formData.area}
                 />
               </div>
               <div>
@@ -243,6 +278,7 @@ function EditRentPropertyPage() {
                 <StyledTextArea
                   name="about"
                   placeholder="My Apartment is great because..."
+                  value={formData.about}
                   onChange={handleChange}
                 />
                 <blockquote className="quote">
