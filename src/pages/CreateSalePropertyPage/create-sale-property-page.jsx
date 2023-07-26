@@ -1,6 +1,6 @@
 import AddressAutocomplete from "./addressAutocomplete";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
 import Select from "../../components/Select";
@@ -16,6 +16,7 @@ import { useAuth } from "../../context/auth-context";
 import { createProperty } from "../../services/property-service";
 
 function CreateSalePropertyPage() {
+  const navigate = useNavigate();
   const { user } = useAuth();
 
   const [districtEstate, setDistrictEstate] = useState({
@@ -72,9 +73,9 @@ function CreateSalePropertyPage() {
     }
 
     createProperty(propertyData)
-      .then((data) => {
-        navigate(`/property/detail/${data.id}`);
-        console.log(data);
+      .then((property) => {
+        console.log(property);
+        navigate(`/property/detail/${property.id}`);
       })
       .catch((error) => {
         console.error(error);
@@ -93,9 +94,7 @@ function CreateSalePropertyPage() {
     }));
   }, [districtEstate]);
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  console.log(formData);
 
   return (
     <>

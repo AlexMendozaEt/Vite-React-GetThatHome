@@ -51,7 +51,6 @@ function CreateRentalPropertyPage() {
   }
 
   function handleChange(event) {
-    console.log(formData);
     const name = event.target.name;
     const value =
       event.target.type === "checkbox"
@@ -79,7 +78,6 @@ function CreateRentalPropertyPage() {
     createProperty(propertyData)
       .then((data) => {
         navigate(`/property/detail/${data.id}`);
-        console.log(data);
       })
       .catch((error) => {
         console.error(error);
@@ -97,10 +95,6 @@ function CreateRentalPropertyPage() {
       ...districtEstate,
     }));
   }, [districtEstate]);
-
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
 
   return (
     <>

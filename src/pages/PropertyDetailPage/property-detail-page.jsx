@@ -222,9 +222,6 @@ function PropertyDetailPage() {
       );
     }
   }
-  // console.log(favorites.properties);
-  // console.log(contacts.properties);
-  // console.log(user);
 
   return (
     <>

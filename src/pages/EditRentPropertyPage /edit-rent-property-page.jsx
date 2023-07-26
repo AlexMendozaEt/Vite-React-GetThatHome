@@ -67,7 +67,7 @@ function EditRentPropertyPage() {
       .catch((error) => console.log(error));
   }, [id]);
 
-  console.log(formData);
+  // console.log(formData);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -114,7 +114,7 @@ function EditRentPropertyPage() {
     });
   }
 
-  console.log(property);
+  // console.log(property);
 
   return (
     <>

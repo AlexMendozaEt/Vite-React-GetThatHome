@@ -62,6 +62,7 @@ export const StyledDetail = styled.section`
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
+    flex-wrap: wrap;
   }
 
   .info-property__child {
@@ -148,7 +149,9 @@ export const StyledDetail = styled.section`
     justify-content: center;
   }
 
-  @media only screen and (max-width: 640px) {
+  @media only screen and (max-width: 770px) {
+    padding: 4rem 0;
+
     .info-address-price {
       font-size: 1.5rem;
     }

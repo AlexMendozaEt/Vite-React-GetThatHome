@@ -40,7 +40,6 @@ export default async function apiFetch(
     } catch (error) {
       throw new Error(response.statusText);
     }
-    // console.log(data);
     throw new Error(JSON.stringify(data));
   }
 
