@@ -4,8 +4,8 @@ export async function getMyContacts() {
   return await apiFetch("/contacts");
 }
 
-export async function createContact({ property_id, user_id }) {
-  return await apiFetch("/contacts", { property_id, user_id });
+export async function createContact(contact_data) {
+  return await apiFetch("/contacts", { body: contact_data });
 }
 
 export async function deleteContact(id) {
