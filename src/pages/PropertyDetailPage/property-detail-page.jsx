@@ -125,7 +125,7 @@ function PropertyDetailPage() {
       property_id: id,
       user_id: user.id,
     };
-    createContact(contact_data).catch(console.log);
+    createContact(contact_data).then(navigate(0)).catch(console.log);
   }
 
   function handleCreateFavorite() {
