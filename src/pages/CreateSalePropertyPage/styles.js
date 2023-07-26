@@ -120,10 +120,11 @@ export const StyledContainer = styled.div`
   .container-autocomplete {
     display: flex;
     align-items: center;
+    font-size: 0.96rem;
     gap: 0.5rem;
     border: 1px solid ${(props) => props.theme.colors.pink[400]};
     border-radius: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.75rem 0.6rem;
   }
 
   .container-autocomplete input[type="text"] {

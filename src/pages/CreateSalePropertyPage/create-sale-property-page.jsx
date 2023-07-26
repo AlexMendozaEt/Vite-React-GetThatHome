@@ -1,4 +1,4 @@
-import GooglePlacesAutocomplete from "react-google-autocomplete";
+import AddressAutocomplete from "./addressAutocomplete";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
@@ -74,10 +74,10 @@ function CreateSalePropertyPage() {
   }
 
   function handleAddressChange(address) {
-    setFormData({
-      ...formData,
-      address: address.formatted_address,
-    });
+    // setFormData({
+    //   ...formData,
+    //   address: address.formatted_address,
+    // });
   }
 
   return (
@@ -109,23 +109,8 @@ function CreateSalePropertyPage() {
               </div>
             </div>
             <form className="form" onSubmit={handleSubmit}>
-              <label className="label">ADDRESS</label>
-              <div className="container-autocomplete ">
-                <HiMagnifyingGlass size={"1.25rem"} />
-                <GooglePlacesAutocomplete
-                  apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
-                  autocompletionRequest={{
-                    types: ["address"],
-                  }}
-                  selectProps={{
-                    name: "address",
-                    onChange: handleAddressChange,
-                    placeholder: "Start typing to autocomplete ",
-                  }}
-                />
-              </div>
               <InputWithIcon
-                label={"DISTRICT"}
+                label={"ADDRESS"}
                 icon={<HiMagnifyingGlass size={"1.25rem"} />}
                 isFullWidth
                 name="district"
@@ -133,15 +118,13 @@ function CreateSalePropertyPage() {
                 placeholder="District"
                 onChange={handleChange}
               />
-              <InputWithIcon
-                label={"STATE"}
-                icon={<HiMagnifyingGlass size={"1.25rem"} />}
-                isFullWidth
-                name="state"
-                type="text"
-                placeholder="STATE"
-                onChange={handleChange}
-              />
+              <label className="label">
+                DISTRICT-ESTATE
+                <div className="container-autocomplete ">
+                  <HiMagnifyingGlass size={"1.25rem"} />
+                  <AddressAutocomplete handleSelect={handleAddressChange} />
+                </div>
+              </label>
               <InputWithIcon
                 label="PRICE"
                 icon={<TbCoin size={"1.25rem"} />}
