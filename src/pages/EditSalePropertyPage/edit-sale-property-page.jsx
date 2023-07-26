@@ -1,5 +1,5 @@
 import GooglePlacesAutocomplete from "react-google-autocomplete";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
@@ -14,15 +14,21 @@ import { TbCoin } from "react-icons/tb";
 import Footer from "../../components/Footer";
 import { useAuth } from "../../context/auth-context";
 import { createProperty } from "../../services/property-service";
+import { useParams } from "react-router-dom";
+import { getProperty } from "../../services/property-service";
 
 function EditSalePropertyPage() {
   const { user } = useAuth();
+  const [images, setImages] = useState([]);
+  const { id } = useParams();
+  const [property, setProperty] = useState({});
 
   const [formData, setFormData] = useState({
     address: "",
     district: "",
     state: "",
-    montly_rent: null,
+    monthly_rent: null,
+    price: null,
     maintenance: null,
     property_type: null,
     bedrooms: null,
@@ -34,7 +40,33 @@ function EditSalePropertyPage() {
     user_id: user?.id,
   });
 
-  const [images, setImages] = useState([]);
+  useEffect(() => {
+    if (!id) return;
+
+    getProperty(id)
+      .then((property) => {
+        setProperty(property);
+        setFormData({
+          address: property.address,
+          district: property.district,
+          state: property.state,
+          monthly_rent: property.monthly_rent,
+          price: property.price,
+          maintenance: property.maintenance,
+          property_type: property.property_type,
+          bedrooms: property.bedrooms,
+          bathrooms: property.bathrooms,
+          area: property.area,
+          pets_allowed: property.pets_allowed,
+          about: property.about,
+          operation_type: property.operation_type,
+          user_id: property.user_id,
+        });
+      })
+      .catch((error) => console.log(error));
+  }, [id]);
+
+  console.log(formData);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -114,6 +146,7 @@ function EditSalePropertyPage() {
                 <HiMagnifyingGlass size={"1.25rem"} />
                 <GooglePlacesAutocomplete
                   apiKey={import.meta.env.VITE_GOOGLE_API_KEY}
+                  value={formData.address}
                   autocompletionRequest={{
                     types: ["address"],
                   }}
@@ -132,6 +165,7 @@ function EditSalePropertyPage() {
                 type="text"
                 placeholder="District"
                 onChange={handleChange}
+                value={formData.district}
               />
               <InputWithIcon
                 label={"STATE"}
@@ -141,12 +175,14 @@ function EditSalePropertyPage() {
                 type="text"
                 placeholder="STATE"
                 onChange={handleChange}
+                value={formData.state}
               />
               <InputWithIcon
                 label="PRICE"
                 icon={<TbCoin size={"1.25rem"} />}
                 type="number"
                 name="price"
+                value={formData.price}
                 placeholder="2000"
                 onChange={handleChange}
               />
@@ -157,7 +193,7 @@ function EditSalePropertyPage() {
                   { label: "Apartment", value: "apartment" },
                   { label: "House", value: "house" },
                 ]}
-                defaultValue={"Select..."}
+                defaultValue={formData.property_type}
                 onChange={handleChange}
               />
               <div className="form__property">
@@ -176,7 +212,7 @@ function EditSalePropertyPage() {
                     { label: "9", value: "9" },
                     { label: "10", value: "10" },
                   ]}
-                  defaultValue={"Select..."}
+                  defaultValue={formData.bedrooms}
                   onChange={handleChange}
                 />
                 <Select
@@ -194,7 +230,7 @@ function EditSalePropertyPage() {
                     { label: "9", value: "9" },
                     { label: "10", value: "10" },
                   ]}
-                  defaultValue={"Select..."}
+                  defaultValue={formData.bathrooms}
                   onChange={handleChange}
                 />
                 <Input
@@ -203,6 +239,7 @@ function EditSalePropertyPage() {
                   type="number"
                   placeholder="##"
                   onChange={handleChange}
+                  value={formData.area}
                 />
               </div>
               <label>
@@ -211,6 +248,7 @@ function EditSalePropertyPage() {
                   name="about"
                   placeholder="My Apartment is great because..."
                   onChange={handleChange}
+                  value={formData.about}
                 />
                 <blockquote className="quote">
                   Renters will read this first, so highlight any features or
@@ -239,6 +277,7 @@ function EditSalePropertyPage() {
                       key={index}
                       src={URL.createObjectURL(image)}
                       className="images-container__image"
+                      value={formData.images}
                     />
                   ))}
                 </div>
