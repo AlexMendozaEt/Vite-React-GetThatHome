@@ -1,8 +1,8 @@
-import { Formik } from "formik";
+import { Formik, Field, ErrorMessage } from "formik"; // Import Field and ErrorMessage from Formik
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getUser } from "../../services/user-service";
+import { getUser, updateUser } from "../../services/user-service"; // Assume there's a function updateUser to update the user data
 import { useAuth } from "../../context/auth-context";
 
 import {
@@ -23,7 +23,7 @@ import {
 
 function MyFormikProfile({ userType }) {
   const { user } = useAuth();
-
+  console.log(user);
   const initialValues = {
     name: user.name,
     email: user.email,
@@ -33,8 +33,20 @@ function MyFormikProfile({ userType }) {
   const navigate = useNavigate();
 
   const [showError, setShowError] = useState(false);
-  async function onSubmit(values) {
-    console.log(values);
+
+  async function onSubmit(values, { setSubmitting }) {
+    const id = user.id;
+    try {
+      const data = await updateUser(values, id);
+      // setUser(updatedUser);
+      setShowError(false);
+      setSubmitting(false);
+      console.log(data);
+      navigate("/");
+    } catch (error) {
+      setShowError(true);
+      console.error("Error updating user:", error);
+    }
   }
 
   function hideError() {
@@ -55,7 +67,7 @@ function MyFormikProfile({ userType }) {
 
     if (values.phone === "") {
       errors.phone = "Phone is required";
-    } else if (!/\b(?:\d{9}|\d{3}-\d{3}-\d{3})\b/.test(values.phone)) {
+    } else if (!/^(?:\d{9}|\d{10}|\d{3}-\d{3}-\d{3})$/.test(values.phone)) {
       errors.phone = "Invalid phone";
     }
 
@@ -81,54 +93,56 @@ function MyFormikProfile({ userType }) {
         onSubmit={onSubmit}
         validate={validate}
       >
-        {({ errors }) => (
+        {({ errors, isSubmitting }) => (
           <FormEdit>
             <InputBox>
               <LabelText htmlFor="name">NAME</LabelText>
-              <FieldEdit
+              <Field
+                as={FieldEdit}
                 type="text"
                 id="name"
                 name="name"
                 placeholder="John Doe"
                 className={errors.name ? "input-error" : ""}
-                disabled
               />
               <ErrorInputs name="name" component="small" />
             </InputBox>
             <InputBox>
               <LabelText htmlFor="email">EMAIL</LabelText>
-              <FieldEdit
+              <Field
+                as={FieldEdit} // Use Field instead of directly using FieldEdit
                 type="email"
                 id="email"
                 name="email"
                 placeholder="user@mail.com"
                 className={errors.email ? "input-error" : ""}
-                disabled
               />
               <ErrorInputs name="email" component="small" />
             </InputBox>
             <InputBox>
               <LabelText htmlFor="phone">PHONE</LabelText>
-              <FieldEdit
+              <Field
+                as={FieldEdit}
                 type="tel"
                 id="phone"
                 name="phone"
                 placeholder="999-999-999"
-                className={errors.price ? "input-error" : ""}
-                disabled
+                className={errors.phone ? "input-error" : ""}
               />
               <ErrorInputs name="phone" component="small" />
             </InputBox>
-            {/*
-            <ButtonCreate type="submit">
-              {/* DENTRO DEL BOTON onClick={() => navigate("/home")} 
-              <ButtonText>Edit Account</ButtonText>
-            </ButtonCreate>*/}
+            <ButtonCreate type="submit" disabled={isSubmitting}>
+              {" "}
+              {/* Disable the button during submission */}
+              <ButtonText>
+                {isSubmitting ? "Saving..." : "Update Profile"}
+              </ButtonText>
+            </ButtonCreate>
 
             {showError && (
               <ErrorBox onClick={hideError}>
                 <ErrorText>
-                  An error occurred when creating the product
+                  An error occurred when updating the profile
                 </ErrorText>
               </ErrorBox>
             )}
