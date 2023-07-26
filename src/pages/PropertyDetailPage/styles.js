@@ -127,6 +127,22 @@ export const StyledDetail = styled.section`
     text-transform: uppercase;
   }
 
+  .edit-container {
+    padding: 2rem 4rem;
+  }
+
+  .action-container {
+    padding: 1rem;
+    height: fit-content;
+    border-radius: 0.5rem;
+    background-color: ${(props) => props.theme.colors.background.lighter};
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
   @media only screen and (max-width: 1130px) {
     flex-wrap: wrap;
     justify-content: center;
@@ -141,5 +157,24 @@ export const StyledDetail = styled.section`
       font-size: 1rem;
       gap: 0.25rem;
     }
+  }
+`;
+
+export const ButtonFavorite = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  :focus {
+    outline: 0.1875rem solid ${(props) => props.theme.colors.info};
+  }
+  :hover {
+    background-color: ${(props) => props.theme.colors.background.standard};
+  }
+  :active {
+    background-color: ${(props) => props.theme.colors.background.dark};
   }
 `;

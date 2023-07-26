@@ -3,19 +3,27 @@ import axios from "axios";
 
 import PropTypes from "prop-types";
 import { RiUserReceived2Line, RiMoneyDollarCircleLine } from "react-icons/ri";
-import { MdOutlinePets } from "react-icons/md";
+import { MdOutlinePets, MdFavorite } from "react-icons/md";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Container from "../../layout/Container";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { StyledDetail } from "./styles";
+import { ButtonFavorite, StyledDetail } from "./styles";
 import Button from "../../components/Button";
+import {
+  createFavorite,
+  deleteFavorite,
+  getMyFavorites,
+} from "../../services/favorite-service";
+import { getMyContacts, createContact } from "../../services/contacts-service";
 import { getProperty } from "../../services/property-service";
 import { useAuth } from "../../context/auth-context";
 import { ImagesSlider } from "../../components/ImagesSlider/images-slider";
+import Anchor from "../../components/Anchor";
+import { useTheme } from "@emotion/react";
 
 const containerStyles = {
   width: "375px",
@@ -51,6 +59,8 @@ const getCoordinates = async (address) => {
 };
 
 function PropertyDetailPage() {
+  const theme = useTheme();
+  const navigate = useNavigate();
   const { handleModal } = useAuth();
   const { id } = useParams();
   const { user } = useAuth();
@@ -58,6 +68,8 @@ function PropertyDetailPage() {
   const [property, setProperty] = useState({});
   const [areImagesLoaded, setAreImagesLoaded] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
+  const [favorites, setFavorites] = useState([]);
+  const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
     if (!id) return;
@@ -79,6 +91,18 @@ function PropertyDetailPage() {
         });
       })
       .catch((error) => console.log(error));
+
+    getMyFavorites()
+      .then((favorites) => {
+        setFavorites(favorites);
+      })
+      .catch((e) => console.log(e));
+
+    getMyContacts()
+      .then((contacts) => {
+        setContacts(contacts);
+      })
+      .catch((e) => console.log(e));
   }, [id]);
 
   const {
@@ -95,61 +119,112 @@ function PropertyDetailPage() {
     images,
   } = property;
 
-  const viewBox = {
-    0: (
-      <div className="login">
-        <div className="login__card">
-          <p className="login__title">
-            Log in or Join to contact the advertiser
-          </p>
-          <Button
-            className="button"
+  function handleCreateContact() {
+    const contact_data = {
+      property_id: id,
+      user_id: user.id,
+    };
+    createContact(contact_data).catch(console.log);
+  }
+
+  function handleCreateFavorite() {
+    const favorite_data = {
+      property_id: id,
+      user_id: user.id,
+    };
+    createFavorite(favorite_data).then(navigate(0)).catch(console.log);
+  }
+
+  function handleDeleteFavorite() {
+    const temporalFavorite = favorites.favorites?.find(
+      (e) => e.property_id === Number(id)
+    );
+    deleteFavorite(temporalFavorite.id).then(navigate(0)).catch(console.log);
+  }
+
+  function viewBox() {
+    if (!user) {
+      return (
+        <div className="login">
+          <div className="login__card">
+            <p className="login__title">
+              Log in or Join to contact the advertiser
+            </p>
+            <Button
+              className="button"
+              icon={<RiUserReceived2Line />}
+              type={"primary"}
+              onClick={handleModal}
+            >
+              LOGIN
+            </Button>
+          </div>
+        </div>
+      );
+    } else if (user.role === "landlord") {
+      return (
+        <div className="edit-container">
+          <Anchor
+            className="Anchor"
             icon={<RiUserReceived2Line />}
             type={"primary"}
-            onClick={handleModal}
+            to={`/property/edit/${id}`}
           >
-            LOGIN
-          </Button>
+            EDIT PROPERTY
+          </Anchor>
         </div>
-      </div>
-    ),
-    1: (
-      <div className="login">
-        <div className="login__card">
-          {user ? (
-            <>
-              <p className="login__title">{user.name}</p>
-              <p className="login__title">{user.email}</p>
-              <p className="login__title">{user.phone}</p>
-            </>
-          ) : null}
-          <Button
-            className="button"
-            icon={<RiUserReceived2Line />}
-            type={"primary"}
-          >
-            LANDLORD
+      );
+    } else {
+      let firstPart;
+      let secondPart;
+      if (contacts.properties?.some((e) => e.id === Number(id))) {
+        firstPart = (
+          <div>
+            <h3>Contact Information</h3>
+            <div className="email">
+              <p>Email</p>
+              <p>dude@mail.com</p>
+            </div>
+            <div className="phone">
+              <p>Phone</p>
+              <p>987654321</p>
+            </div>
+          </div>
+        );
+      } else {
+        firstPart = (
+          <Button onClick={handleCreateContact} type={"primary"}>
+            CONTACT ADVISER
           </Button>
+        );
+      }
+      if (favorites.properties?.some((e) => e.id === Number(id))) {
+        secondPart = (
+          <ButtonFavorite onClick={handleDeleteFavorite}>
+            <MdFavorite size={"1.5rem"} fill={theme.colors.pink[500]} />
+            Remove from Favorites
+          </ButtonFavorite>
+        );
+      } else {
+        secondPart = (
+          <ButtonFavorite onClick={handleCreateFavorite}>
+            <MdFavorite size={"1.5rem"} />
+            Add to Favorites
+          </ButtonFavorite>
+        );
+      }
+
+      return (
+        <div className="action-container">
+          {firstPart}
+          {secondPart}
         </div>
-      </div>
-    ),
-    2: (
-      <div className="login">
-        <div className="login__card">
-          <p className="login__title">
-            Log in or Join to contact the advertiser
-          </p>
-          <Button
-            className="button"
-            icon={<RiUserReceived2Line />}
-            type={"primary"}
-          >
-            HOMESEEKER
-          </Button>
-        </div>
-      </div>
-    ),
-  };
+      );
+    }
+  }
+  // console.log(favorites.properties);
+  // console.log(contacts.properties);
+  // console.log(user);
 
   return (
     <>
@@ -197,12 +272,12 @@ function PropertyDetailPage() {
             <hr className="line"></hr>
             <div>
               <div className="title-pink">About this property</div>
-              <div className="simple-text">{about}</div>
+              <div className="simple-tet">{about}</div>
             </div>
             <div>
               <div className="title-pink">Location</div>
               <div className="simple-text">
-                {property.address}, {property.district}, {property.state}
+                {address}, {district}, {state}
               </div>
               {coordinates && (
                 <LoadScript
@@ -220,11 +295,7 @@ function PropertyDetailPage() {
               {coordinates ? null : <p>Loading map...</p>}
             </div>
           </div>
-          {user === null
-            ? viewBox[0]
-            : user?.role === "landlord"
-            ? viewBox[1]
-            : viewBox[2]}
+          {viewBox(user, favorites, contacts)}
         </StyledDetail>
       </Container>
       <Footer />
