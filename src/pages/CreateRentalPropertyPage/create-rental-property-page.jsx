@@ -29,7 +29,7 @@ function CreateRentalPropertyPage() {
     address: "",
     district: "",
     state: "",
-    montly_rent: null,
+    monthly_rent: null,
     maintenance: null,
     property_type: null,
     bedrooms: null,
@@ -152,10 +152,10 @@ function CreateRentalPropertyPage() {
                 </div>
               </label>
               <InputWithIcon
-                label="MONTLY RENT"
+                label="MONTHLY RENT"
                 icon={<TbCoin size={"1.25rem"} />}
                 type="number"
-                name="montly_rent"
+                name="monthly_rent"
                 placeholder="2000"
                 onChange={handleChange}
               />
