@@ -4,6 +4,7 @@ export const StyledDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  justify-content: center;
 `;
 
 export const RightArrowContainer = styled.div`
