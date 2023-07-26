@@ -27,7 +27,7 @@ function CreateSalePropertyPage() {
     address: "",
     district: "",
     state: "",
-    montly_rent: null,
+    monthly_rent: null,
     maintenance: null,
     property_type: null,
     bedrooms: null,
@@ -73,6 +73,7 @@ function CreateSalePropertyPage() {
 
     createProperty(propertyData)
       .then((data) => {
+        navigate(`/property/detail/${data.id}`);
         console.log(data);
       })
       .catch((error) => {
