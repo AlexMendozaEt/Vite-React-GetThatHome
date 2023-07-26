@@ -1,5 +1,5 @@
 import AddressAutocomplete from "./addressAutocomplete";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 
@@ -17,6 +17,11 @@ import { createProperty } from "../../services/property-service";
 
 function CreateSalePropertyPage() {
   const { user } = useAuth();
+
+  const [districtEstate, setDistrictEstate] = useState({
+    district: "",
+    state: "",
+  });
 
   const [formData, setFormData] = useState({
     address: "",
@@ -46,6 +51,13 @@ function CreateSalePropertyPage() {
     setFormData(newValues);
   }
 
+  function handleAddressChange(data) {
+    setDistrictEstate({
+      district: data.address_components[0].long_name,
+      state: data.address_components[1].long_name,
+    });
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -73,12 +85,16 @@ function CreateSalePropertyPage() {
     setImages([...images, ...selectedImages]);
   }
 
-  function handleAddressChange(address) {
-    // setFormData({
-    //   ...formData,
-    //   address: address.formatted_address,
-    // });
-  }
+  useEffect(() => {
+    setFormData((prevData) => ({
+      ...prevData,
+      ...districtEstate,
+    }));
+  }, [districtEstate]);
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   return (
     <>
@@ -113,9 +129,9 @@ function CreateSalePropertyPage() {
                 label={"ADDRESS"}
                 icon={<HiMagnifyingGlass size={"1.25rem"} />}
                 isFullWidth
-                name="district"
+                name="address"
                 type="text"
-                placeholder="District"
+                placeholder="Address"
                 onChange={handleChange}
               />
               <label className="label">
